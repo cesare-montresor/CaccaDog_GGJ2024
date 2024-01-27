@@ -199,7 +199,7 @@ script = ExtResource("1_2y7kl")
 position = Vector2(0, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yy7r7")
-animation = &"walk_u"
+animation = &"idle_d"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
