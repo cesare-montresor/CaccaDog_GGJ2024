@@ -4802,13 +4802,9 @@ texture = ExtResource("1_o6x85")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6qmw0")
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("healthBar", "xpBar", "levelLabel", "damageLabel")]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xkdg8")
-healthBar = NodePath("UI/Control/Player Health/HealthBar")
-xpBar = NodePath("UI/Control/Player LVL/HBoxContainer/XpBar")
-levelLabel = NodePath("UI/Control/Player LVL/HBoxContainer/PlayerLevel")
-damageLabel = NodePath("UI/Control/PlayerDamage/PlayerDmg")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

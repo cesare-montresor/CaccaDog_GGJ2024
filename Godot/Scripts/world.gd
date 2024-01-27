@@ -56,3 +56,7 @@ func _on_dialogic_signal(argument:String):
 	if argument == "RemoveGate":
 		print("Removing Gate")
 		$Gate.queue_free()
+
+
+func _on_cacca_body_entered(body):
+	pass # Replace with function body.
