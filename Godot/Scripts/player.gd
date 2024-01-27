@@ -2,20 +2,24 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
+
+
 var step_speed = 0.200
 var step_delay = 0.050
 var step_size_px = 16
+var step_mul_px = 4
 var step_size = 0 
 
 var direction = "r"
 var is_moving = false
-var source_position = null
-var target_position = null
+var source_position = Vector2.ZERO
+var target_position = Vector2.ZERO
 var last_direction = Vector2.ZERO
-
+var tween: Tween = null
+var poop_counter = 3
 
 func _init():
-	step_size = step_size_px * 3
+	step_size = step_size_px * step_mul_px
 	position = Vector2.ZERO
 
 # Called every frame
@@ -49,30 +53,58 @@ func PlayerMovement(delta):
 		last_direction = step
 	
 	if not is_moving and last_direction != Vector2.ZERO:
-			source_position = position
-			target_position = position + (step * step_size)
-			var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-			tween.set_loops(1).set_parallel(false)
-			tween.tween_property(self, "position", source_position, step_delay)
-			tween.tween_property(self, "position", target_position, step_speed)
-			tween.tween_callback( endMovment )
-			is_moving = true
+		source_position = position
+		target_position = position + (step * step_size)
+		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		tween.set_loops(1).set_parallel(false)
+		tween.tween_property(self, "position", source_position, 0)
+		tween.tween_property(self, "position", target_position, step_speed)
+		tween.tween_property(self, "position", target_position, step_delay)
+		tween.tween_callback( endMovment )
+		is_moving = true
+	
 
+	
 func endMovment():
 	is_moving = false
-
+	poop_counter -= 1
+	
+	
+func endMovmentBlock():
+	
 
 func PlayerAnimation():
-	if (velocity.x > 0):
+	var val = target_position - source_position
+	if (val.x > 0):
 		direction = "r"
-	elif (velocity.x < 0):
+	elif (val.x < 0):
 		direction = "l"
-	elif (velocity.y > 0):
+	elif (val.y > 0):
 		direction = "d"
-	elif (velocity.y < 0):
+	elif (val.y < 0):
 		direction = "u"
 		
 	if (velocity == Vector2.ZERO):
 		PlayerAnim.play("idle_" + direction)
 	else:
 		PlayerAnim.play("walk_" + direction)
+
+
+func _on_area_2d_body_entered(body):
+	if body == $TileMap:
+		collide_walls(body)
+	else:
+		collide_food(body)
+	
+func collide_food(body):
+	poop_counter +=1 
+	
+	
+func collide_walls():
+	if (tween != null):
+		tween.kill()
+	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_loops(1).set_parallel(false)
+	tween.tween_property(self, "position", source_position, 0)
+	tween.tween_callback( endMovmentBlock )
+	print("sono toccato!")

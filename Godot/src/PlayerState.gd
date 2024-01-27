@@ -1,6 +1,9 @@
 extends Node
 
-const resetPosition : Vector2 = Vector2(0, 0)
+var tile_size = 16 * 4
+var tile_pos = Vector2(1,1)
+
+var resetPosition : Vector2 = Vector2(0, 0)
 var lastPosition : Vector2 = Vector2(0, 0)
 
 var maxHealth = 35
@@ -13,6 +16,8 @@ var xpNeeded = 0 #amount of xp to level up
 
 func _ready():
 	xpNeeded = getRequiredXP(level + 1) #ready for next level
+	resetPosition = (tile_pos * tile_size) + (Vector2.ONE * tile_size / 2)
+	lastPosition = resetPosition
 
 func getRequiredXP(level):
 	return round(pow(level, 1.8) + level * 4)
