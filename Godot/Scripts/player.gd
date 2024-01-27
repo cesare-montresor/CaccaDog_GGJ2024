@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
-var speed = 250
-var step_speed = 250
-var step_size = 16
+var step_speed = 0.100
+var step_size_px = 16
+var step_size = 0 
 
 var direction = "r"
 var is_moving = false
+var source_position = null
 var target_position = null
+
+func _init():
+	step_size = step_size_px * 3
 
 # Called every frame
 func _process(delta):
@@ -27,9 +31,7 @@ func _process(delta):
 
 func PlayerMovement(delta):
 	
-	velocity = Input.get_vector("left", "right", "up", "down")
-	
-	var step = Vector2.ZERO
+	var step = Input.get_vector("left", "right", "up", "down")
 	if (velocity.x > 0):
 		step.x = 1
 	elif (velocity.x < 0):
@@ -39,14 +41,20 @@ func PlayerMovement(delta):
 			step.y = 1
 		elif (velocity.y < 0):
 			step.y = -1
-		
 	
-	if not is_moving:
+	
+	
+	if not is_moving and step != Vector2.ZERO:
+		source_position = position
 		target_position = position + (step * step_size)
-		is_moving = true
-	else:
-		velocity = (target_position - position) * (delta / step_speed)
-		move_and_slide()
+		var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		tween.set_loops(1).set_parallel(false)
+		tween.tween_property(self, "position", source_position, step_speed)
+		tween.tween_property(self, "position", target_position, step_speed)
+		tween.tween_callback( endMovment )
+
+func endMovment():
+	is_moving = false
 
 
 func PlayerAnimation():
