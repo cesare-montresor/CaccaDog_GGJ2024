@@ -188,7 +188,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ih4j"]
-size = Vector2(48, 48)
+size = Vector2(62, 62)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -196,8 +196,8 @@ y_sort_enabled = true
 script = ExtResource("1_2y7kl")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 24)
-scale = Vector2(3, 3)
+position = Vector2(0, 32)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yy7r7")
 animation = &"idle_d"
 offset = Vector2(0, -8)
