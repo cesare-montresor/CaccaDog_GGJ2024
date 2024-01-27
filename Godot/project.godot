@@ -1,3 +1,11 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
@@ -14,15 +22,8 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={
-"Antonio": "res://Dialogic/Characters/Antonio.dch",
-"Player": "res://Dialogic/Characters/Player.dch"
-}
-directories/dtl_directory={
-"Antonio": "res://Dialogic/Timelines/Antonio.dtl",
-"LookMore": "res://Dialogic/Timelines/LookMore.dtl",
-"timeline_temp": "res://timeline_temp.dtl"
-}
+directories/dch_directory={}
+directories/dtl_directory={}
 glossary/default_case_sensitive=true
 layout/style_list=["res://Dialogic/Styles/Bubble.tres"]
 layout/default_style="res://Dialogic/Styles/Bubble.tres"
@@ -97,3 +98,5 @@ dialogic_default_action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

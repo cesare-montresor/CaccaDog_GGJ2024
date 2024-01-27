@@ -1,7 +1,7 @@
 extends Node
 
-const resetPosition : Vector2 = Vector2(270, 680)
-var lastPosition : Vector2 = Vector2(270, 680)
+const resetPosition : Vector2 = Vector2(0, 0)
+var lastPosition : Vector2 = Vector2(0, 0)
 
 var maxHealth = 35
 var health = maxHealth
