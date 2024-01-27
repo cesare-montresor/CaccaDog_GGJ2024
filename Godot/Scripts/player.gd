@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
-
+const poop_asset = preload("res://Scenes/cacca.tscn")
 
 var step_speed = 0.200
 var step_delay = 0.050
@@ -53,25 +53,34 @@ func PlayerMovement(delta):
 		last_direction = step
 	
 	if not is_moving and last_direction != Vector2.ZERO:
+		is_moving = true
+		print("start")
 		source_position = position
-		target_position = position + (step * step_size)
+		target_position = position + (last_direction * step_size)
 		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
 		tween.tween_property(self, "position", target_position, step_speed)
 		tween.tween_property(self, "position", target_position, step_delay)
 		tween.tween_callback( endMovment )
-		is_moving = true
+		
 	
 
 	
 func endMovment():
+	tween.kill()
+	print("end")
+	if poop_counter > 0: 
+		poop_counter -= 1
+		var new_poop = poop_asset.instantiate()
+		new_poop.position = source_position
+		get_tree().root.add_child(new_poop)
+		
 	is_moving = false
-	poop_counter -= 1
 	
 	
 func endMovmentBlock():
-	
+	is_moving = false
 
 func PlayerAnimation():
 	var val = target_position - source_position
@@ -91,16 +100,14 @@ func PlayerAnimation():
 
 
 func _on_area_2d_body_entered(body):
-	if body == $TileMap:
-		collide_walls(body)
-	else:
-		collide_food(body)
+	collide_walls(body)
+	#collide_food(body)
 	
 func collide_food(body):
 	poop_counter +=1 
 	
 	
-func collide_walls():
+func collide_walls(body):
 	if (tween != null):
 		tween.kill()
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

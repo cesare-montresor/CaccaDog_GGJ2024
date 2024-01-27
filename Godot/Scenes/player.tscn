@@ -199,7 +199,7 @@ script = ExtResource("1_2y7kl")
 position = Vector2(0, 32)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yy7r7")
-animation = &"walk_u"
+animation = &"idle_d"
 offset = Vector2(0, -8)
 
 [node name="Camera2D" type="Camera2D" parent="."]
