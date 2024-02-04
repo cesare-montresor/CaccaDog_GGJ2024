@@ -9,8 +9,8 @@ const fly_asset = preload("res://Scenes/fly.tscn")
 
 var step_speed = 0.200
 var step_delay = 0.020
-var fly_spwan_dist = 100
-var fly_time_poop = 3
+var fly_spwan_dist = [100, 300]
+var fly_time_poop = [2,5]
 
 var direction = "r"
 var is_moving = false
@@ -21,12 +21,11 @@ var wall_layer = 1
 var walls
 var play_area = Rect2i(0,0,0,0)
 var tween
-var rng
+var rng = RandomNumberGenerator.new()
 
 @onready var map: TileMap = $"../TileMap";
 
 func _init(): 
-	rng = RandomNumberGenerator.new()
 	pass
 	
 func _ready():
@@ -119,19 +118,20 @@ func add_poop():
 		var new_poop = poop_asset.instantiate()
 		new_poop.position = source_position
 		get_tree().root.add_child(new_poop)
+		Sfx.fart()
 		return new_poop
+		
 
 func add_fly(poop):
 	if poop == null: return
 	var new_fly = fly_asset.instantiate()
-	var radius = fly_spwan_dist
+	var radius = rng.randf_range(fly_spwan_dist[0],fly_spwan_dist[1])
 	var angle = rng.randf_range(0, 2 * 3.1415)
-	var pos = Vector2( sin(angle), cos(angle) ) * radius
+	var pos = Vector2( cos(angle), sin(angle) ) * radius
 	new_fly.position = pos
 	get_tree().root.add_child(new_fly)
-	new_fly.goto_target_poop(poop, fly_time_poop)
-	
-	
+	var fly_time = rng.randf_range(fly_time_poop[0],fly_time_poop[1])
+	new_fly.goto_target_poop(poop, fly_time)
 	pass
 
 func connect_poop(poop):

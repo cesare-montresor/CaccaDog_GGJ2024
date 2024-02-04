@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://be4dleekdehjc"]
+[gd_scene load_steps=6 format=3 uid="uid://5f2kp6xxek4k"]
 
 [ext_resource type="Script" path="res://Scripts/sfx.gd" id="1_hn020"]
 [ext_resource type="AudioStream" uid="uid://jo6ysklj5ht2" path="res://Assets/Audio/SFX/fart-gentle-squelch-ni-sound-1-00-01.mp3" id="1_qacr5"]

@@ -11,6 +11,11 @@ extends Node
 #@export var PickUp : AudioStreamPlayer
 #@export var Win : AudioStreamPlayer
 
+@onready var farts = [Fart1,Fart2,Fart3]
+
+func fart():
+	farts.pick_random().play()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
