@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3isf2b2tcx7g"]
+[gd_scene load_steps=17 format=3 uid="uid://d3isf2b2tcx7g"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_xvigs"]
 [ext_resource type="Texture2D" uid="uid://b8al8d54gyhd5" path="res://Assets/Tilesets/TilesetFloor.png" id="2_jsthd"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="6_f6w3m"]
 [ext_resource type="Texture2D" uid="uid://c0rfydk38ssfh" path="res://Assets/UI/Title.png" id="8_5pc0e"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
+[ext_resource type="AudioStream" uid="uid://08g2y3l7ia0u" path="res://Assets/Audio/music/Three Red Hearts - Three Red Hearts.ogg" id="10_o70n7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0kkh"]
 texture = ExtResource("2_jsthd")
@@ -4872,5 +4873,10 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 16
 text = "QUIT
 "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_o70n7")
+volume_db = -12.0
+autoplay = true
 
 [connection signal="pressed" from="w/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
