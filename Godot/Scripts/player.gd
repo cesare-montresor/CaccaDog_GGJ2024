@@ -19,7 +19,6 @@ var tween: Tween = null
 var poop_counter = 3
 var wall_layer = 1
 var walls
-var cell_offset
 
 @onready var map: TileMap = $"../TileMap";
 
@@ -29,8 +28,6 @@ func _init():
 	
 func _ready():
 	walls = map.get_used_cells(wall_layer)
-	var cell_size = map.rendering_quadrant_size
-	cell_offset = Vector2(cell_size / 2, cell_size / 2) 
 
 # Called every frame
 func _process(delta):
@@ -63,19 +60,15 @@ func PlayerMovement(delta):
 	
 	var cur_pos = position
 	var cur_coords = map.local_to_map(cur_pos)
-	print("------------------")
-	print("start", position)
-	print("cur_coords", cur_coords)
 	var next_coords = cur_coords + step
-	print("next_coords", next_coords)
 	var is_wall = walls.has(next_coords)
-	#next_coords = cur_coords + Vector2i(Vector2(step) * map.transform.get_scale())
-	print("next_coords2", next_coords)
+	
+	print("move", cur_coords, 'to', next_coords, 'can walk', !is_wall)
 	
 	if not is_moving and not is_wall:
 		is_moving = true
-		source_position = (map.map_to_local(cur_coords) - cell_offset)
-		target_position = (map.map_to_local(next_coords) - cell_offset)
+		source_position = map.map_to_local(cur_coords)
+		target_position = map.map_to_local(next_coords)
 		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
