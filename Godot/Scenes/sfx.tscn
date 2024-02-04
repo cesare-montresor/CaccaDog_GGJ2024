@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://be4dleekdehjc"]
+
+[ext_resource type="Script" path="res://Scripts/sfx.gd" id="1_hn020"]
+[ext_resource type="AudioStream" uid="uid://jo6ysklj5ht2" path="res://Assets/Audio/SFX/fart-gentle-squelch-ni-sound-1-00-01.mp3" id="1_qacr5"]
+[ext_resource type="AudioStream" uid="uid://wqnya7m3n208" path="res://Assets/Audio/SFX/fart-hearty-bwomp-locran-1-00-00.mp3" id="2_4eiev"]
+[ext_resource type="AudioStream" uid="uid://t00ho4lksb2" path="res://Assets/Audio/SFX/quick-fart-jam-fx-1-00-00.mp3" id="3_xkwvx"]
+[ext_resource type="AudioStream" uid="uid://dsje307ne7o38" path="res://Assets/Audio/SFX/sfx_deathscream_human7.wav" id="5_krpjx"]
+
+[node name="sfx" type="Node" node_paths=PackedStringArray("Fart1", "Fart2", "Fart3", "Death")]
+script = ExtResource("1_hn020")
+Fart1 = NodePath("Fart1")
+Fart2 = NodePath("Fart2")
+Fart3 = NodePath("Fart3")
+Death = NodePath("Death")
+
+[node name="Fart1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_qacr5")
+
+[node name="Fart2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4eiev")
+
+[node name="Fart3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xkwvx")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_krpjx")
