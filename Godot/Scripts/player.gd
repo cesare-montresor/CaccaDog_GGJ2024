@@ -5,29 +5,27 @@ extends CharacterBody2D
 const poop_asset = preload("res://Scenes/cacca.tscn")
 
 var step_speed = 0.200
-var step_delay = 0.050
-var step_size_px = 16
-var step_mul_px = 4
-var step_size = 0 
+var step_delay = 0.020
 
 var direction = "r"
 var is_moving = false
 var source_position = Vector2.ZERO
 var target_position = Vector2.ZERO
-var last_direction = Vector2.ZERO
-var tween: Tween = null
 var poop_counter = 3
 var wall_layer = 1
 var walls
 
 @onready var map: TileMap = $"../TileMap";
 
-func _init():
-	step_size = step_size_px * step_mul_px
-	position = Vector2.ZERO
+func _init(): pass
 	
 func _ready():
 	walls = map.get_used_cells(wall_layer)
+	var start_pos = map.map_to_local(Vector2i(1,1))
+	
+	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_loops(1).set_parallel(false)
+	tween.tween_property(self, "position", start_pos, 0)
 
 # Called every frame
 func _process(delta):
@@ -44,6 +42,7 @@ func _process(delta):
 		get_parent().setUp()
 
 func PlayerMovement(delta):
+	if is_moving: return
 	
 	var step = Vector2i.ZERO #Input.get_vector("left", "right", "up", "down")
 	if (Input.is_action_pressed("right")):
@@ -63,36 +62,37 @@ func PlayerMovement(delta):
 	var next_coords = cur_coords + step
 	var is_wall = walls.has(next_coords)
 	
-	print("move", cur_coords, 'to', next_coords, 'can walk', !is_wall)
+	print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
 	
 	if not is_moving and not is_wall:
 		is_moving = true
 		source_position = map.map_to_local(cur_coords)
 		target_position = map.map_to_local(next_coords)
-		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		var poop = add_poop()
+		var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
 		tween.tween_property(self, "position", target_position, step_speed)
 		tween.tween_property(self, "position", target_position, step_delay)
-		tween.tween_callback( endMovment )
+		tween.tween_callback( func ():
+			is_moving = false
+			connect_poop(poop)
+		)
 		
 	
-
-	
-func endMovment():
-	tween.kill()
-	print("end", position)
+func add_poop():
 	if poop_counter > 0: 
 		poop_counter -= 1
 		var new_poop = poop_asset.instantiate()
 		new_poop.position = source_position
 		get_tree().root.add_child(new_poop)
-		
-	is_moving = false
+		return new_poop
+
+func connect_poop(poop):
+	if poop == null: return
+	poop.connect("body_entered", collide_poop)
+
 	
-	
-func endMovmentBlock():
-	is_moving = false
 
 func PlayerAnimation():
 	var val = target_position - source_position
@@ -109,10 +109,9 @@ func PlayerAnimation():
 		PlayerAnim.play("idle_" + direction)
 	else:
 		PlayerAnim.play("walk_" + direction)
-
-
-func _on_area_2d_body_entered(body):
-	collide_food(body)
+	
+func collide_poop(body):
+	poop_counter +=3
 	
 func collide_food(body):
 	poop_counter +=1 
