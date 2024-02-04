@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
-const garden_scene = "res://Scenes/garden.tscn"
+const reset_scene = "res://Scenes/garden.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 const fly_asset = preload("res://Scenes/fly.tscn")
@@ -63,6 +63,15 @@ func _process(delta):
 		PlayerState.health += 5
 		#aggiorno la UI, va a prendere il nodo "world" dove la funzione è presente
 		get_parent().setUp()
+		
+	is_win()
+		
+func is_win():
+	var foods = get_tree().get_nodes_in_group("food") 
+	if (len(foods) + poop_counter) == 0:
+		print("you win")
+		
+	
 
 func PlayerMovement(delta):
 	if is_moving: return
@@ -85,7 +94,7 @@ func PlayerMovement(delta):
 	var next_coords = cur_coords + step
 	var is_wall = walls.has(next_coords)
 	
-	print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
+	#print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
 	
 	if not is_moving and not is_wall:
 		is_moving = true
@@ -151,12 +160,13 @@ func collide_poop(body):
 	if body != self: return
 	print("got pooped paws!", body)
 	tween.kill()
-	get_tree().change_scene_to_file(garden_scene)
+	get_tree().change_scene_to_file(reset_scene)
 	
 	
 func collide_food(body, food):
 	if body != self: return
 	food.queue_free()
 	poop_counter += food.get_potency()
+	
 	
 	
