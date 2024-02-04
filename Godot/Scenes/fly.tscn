@@ -1,16 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://bewoayx3p63o5"]
+[gd_scene load_steps=8 format=3 uid="uid://bewoayx3p63o5"]
 
-[ext_resource type="Texture2D" uid="uid://fxvwsile3ufp" path="res://icon.svg" id="1_qdpmg"]
+[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="1_t55ny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umssg"]
-radius = 7.0
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivc5b"]
+atlas = ExtResource("1_t55ny")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np47l"]
+atlas = ExtResource("1_t55ny")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyd2j"]
+atlas = ExtResource("1_t55ny")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l3de"]
+atlas = ExtResource("1_t55ny")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ltqcg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivc5b")
+}],
+"loop": true,
+"name": &"idle_d",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np47l")
+}],
+"loop": true,
+"name": &"idle_l",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyd2j")
+}],
+"loop": true,
+"name": &"idle_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l3de")
+}],
+"loop": true,
+"name": &"idle_u",
+"speed": 5.0
+}]
 
 [node name="Fly" type="RigidBody2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-2.38419e-07, 0)
-scale = Vector2(0.109375, 0.109375)
-texture = ExtResource("1_qdpmg")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_umssg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ltqcg")
+animation = &"idle_d"
