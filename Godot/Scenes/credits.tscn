@@ -4775,7 +4775,7 @@ sources/2 = SubResource("TileSetAtlasSource_ax05p")
 sources/3 = SubResource("TileSetAtlasSource_vu4bu")
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
-[node name="World" type="Node2D"]
+[node name="World2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_kvlnj")
 
