@@ -30,7 +30,7 @@ func _ready():
 # Called every frame
 func _process(delta):
 	PlayerMovement(delta)
-	PlayerAnimation()
+	PlayerAnimation(is_moving)
 	
 	if (Input.is_action_just_pressed("ui_left")):
 		PlayerState.lastPosition = self.position
@@ -94,7 +94,7 @@ func connect_poop(poop):
 
 	
 
-func PlayerAnimation():
+func PlayerAnimation(moving = false):
 	var val = target_position - source_position
 	if (val.x > 0):
 		direction = "r"
@@ -105,10 +105,10 @@ func PlayerAnimation():
 	elif (val.y < 0):
 		direction = "u"
 		
-	if (velocity == Vector2.ZERO):
-		PlayerAnim.play("idle_" + direction)
-	else:
+	if (moving):
 		PlayerAnim.play("walk_" + direction)
+	else:
+		PlayerAnim.play("idle_" + direction)
 	
 func collide_poop(body):
 	poop_counter +=3
