@@ -112,6 +112,8 @@ func PlayerAnimation():
 	
 func collide_poop(body):
 	poop_counter +=3
+	print("got pooped paws!")
+	
 	
 func collide_food(body):
 	poop_counter +=1 
