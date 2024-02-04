@@ -2,15 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://ckg5teqwewvws" path="res://Assets/Tilesets/Cacca.png" id="1_u4idx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc3uy"]
-size = Vector2(63, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hgtfs"]
 
 [node name="Cacca" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
 texture = ExtResource("1_u4idx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_jc3uy")
+shape = SubResource("CircleShape2D_hgtfs")
