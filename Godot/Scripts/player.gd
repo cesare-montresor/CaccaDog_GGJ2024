@@ -32,8 +32,8 @@ func reset():
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
 	
-	var poops = get_tree().get_nodes_in_group("poop")
-	var foods = get_tree().get_nodes_in_group("food")
+	var poops = get_tree().get_nodes_in_group("poop") 
+	var foods = get_tree().get_nodes_in_group("food") 
 	
 	for poop in poops: 
 		remove_child(poop)
@@ -140,6 +140,6 @@ func collide_poop(body):
 func collide_food(food):
 	food.process_mode = Node.PROCESS_MODE_DISABLED
 	food.visible = false
-	poop_counter +=2
+	poop_counter += food.get_potency()
 	
 	
