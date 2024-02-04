@@ -17,10 +17,20 @@ var target_position = Vector2.ZERO
 var last_direction = Vector2.ZERO
 var tween: Tween = null
 var poop_counter = 3
+var wall_layer = 1
+var walls
+var cell_offset
+
+@onready var map: TileMap = $"../TileMap";
 
 func _init():
 	step_size = step_size_px * step_mul_px
 	position = Vector2.ZERO
+	
+func _ready():
+	walls = map.get_used_cells(wall_layer)
+	var cell_size = map.rendering_quadrant_size
+	cell_offset = Vector2(cell_size / 2, cell_size / 2) 
 
 # Called every frame
 func _process(delta):
@@ -38,7 +48,7 @@ func _process(delta):
 
 func PlayerMovement(delta):
 	
-	var step = Vector2.ZERO #Input.get_vector("left", "right", "up", "down")
+	var step = Vector2i.ZERO #Input.get_vector("left", "right", "up", "down")
 	if (Input.is_action_pressed("right")):
 		step.x = 1
 	elif (Input.is_action_pressed("left")):
@@ -49,14 +59,23 @@ func PlayerMovement(delta):
 		elif (Input.is_action_pressed("up")):
 			step.y = -1
 	
-	if step != Vector2.ZERO and step - last_direction != Vector2.ZERO:
-		last_direction = step
+	if step == Vector2i.ZERO: return
 	
-	if not is_moving and last_direction != Vector2.ZERO:
+	var cur_pos = position
+	var cur_coords = map.local_to_map(cur_pos)
+	print("------------------")
+	print("start", position)
+	print("cur_coords", cur_coords)
+	var next_coords = cur_coords + step
+	print("next_coords", next_coords)
+	var is_wall = walls.has(next_coords)
+	#next_coords = cur_coords + Vector2i(Vector2(step) * map.transform.get_scale())
+	print("next_coords2", next_coords)
+	
+	if not is_moving and not is_wall:
 		is_moving = true
-		print("start")
-		source_position = position
-		target_position = position + (last_direction * step_size)
+		source_position = (map.map_to_local(cur_coords) - cell_offset)
+		target_position = (map.map_to_local(next_coords) - cell_offset)
 		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
@@ -69,7 +88,7 @@ func PlayerMovement(delta):
 	
 func endMovment():
 	tween.kill()
-	print("end")
+	print("end", position)
 	if poop_counter > 0: 
 		poop_counter -= 1
 		var new_poop = poop_asset.instantiate()
@@ -100,18 +119,9 @@ func PlayerAnimation():
 
 
 func _on_area_2d_body_entered(body):
-	collide_walls(body)
-	#collide_food(body)
+	collide_food(body)
 	
 func collide_food(body):
 	poop_counter +=1 
 	
 	
-func collide_walls(body):
-	if (tween != null):
-		tween.kill()
-	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", source_position, 0)
-	tween.tween_callback( endMovmentBlock )
-	print("sono toccato!")

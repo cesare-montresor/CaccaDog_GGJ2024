@@ -4781,7 +4781,6 @@ script = ExtResource("1_vvplb")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_a4pti")
 format = 2
 layer_0/name = "Ground"

@@ -50,6 +50,7 @@ animations/join_default_wait=true
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/scale=4.0
 
 [editor_plugins]
 
