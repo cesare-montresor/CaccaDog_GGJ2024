@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceu2accx0bx4l" path="res://Assets/Tilesets/TilesetHollyBuildings.png" id="5_n1dmt"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_5yagc"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="6_rrxyf"]
-[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="8_nqcmh"]
+[ext_resource type="PackedScene" uid="uid://vqeo7n0fnh0m" path="res://Scenes/food.tscn" id="8_nqcmh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0kkh"]
 texture = ExtResource("2_7dfj2")
