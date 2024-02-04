@@ -1,6 +1,6 @@
 extends Area2D
 
-static var food_potency = [1,3,5,11]
+static var food_potency = [1,3,5,8]
 
 @onready var food_sprites = [$food_0, $food_1, $food_2, $food_3]
 

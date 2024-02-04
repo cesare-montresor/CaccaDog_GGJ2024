@@ -2,49 +2,51 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
+const garden_scene = "res://Scenes/garden.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
+const fly_asset = preload("res://Scenes/fly.tscn")
 
 var step_speed = 0.200
 var step_delay = 0.020
+var fly_spwan_dist = 100
+var fly_time_poop = 3
 
 var direction = "r"
 var is_moving = false
 var source_position = Vector2.ZERO
 var target_position = Vector2.ZERO
-var poop_counter = 3
+var poop_counter = 0
 var wall_layer = 1
 var walls
+var play_area = Rect2i(0,0,0,0)
 var tween
+var rng
 
 @onready var map: TileMap = $"../TileMap";
 
-func _init(): pass
+func _init(): 
+	rng = RandomNumberGenerator.new()
+	pass
 	
 func _ready():
 	walls = map.get_used_cells(wall_layer)
-	reset()
-	
-func reset():
+	for wall in walls:
+		if wall.x < play_area.position.x: play_area.position.x = wall.x
+		if wall.y < play_area.position.x: play_area.position.y = wall.y
+		if wall.x > play_area.position.x + play_area.size.x: play_area.size.x = wall.x - play_area.position.x
+		if wall.y > play_area.position.y + play_area.size.y: play_area.size.y = wall.y - play_area.position.y
+
 	is_moving=false
+	if tween: tween.kill()
 	var start_pos = map.map_to_local(Vector2i(1,1))
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
-	
-	var poops = get_tree().get_nodes_in_group("poop") 
 	var foods = get_tree().get_nodes_in_group("food") 
-	
-	for poop in poops: 
-		remove_child(poop)
-		poop.queue_free()
 		
-	for food in foods: 
-		food.process_mode = Node.PROCESS_MODE_ALWAYS
-		food.visible = true
-		var connections = food.get_signal_connection_list("body_entered")
-		if len(connections) > 0: continue
-		food.connect("body_entered", func(p): collide_food(food))
+	for food in foods:
+		food.connect("body_entered", func(body): collide_food(body,food))
 		
 		
 
@@ -90,14 +92,15 @@ func PlayerMovement(delta):
 		source_position = map.map_to_local(cur_coords)
 		target_position = map.map_to_local(next_coords)
 		var poop = add_poop()
+		var fly = add_fly(poop)
 		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
 		tween.tween_property(self, "position", target_position, step_speed)
 		tween.tween_property(self, "position", target_position, step_delay)
 		tween.tween_callback( func ():
+			if poop: connect_poop(poop)
 			is_moving = false
-			connect_poop(poop)
 		)
 		
 	
@@ -108,6 +111,19 @@ func add_poop():
 		new_poop.position = source_position
 		get_tree().root.add_child(new_poop)
 		return new_poop
+
+func add_fly(poop):
+	if poop == null: return
+	var new_fly = fly_asset.instantiate()
+	var radius = fly_spwan_dist
+	var angle = rng.randf_range(0, 2 * 3.1415)
+	var pos = Vector2( sin(angle), cos(angle) ) * radius
+	new_fly.position = pos
+	get_tree().root.add_child(new_fly)
+	new_fly.goto_target_poop(poop, fly_time_poop)
+	
+	
+	pass
 
 func connect_poop(poop):
 	if poop == null: return
@@ -132,14 +148,15 @@ func PlayerAnimation(moving = false):
 		PlayerAnim.play("idle_" + direction)
 	
 func collide_poop(body):
-	print("got pooped paws!")
+	if body != self: return
+	print("got pooped paws!", body)
 	tween.kill()
-	reset()
+	get_tree().change_scene_to_file(garden_scene)
 	
 	
-func collide_food(food):
-	food.process_mode = Node.PROCESS_MODE_DISABLED
-	food.visible = false
+func collide_food(body, food):
+	if body != self: return
+	food.queue_free()
 	poop_counter += food.get_potency()
 	
 	
