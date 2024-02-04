@@ -21,11 +21,29 @@ func _init(): pass
 	
 func _ready():
 	walls = map.get_used_cells(wall_layer)
-	var start_pos = map.map_to_local(Vector2i(1,1))
+	reset()
 	
+func reset():
+	var start_pos = map.map_to_local(Vector2i(1,1))
 	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
+	
+	var poops = get_tree().get_nodes_in_group("poop")
+	var foods = get_tree().get_nodes_in_group("food")
+	
+	for poop in poops: 
+		remove_child(poop)
+		poop.queue_free()
+		
+	for food in foods: 
+		food.process_mode = Node.PROCESS_MODE_ALWAYS
+		food.visible = true
+		var connections = food.get_signal_connection_list("body_entered")
+		if len(connections) == 0:
+			food.connect("body_entered", func(p): collide_food(food))
+		
+		
 
 # Called every frame
 func _process(delta):
@@ -111,11 +129,13 @@ func PlayerAnimation(moving = false):
 		PlayerAnim.play("idle_" + direction)
 	
 func collide_poop(body):
-	poop_counter +=3
 	print("got pooped paws!")
+	reset()
 	
 	
-func collide_food(body):
-	poop_counter +=1 
+func collide_food(food):
+	food.process_mode = Node.PROCESS_MODE_DISABLED
+	food.visible = false
+	poop_counter +=2
 	
 	

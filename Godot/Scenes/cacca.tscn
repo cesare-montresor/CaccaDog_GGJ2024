@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh1ik25w0ccea"]
+[gd_scene load_steps=3 format=3 uid="uid://daueoq88vg7xb"]
 
 [ext_resource type="Texture2D" uid="uid://ckg5teqwewvws" path="res://Assets/Tilesets/Cacca.png" id="1_u4idx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc3uy"]
 size = Vector2(15, 14)
 
-[node name="Cacca" type="Area2D"]
+[node name="Cacca" type="Area2D" groups=["poop"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u4idx")

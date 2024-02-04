@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbnabrkesjpa3"]
+[gd_scene load_steps=15 format=3 uid="uid://cbnabrkesjpa3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_vvplb"]
 [ext_resource type="Texture2D" uid="uid://b8al8d54gyhd5" path="res://Assets/Tilesets/TilesetFloor.png" id="2_7dfj2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceu2accx0bx4l" path="res://Assets/Tilesets/TilesetHollyBuildings.png" id="5_n1dmt"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_5yagc"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="6_rrxyf"]
+[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="8_nqcmh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0kkh"]
 texture = ExtResource("2_7dfj2")
@@ -4817,3 +4818,6 @@ layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("6_rrxyf")]
 position = Vector2(74, 51)
+
+[node name="Food" parent="." instance=ExtResource("8_nqcmh")]
+position = Vector2(104, 104)
