@@ -162,11 +162,13 @@ func collide_poop(body):
 	tween.kill()
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
+	Sfx.death()
 	get_tree().change_scene_to_file(reset_scene)
 	
 	
 func collide_food(body, food):
 	if body != self: return
+	Sfx.eat()
 	food.queue_free()
 	poop_counter += food.get_potency()
 	

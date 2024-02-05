@@ -24,7 +24,7 @@ extends Node
 #@export var Win : AudioStreamPlayer
 
 @onready var farts = [Fart1,Fart2,Fart3,Fart4,Fart5,Fart6,Fart7,Fart8,Fart9,Fart10,Fart11,Fart12,Fart13,Fart14]
-@onready var eats = [Fart1,Fart2,Fart3]
+@onready var eats = [Eat]
 
 func eat():
 	eats.pick_random().play()
