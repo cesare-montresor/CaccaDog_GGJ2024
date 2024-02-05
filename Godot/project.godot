@@ -50,6 +50,8 @@ animations/join_default_wait=true
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=1200
 window/stretch/mode="viewport"
 window/stretch/scale=4.0
 
