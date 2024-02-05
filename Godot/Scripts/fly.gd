@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@onready var FlyAnimmation = get_node("AnimatedSprite2D")
+
 var action_stay = 0.25
 var action_poop = 0.25
 var action_move = 0.5
@@ -34,11 +36,25 @@ func select_action():
 		
 	var rnd_dur = rng.randi_range(action_duration[0],action_duration[1])
 	
+	
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", position, 0.1)
+	tween.tween_property(self, "position", position, 0)
 	tween.tween_property(self, "position", target_position, rnd_dur)
 	tween.tween_callback(select_action)
+	AnimateFly(target_position)
+	
+	
+	
+func AnimateFly(target_position):
+	var cd = position - target_position
+	var dir
+	if abs(cd.x)>abs(cd.y):
+		dir = 'l' if cd.x > 0 else 'r'
+	else:
+		dir = 'u' if cd.y > 0 else 'd'
+	
+	FlyAnimmation.play("idle_" + dir)
 	
 
 # Called when the node enters the scene tree for the first time.

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var PlayerAnim = get_node("Sprite2D")
 
-const reset_scene = "res://Scenes/garden.tscn"
+const reset_scene = "res://Scenes/menu.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 const fly_asset = preload("res://Scenes/fly.tscn")
@@ -160,6 +160,8 @@ func collide_poop(body):
 	if body != self: return
 	print("got pooped paws!", body)
 	tween.kill()
+	var flies = get_tree().get_nodes_in_group("fly") 
+	for fly in flies: fly.queue_free()
 	get_tree().change_scene_to_file(reset_scene)
 	
 	
