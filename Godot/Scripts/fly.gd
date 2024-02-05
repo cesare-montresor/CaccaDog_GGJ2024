@@ -1,8 +1,8 @@
 extends RigidBody2D
 
-var action_stay = 0.2
-var action_poop = 0.2
-var action_move = 0.6
+var action_stay = 0.25
+var action_poop = 0.25
+var action_move = 0.5
 var move_dist = [50,100]
 var action_duration = [2,5]
 
