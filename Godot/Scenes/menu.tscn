@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ceu2accx0bx4l" path="res://Assets/Tilesets/TilesetHollyBuildings.png" id="5_buchp"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="6_f6w3m"]
-[ext_resource type="Texture2D" uid="uid://c0rfydk38ssfh" path="res://Assets/UI/Title.png" id="8_5pc0e"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
 [ext_resource type="AudioStream" uid="uid://08g2y3l7ia0u" path="res://Assets/Audio/music/Three Red Hearts - Three Red Hearts.ogg" id="10_o70n7"]
 
@@ -4802,6 +4801,10 @@ sources/2 = SubResource("TileSetAtlasSource_ax05p")
 sources/3 = SubResource("TileSetAtlasSource_vu4bu")
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgxfx"]
+atlas = ExtResource("6_deofk")
+region = Rect2(0, 192, 64, 64)
+
 [node name="Menu" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xvigs")
@@ -4822,61 +4825,98 @@ layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 
 z_index = 1
 position = Vector2(74, 51)
 
-[node name="w" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="."]
 z_index = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 122.0
-offset_top = 121.0
-offset_right = 122.0
-offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.896114, 0.80308)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("8_po258")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="w"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -77.0
+offset_right = 75.0
+offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="w/VBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-texture = ExtResource("8_5pc0e")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="w/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="w/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 16
-text = "START GAME"
-
-[node name="Button2" type="Button" parent="w/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 16
-text = "CREDITS"
-
-[node name="Button3" type="Button" parent="w/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 16
-text = "QUIT
-"
+alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_o70n7")
 volume_db = -12.0
 autoplay = true
 
-[connection signal="pressed" from="w/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 2
+offset_left = 52.0
+offset_top = 32.0
+offset_right = 202.0
+offset_bottom = 222.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_pgxfx")
+stretch_mode = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "START
+"
+
+[node name="Level 1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "LEVEL 1
+"
+
+[node name="Level 2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "LEVEL 2
+"
+
+[node name="Level 3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "LEVEL 3
+"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "CREDITS
+"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_po258")
+text = "QUIT
+"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Level 3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
