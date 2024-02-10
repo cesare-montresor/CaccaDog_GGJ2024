@@ -1,4 +1,4 @@
-extends Area2D
+class_name Fly extends Area2D
 
 @onready var FlyAnimmation = get_node("AnimatedSprite2D")
 const fly_asset = preload("res://Scenes/fly.tscn")

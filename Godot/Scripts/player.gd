@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 var fly_script
-const reset_scene = "res://Scenes/menu.tscn"
+const reset_scene = "res://Scenes/L01_tutorial.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 
@@ -19,8 +19,14 @@ var target_position = Vector2.ZERO
 var poop_counter = 0
 var poop_ingame = 0
 var fly_ingame = 0
-var wall_layer = 1
-var walls
+
+var layer_wall = 1
+var layer_start = 2
+var layer_finish = 3
+
+var cells_wall
+var cells_start
+var cells_finish
 var play_area = Rect2i(0,0,0,0)
 var tween
 var rng = RandomNumberGenerator.new()
@@ -32,25 +38,27 @@ func _init():
 	pass
 	
 func _ready():
-	walls = map.get_used_cells(wall_layer)
-	for wall in walls:
+	cells_wall = map.get_used_cells(layer_wall)
+	for wall in cells_wall:
 		if wall.x < play_area.position.x: play_area.position.x = wall.x
 		if wall.y < play_area.position.x: play_area.position.y = wall.y
 		if wall.x > play_area.position.x + play_area.size.x: play_area.size.x = wall.x - play_area.position.x
 		if wall.y > play_area.position.y + play_area.size.y: play_area.size.y = wall.y - play_area.position.y
-
+		
+	cells_start = map.get_used_cells(layer_start)
+	cells_finish = map.get_used_cells(layer_finish)
+	
+	
 	is_moving=false
 	if tween: tween.kill()
-	var start_pos = map.map_to_local(Vector2i(1,1))
+	var start_pos = map.map_to_local(cells_start.pick_random())
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
 	var foods = get_tree().get_nodes_in_group("food") 
-		
+	
 	for food in foods:
 		food.connect("body_entered", func(body): collide_food(body,food))
-		
-		
 
 # Called every frame
 func _process(delta):
@@ -66,12 +74,18 @@ func _process(delta):
 		#aggiorno la UI, va a prendere il nodo "world" dove la funzione è presente
 		get_parent().setUp()
 		
-	is_win()
+	check_win()
 		
-func is_win():
+func check_win():
+	var cur_cell = map.map_to_local(position)
 	var foods = get_tree().get_nodes_in_group("food") 
-	if (len(foods) + poop_counter) == 0:
-		print("you win")
+	
+	if len(foods) > 0: return false
+	if poop_counter > 0: return false
+	if cells_finish.has(cur_cell): return false
+	
+	print("you win")
+	return true
 		
 	
 
@@ -94,7 +108,7 @@ func PlayerMovement(delta):
 	var cur_pos = position
 	var cur_coords = map.local_to_map(cur_pos)
 	var next_coords = cur_coords + step
-	var is_wall = walls.has(next_coords)
+	var is_wall = cells_wall.has(next_coords)
 	
 	#print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
 	
@@ -113,6 +127,7 @@ func PlayerMovement(delta):
 			if poop: connect_poop(poop)
 			is_moving = false
 		)
+	
 	
 func add_fly(poop):
 	if poop == null: return
