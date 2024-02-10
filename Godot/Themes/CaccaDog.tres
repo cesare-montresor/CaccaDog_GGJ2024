@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://careq483a61r5"]
 
-[ext_resource type="FontFile" uid="uid://c3sug7gx0av2c" path="res://Assets/Fonts/SF Pixelate Shaded.ttf" id="1_1wogd"]
+[ext_resource type="FontFile" uid="uid://buh5fgigjs54c" path="res://Assets/Fonts/SF Pixelate.ttf" id="1_jj53f"]
 
 [resource]
-default_font = ExtResource("1_1wogd")
-default_font_size = 32
+default_font = ExtResource("1_jj53f")
+default_font_size = 10
