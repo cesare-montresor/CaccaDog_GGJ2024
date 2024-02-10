@@ -1,20 +1,50 @@
-extends RigidBody2D
+extends Area2D
 
 @onready var FlyAnimmation = get_node("AnimatedSprite2D")
+const fly_asset = preload("res://Scenes/fly.tscn")
 
-var action_stay = 0.25
-var action_poop = 0.25
-var action_move = 0.5
-var move_dist = [50,100]
-var action_duration = [2,5]
+var action_stay = GameParams.action_stay
+var action_poop = GameParams.action_poop
+var action_move = GameParams.action_move
+var move_dist = GameParams.move_dist
+var action_duration = GameParams.action_duration
+
+var fly_spwan_dist = GameParams.fly_spwan_dist
+var fly_time_poop = GameParams.fly_time_poop
+
 
 var tween
 var rng = RandomNumberGenerator.new()
 
-func goto_target_poop(poop, time):
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+func _ready():
+	var action_sum = action_stay + action_poop + action_move
+	action_stay = action_stay / action_sum
+	action_poop = action_poop / action_sum
+	action_move = action_move / action_sum
+
+func add_fly():
+	var new_fly = fly_asset.instantiate()
+	var radius = rng.randf_range(fly_spwan_dist[0],fly_spwan_dist[1])
+	var angle = rng.randf_range(0, 2 * 3.1415)
+	var pos = Vector2( cos(angle), sin(angle) ) * radius
+	new_fly.position = pos
+	return new_fly
+
+
+
+func goto_target_poop(poop):
+	var fly_time = rng.randf_range(fly_time_poop[0],fly_time_poop[1])
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", poop.position, time)
+	tween.tween_property(self, "position", poop.position, fly_time)
 	tween.tween_callback(select_action)
 
 func select_action():
@@ -56,13 +86,3 @@ func AnimateFly(target_position):
 	
 	FlyAnimmation.play("idle_" + dir)
 	
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-

@@ -1,22 +1,24 @@
 extends CharacterBody2D
-
 @onready var PlayerAnim = get_node("Sprite2D")
 
+
+var fly_script
 const reset_scene = "res://Scenes/menu.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
-const fly_asset = preload("res://Scenes/fly.tscn")
 
-var step_speed = 0.200
-var step_delay = 0.020
-var fly_spwan_dist = [100, 300]
-var fly_time_poop = [2,5]
+
+var step_speed = GameParams.step_speed
+var step_delay = GameParams.step_delay
+var poops_per_fly = GameParams.poops_per_fly
 
 var direction = "r"
 var is_moving = false
 var source_position = Vector2.ZERO
 var target_position = Vector2.ZERO
 var poop_counter = 0
+var poop_ingame = 0
+var fly_ingame = 0
 var wall_layer = 1
 var walls
 var play_area = Rect2i(0,0,0,0)
@@ -26,6 +28,7 @@ var rng = RandomNumberGenerator.new()
 @onready var map: TileMap = $"../TileMap";
 
 func _init(): 
+	fly_script = preload("res://Scripts/fly.gd").new()
 	pass
 	
 func _ready():
@@ -99,8 +102,8 @@ func PlayerMovement(delta):
 		is_moving = true
 		source_position = map.map_to_local(cur_coords)
 		target_position = map.map_to_local(next_coords)
-		var poop = add_poop()
-		var fly = add_fly(poop)
+		var poop = add_poop(source_position)
+		add_fly(poop)
 		tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 		tween.set_loops(1).set_parallel(false)
 		tween.tween_property(self, "position", source_position, 0)
@@ -110,29 +113,27 @@ func PlayerMovement(delta):
 			if poop: connect_poop(poop)
 			is_moving = false
 		)
-		
 	
-func add_poop():
-	if poop_counter > 0: 
-		poop_counter -= 1
-		var new_poop = poop_asset.instantiate()
-		new_poop.position = source_position
-		get_tree().root.add_child(new_poop)
-		Sfx.fart()
-		return new_poop
-		
-
 func add_fly(poop):
 	if poop == null: return
-	var new_fly = fly_asset.instantiate()
-	var radius = rng.randf_range(fly_spwan_dist[0],fly_spwan_dist[1])
-	var angle = rng.randf_range(0, 2 * 3.1415)
-	var pos = Vector2( cos(angle), sin(angle) ) * radius
-	new_fly.position = pos
+	if poop_ingame / poops_per_fly < fly_ingame: return
+	var new_fly = fly_script.add_fly()
 	get_tree().root.add_child(new_fly)
-	var fly_time = rng.randf_range(fly_time_poop[0],fly_time_poop[1])
-	new_fly.goto_target_poop(poop, fly_time)
-	pass
+	fly_ingame += 1
+	new_fly.goto_target_poop(poop)
+	new_fly.connect("body_entered", func(body): collide_fly(body,new_fly))
+	
+func add_poop(poop_position):
+	if poop_counter <= 0: return 
+	poop_counter -= 1
+	poop_ingame += 1
+	var new_poop = poop_asset.instantiate()
+	new_poop.position = poop_position
+	get_tree().root.add_child(new_poop)
+	Sfx.fart()
+	return new_poop
+	
+
 
 func connect_poop(poop):
 	if poop == null: return
@@ -155,6 +156,10 @@ func PlayerAnimation(moving = false):
 		PlayerAnim.play("walk_" + direction)
 	else:
 		PlayerAnim.play("idle_" + direction)
+	
+func collide_fly(body, fly):
+	if body != self: return
+	print("omg a pooped fly!", body)
 	
 func collide_poop(body):
 	if body != self: return
