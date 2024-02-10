@@ -57,7 +57,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Fly" type="RigidBody2D" groups=["fly"]]
+[node name="Fly" type="Area2D" groups=["fly"]]
 z_index = 100
 script = ExtResource("1_1tvmt")
 
