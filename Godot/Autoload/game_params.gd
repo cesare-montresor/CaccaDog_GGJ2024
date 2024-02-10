@@ -1,17 +1,26 @@
 extends Node
 
+# Map
+
+const layer_background = 0
+const layer_wall = 1
+const layer_start = 2
+const layer_finish = 3
 
 # Player
-var step_speed = 0.200
-var step_delay = 0.020
+const step_speed = 0.200
+const step_delay = 0.020
 
 
 # fly
-var poops_per_fly = 3
-var fly_spwan_dist = [100, 300]
-var fly_time_poop = [2,5]
-var action_stay = 0.25
-var action_poop = 0.25
-var action_move = 0.5
-var move_dist = [50,100]
-var action_duration = [2,5]
+const poops_per_fly = 3
+
+const fly_speed = 50
+const fly_action_follow = 0.25
+const fly_action_stay = 0.25
+const fly_action_poop = 0.25
+const fly_action_move = 0.5
+const fly_action_cooldown = [2,5]
+
+const fly_action_move_dist = [50,100]
+

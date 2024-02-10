@@ -1,11 +1,10 @@
 extends CharacterBody2D
 @onready var PlayerAnim = get_node("Sprite2D")
 
-
-var fly_script
 const reset_scene = "res://Scenes/L01_tutorial.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
+const fly_asset = preload("res://Scenes/fly.tscn")
 
 
 var step_speed = GameParams.step_speed
@@ -20,33 +19,22 @@ var poop_counter = 0
 var poop_ingame = 0
 var fly_ingame = 0
 
-var layer_wall = 1
-var layer_start = 2
-var layer_finish = 3
-
 var cells_wall
 var cells_start
 var cells_finish
-var play_area = Rect2i(0,0,0,0)
+
 var tween
 var rng = RandomNumberGenerator.new()
 
 @onready var map: TileMap = $"../TileMap";
 
 func _init(): 
-	fly_script = preload("res://Scripts/fly.gd").new()
 	pass
 	
 func _ready():
-	cells_wall = map.get_used_cells(layer_wall)
-	for wall in cells_wall:
-		if wall.x < play_area.position.x: play_area.position.x = wall.x
-		if wall.y < play_area.position.x: play_area.position.y = wall.y
-		if wall.x > play_area.position.x + play_area.size.x: play_area.size.x = wall.x - play_area.position.x
-		if wall.y > play_area.position.y + play_area.size.y: play_area.size.y = wall.y - play_area.position.y
-		
-	cells_start = map.get_used_cells(layer_start)
-	cells_finish = map.get_used_cells(layer_finish)
+	cells_wall = map.get_used_cells(GameParams.layer_wall)		
+	cells_start = map.get_used_cells(GameParams.layer_start)
+	cells_finish = map.get_used_cells(GameParams.layer_finish)
 	
 	
 	is_moving=false
@@ -77,12 +65,12 @@ func _process(delta):
 	check_win()
 		
 func check_win():
-	var cur_cell = map.map_to_local(position)
+	var cur_cell = map.local_to_map(position)
 	var foods = get_tree().get_nodes_in_group("food") 
 	
 	if len(foods) > 0: return false
 	if poop_counter > 0: return false
-	if cells_finish.has(cur_cell): return false
+	if not cells_finish.has(cur_cell): return false	
 	
 	print("you win")
 	return true
@@ -131,8 +119,10 @@ func PlayerMovement(delta):
 	
 func add_fly(poop):
 	if poop == null: return
-	if poop_ingame / poops_per_fly < fly_ingame: return
-	var new_fly = fly_script.add_fly()
+	if floor(poop_ingame / poops_per_fly) <= fly_ingame: return
+	var new_fly = fly_asset.instantiate()
+	new_fly.map = map
+	new_fly.player = self
 	get_tree().root.add_child(new_fly)
 	fly_ingame += 1
 	new_fly.goto_target_poop(poop)
@@ -175,22 +165,28 @@ func PlayerAnimation(moving = false):
 func collide_fly(body, fly):
 	if body != self: return
 	print("omg a pooped fly!", body)
+	death()
 	
 func collide_poop(body):
 	if body != self: return
 	print("got pooped paws!", body)
-	tween.kill()
-	var flies = get_tree().get_nodes_in_group("fly") 
-	for fly in flies: fly.queue_free()
-	Sfx.death()
-	get_tree().change_scene_to_file(reset_scene)
-	
+	death()
 	
 func collide_food(body, food):
 	if body != self: return
+	eat(food)
+	
+func eat(food):
 	Sfx.eat()
 	food.queue_free()
 	poop_counter += food.get_potency()
 	
+func death():
+	Sfx.death()
+	reset()
 	
-	
+func reset():
+	tween.kill()
+	var flies = get_tree().get_nodes_in_group("fly") 
+	for fly in flies: fly.queue_free()
+	get_tree().change_scene_to_file(reset_scene)

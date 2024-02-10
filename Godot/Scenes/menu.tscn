@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3isf2b2tcx7g"]
+[gd_scene load_steps=16 format=3 uid="uid://d3isf2b2tcx7g"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_xvigs"]
 [ext_resource type="Texture2D" uid="uid://b8al8d54gyhd5" path="res://Assets/Tilesets/TilesetFloor.png" id="2_jsthd"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cs2cx5hmpqx5j" path="res://Assets/Tilesets/TilesetWater.png" id="4_8o7qu"]
 [ext_resource type="Texture2D" uid="uid://ceu2accx0bx4l" path="res://Assets/Tilesets/TilesetHollyBuildings.png" id="5_buchp"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
-[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="6_f6w3m"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
 [ext_resource type="AudioStream" uid="uid://08g2y3l7ia0u" path="res://Assets/Audio/music/Three Red Hearts - Three Red Hearts.ogg" id="10_o70n7"]
 
@@ -4820,10 +4819,6 @@ layer_1/name = "Elements"
 layer_1/y_sort_enabled = true
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 65540, 0, 720900, 65540, 0, 327685, 65540, 0, 393221, 65540, 0, 6, 65540, 0, 10, 65540, 0, 589834, 65540, 0, 655370, 65540, 0, 0, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 393216, 65540, 0, 458752, 65540, 0, 524288, 65540, 0, 589824, 65540, 0, 655360, 65540, 0, 786432, 65540, 0, 851968, 65540, 0, 917504, 65540, 0, 983040, 65540, 0, 1, 65540, 0, 983041, 65540, 0, 2, 65540, 0, 983042, 65540, 0, 3, 65540, 0, 983043, 65540, 0, 4, 65540, 0, 983044, 65540, 0, 5, 65540, 0, 983045, 65540, 0, 327686, 65540, 0, 983046, 65540, 0, 7, 65540, 0, 983047, 65540, 0, 8, 65540, 0, 983048, 65540, 0, 9, 65540, 0, 655369, 65540, 0, 983049, 65540, 0, 983050, 65540, 0, 11, 65540, 0, 262155, 65540, 0, 983051, 65540, 0, 12, 65540, 0, 983052, 65540, 0, 13, 65540, 0, 983053, 65540, 0, 14, 65540, 0, 983054, 65540, 0, 15, 65540, 0, 65551, 65540, 0, 131087, 65540, 0, 196623, 65540, 0, 262159, 65540, 0, 327695, 65540, 0, 393231, 65540, 0, 458767, 65540, 0, 524303, 65540, 0, 589839, 65540, 0, 655375, 65540, 0, 720911, 65540, 0, 786447, 65540, 0, 851983, 65540, 0, 917519, 65540, 0, 983055, 65540, 0)
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("6_f6w3m")]
-z_index = 1
-position = Vector2(74, 51)
 
 [node name="Panel" type="Panel" parent="."]
 z_index = 3
