@@ -16,13 +16,14 @@ var spawn_min = Vector2i(0,0)
 var spawn_max = Vector2i(0,0) 
 var tween
 var rng = RandomNumberGenerator.new()
-
+var is_moving = false
 var map
 var player
 @onready var FlyAnimmation = get_node("AnimatedSprite2D")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	select_action()
 	pass
 
 
@@ -78,18 +79,23 @@ func goto_position(target_position):
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", target_position, fly_time)
-	tween.tween_callback(select_action)
+	tween.tween_callback(end_action)
 	AnimateFly(target_position)
 	
 func goto_stay(timeout):
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", position, timeout)
-	tween.tween_callback(select_action)
+	tween.tween_property(self, "position", position, 0)
+	tween.tween_property(self, "position", position+Vector2(1,1), timeout)
+	tween.tween_callback(end_action)
 	FlyAnimmation.play("idle_u")
 	
+func end_action():
+	is_moving = false
 
 func select_action():
+	if is_moving: return
+	is_moving = true
 	tween.kill()
 	var action_prob = rng.randf()
 	
