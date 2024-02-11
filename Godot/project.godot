@@ -21,6 +21,7 @@ PlayerState="*res://src/PlayerState.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 Sfx="*res://Scenes/sfx.tscn"
 GameParams="*res://Autoload/game_params.gd"
+LevelManager="*res://Autoload/level_manager.gd"
 
 [dialogic]
 

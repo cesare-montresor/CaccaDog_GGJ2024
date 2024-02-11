@@ -1,3 +1,4 @@
+@tool
 extends Area2D
 
 static var food_potency = [1,3,5,8]
@@ -16,11 +17,12 @@ func get_potency():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for sprite in food_sprites: sprite.visible = false
-	food_sprites[food_level].visible = true
+	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	for sprite in food_sprites: sprite.visible = false
+	food_sprites[food_level].visible = true
 	pass
