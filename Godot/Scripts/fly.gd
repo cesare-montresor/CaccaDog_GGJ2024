@@ -104,7 +104,7 @@ func select_action():
 	
 	if (action_prob < action_stay):
 		
-		var cooldown = rng.randi_range(action_cooldown[0],action_cooldown[1])
+		var cooldown = rng.rand_range(action_cooldown[0],action_cooldown[1])
 		print(fly_num,' fly: stay',cooldown)
 		goto_stay(cooldown)
 	elif (action_prob < action_poop):
