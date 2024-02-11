@@ -1,7 +1,6 @@
 extends CharacterBody2D
 @onready var PlayerAnim = get_node("Sprite2D")
 
-const reset_scene = "res://Scenes/L01_tutorial.tscn"
 const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 const fly_asset = preload("res://Scenes/fly.tscn")
@@ -73,6 +72,7 @@ func check_win():
 	if not cells_finish.has(cur_cell): return false	
 	
 	print("you win")
+	next()
 	return true
 		
 	
@@ -187,8 +187,14 @@ func death():
 	Sfx.death()
 	reset()
 	
+func next():
+	tween.kill()
+	var flies = get_tree().get_nodes_in_group("fly") 
+	for fly in flies: fly.queue_free()
+	LevelManager.NextLevel()
+	
 func reset():
 	tween.kill()
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
-	get_tree().change_scene_to_file(reset_scene)
+	LevelManager.ReloadLevel()

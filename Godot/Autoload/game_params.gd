@@ -1,7 +1,7 @@
 extends Node
 
-# Map
 
+# Map
 const layer_background = 0
 const layer_wall = 1
 const layer_start = 2
