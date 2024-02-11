@@ -17,8 +17,10 @@ var spawn_max = Vector2i(0,0)
 var tween
 var rng = RandomNumberGenerator.new()
 var is_moving = false
+var next_action = 0
 var map
 var player
+var fly_num=0
 @onready var FlyAnimmation = get_node("AnimatedSprite2D")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,54 +67,62 @@ func spwan():
 	var spawn_pos = map.map_to_local(spawn_cell)
 	position = spawn_pos
 
+func TimeNow():
+	return Time.get_unix_time_from_system()
 
+func sleep(timeout):	
+	next_action = TimeNow() + timeout
+
+func canMove():	
+	return TimeNow() > next_action
 
 func goto_target_poop(poop):
+	print(fly_num,' fly: poop', poop.position)
 	goto_position(poop.position)
-
-func goto_caccadog(player):
-	goto_position(player.position)
 	
-func goto_position(target_position):
-	var distance = position.distance_to(target_position)
+func goto_position(dst_position):
+	var distance = position.distance_to(dst_position)
 	var fly_time = distance / fly_speed
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", target_position, fly_time)
-	tween.tween_callback(end_action)
-	AnimateFly(target_position)
+	tween.tween_property(self, "position", dst_position, fly_time)
+	sleep(fly_time)
+	AnimateFly(dst_position)
+	
+
 	
 func goto_stay(timeout):
-	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", position, 0)
-	tween.tween_property(self, "position", position+Vector2(1,1), timeout)
-	tween.tween_callback(end_action)
-	FlyAnimmation.play("idle_u")
+	FlyAnimmation.play("idle_d")
+	sleep(timeout)
 	
-func end_action():
-	is_moving = false
 
 func select_action():
-	if is_moving: return
-	is_moving = true
+	if not canMove(): return
 	tween.kill()
 	var action_prob = rng.randf()
 	
-	var target_position = null
+	
 	if (action_prob < action_stay):
+		
 		var cooldown = rng.randi_range(action_cooldown[0],action_cooldown[1])
+		print(fly_num,' fly: stay',cooldown)
 		goto_stay(cooldown)
 	elif (action_prob < action_poop):
+		
 		var poops = get_tree().get_nodes_in_group("poop") 
 		var target_poop = poops.pick_random()
+		print(fly_num,' fly: poop', target_poop.position)
 		goto_position(target_poop.position)
 	elif (action_prob < action_move):
-		var rnd_dist = rng.randi_range(move_dist[0],move_dist[1])
-		var rnd_angle = rng.randf_range(0, 2*3.1415)
-		var delta_pos = Vector2( sin(rnd_angle),cos(rnd_angle))*rnd_dist
-		target_position = position + delta_pos # stroll
+		
+		var off_x = rng.randi_range(move_dist[0],move_dist[1])
+		var off_y = rng.randi_range(move_dist[0],move_dist[1])
+		var target_cell = map.local_to_map(position) + Vector2i(off_x,off_y)
+		var target_position = map.map_to_local(target_cell)
+		print(fly_num,' fly: move', target_position )
+		goto_position(target_position)
 	else:
+		print(fly_num,' fly: follow', player.position)
 		goto_position(player.position)
 	
 	
