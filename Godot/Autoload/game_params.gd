@@ -21,7 +21,7 @@ const fly_action_follow = 0.25
 const fly_action_stay = 0.25
 const fly_action_poop = 0.25
 const fly_action_move = 0.5
-const fly_action_cooldown = [1,3]
+const fly_action_cooldown = [1,2]
 
 const fly_action_move_dist = [2,4]
 
