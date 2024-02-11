@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://1xdc3n4bqi15"]
+[gd_scene load_steps=8 format=3 uid="uid://ingofo8jcjfi"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_bm28j"]
-[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_lnmyg"]
-[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="7_5mwq1"]
-[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="8_l05ky"]
-[ext_resource type="AudioStream" uid="uid://lu2rqjhbcab4" path="res://Assets/Audio/music/Three Red Hearts - Deep Blue.ogg" id="9_tids0"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_7i8op"]
+[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_u8x2c"]
+[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_in3mh"]
+[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_hci62"]
+[ext_resource type="AudioStream" uid="uid://lu2rqjhbcab4" path="res://Assets/Audio/music/Three Red Hearts - Deep Blue.ogg" id="5_hyg16"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
-texture = ExtResource("6_lnmyg")
+texture = ExtResource("2_u8x2c")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -73,7 +73,7 @@ sources/4 = SubResource("TileSetAtlasSource_rt853")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_bm28j")
+script = ExtResource("1_7i8op")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -93,25 +93,24 @@ layer_3/name = "OUT"
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array(65544, 65540, 1)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("7_5mwq1")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_in3mh")]
 position = Vector2(24, 23)
 
-[node name="Food" parent="." instance=ExtResource("8_l05ky")]
+[node name="Food" parent="." instance=ExtResource("4_hci62")]
 position = Vector2(24, 72)
 
-[node name="Food2" parent="." instance=ExtResource("8_l05ky")]
+[node name="Food2" parent="." instance=ExtResource("4_hci62")]
 position = Vector2(56, 104)
 food_level = 1
 
-[node name="Food3" parent="." instance=ExtResource("8_l05ky")]
+[node name="Food3" parent="." instance=ExtResource("4_hci62")]
 position = Vector2(88, 120)
 food_level = 2
 
-[node name="Food4" parent="." instance=ExtResource("8_l05ky")]
+[node name="Food4" parent="." instance=ExtResource("4_hci62")]
 position = Vector2(120, 184)
 food_level = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_tids0")
+stream = ExtResource("5_hyg16")
 volume_db = -8.0
-autoplay = true

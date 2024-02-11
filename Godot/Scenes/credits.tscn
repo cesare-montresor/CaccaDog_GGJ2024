@@ -56,36 +56,42 @@ z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -26.0
-offset_top = 41.0
-offset_right = 282.0
-offset_bottom = 218.0
+offset_left = -24.0
+offset_top = 27.0
+offset_right = 284.0
+offset_bottom = 221.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("7_brv2n")
 
-[node name="Label" type="Label" parent="CenterContainer"]
+[node name="Label" type="RichTextLabel" parent="CenterContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "CREDITS
+theme = ExtResource("7_brv2n")
+bbcode_enabled = true
+text = "[center]
+[b]CREDITS[/b]
 
-GAME DESIGN
+[b]GAME DESIGN[/b]
 E.PERINELLI, C.MONTRESOR
 
-GFX
+[b]GFX[/b]
 E.PERINELLI
 
-CODE
+[b]CODE[/b]
 C.MONTRESOR
 
-MUSIC COURTESY OF
+[b]MUSIC COURTESY OF[/b]
 ABSTRACTION - https://abstractionmusic.com/
 
-ADDITIONAL ASSETS FROM
+[b]ADDITIONAL ASSETS FROM[/b]
 Gustavo Vituri - https://gvituri.itch.io/tiny-ranch
 
-MUSIC
-
-SFX"
-horizontal_alignment = 1
+[b]SFX[/b]
+https://opengameart.org/
+[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
