@@ -15,7 +15,7 @@ var direction = "r"
 var is_moving = false
 var source_position = Vector2.ZERO
 var target_position = Vector2.ZERO
-var poop_counter = 0
+var poop_counter = GameParams.initial_poop_count
 var poop_ingame = 0
 var fly_ingame = 0
 
@@ -119,8 +119,10 @@ func PlayerMovement(delta):
 	
 func add_fly(poop):
 	if poop == null: return
-	if floor(poop_ingame / poops_per_fly) <= fly_ingame: return
+	var fly_should_cnt = floor(poop_ingame / poops_per_fly)
+	if fly_ingame >= fly_should_cnt : return
 	var new_fly = fly_asset.instantiate()
+	new_fly.fly_num = fly_ingame
 	new_fly.map = map
 	new_fly.player = self
 	get_tree().root.add_child(new_fly)
