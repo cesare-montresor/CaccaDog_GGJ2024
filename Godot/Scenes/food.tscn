@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://c44fjaht0wysi"]
 
-[ext_resource type="Script" path="res://Scripts/food.gd" id="1_5sh3y"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="1_ejsle"]
+[ext_resource type="Script" path="res://Scripts/food.gd" id="1_rhle7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc3uy"]
 size = Vector2(12, 12)
 
 [node name="Food" type="Area2D" groups=["food"]]
-script = ExtResource("1_5sh3y")
+script = ExtResource("1_rhle7")
 
 [node name="food_0" type="Sprite2D" parent="."]
 texture = ExtResource("1_ejsle")
@@ -15,16 +15,19 @@ region_enabled = true
 region_rect = Rect2(0, 96, 16, 16)
 
 [node name="food_1" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ejsle")
 region_enabled = true
 region_rect = Rect2(16, 96, 16, 16)
 
 [node name="food_2" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ejsle")
 region_enabled = true
 region_rect = Rect2(32, 96, 16, 16)
 
 [node name="food_3" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ejsle")
 region_enabled = true
 region_rect = Rect2(48, 96, 16, 16)

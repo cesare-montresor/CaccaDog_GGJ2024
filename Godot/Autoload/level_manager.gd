@@ -15,7 +15,7 @@ var current_level = 0
 
 func LoadLevel(level_num):
 	if level_num < 0: level_num = 0
-	if level_num >= levels_cnt: level_num = levels_cnt
+	if level_num >= levels_cnt: level_num = levels_cnt - 1 
 	
 	var level_res = levels[level_num]
 	get_tree().change_scene_to_file(level_res)

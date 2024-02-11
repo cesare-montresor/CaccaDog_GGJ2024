@@ -17,12 +17,13 @@ func get_potency():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	pass # Replace with function body.
+	update_sprite()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Engine.is_editor_hint(): update_sprite()
+		
+func update_sprite():
 	for sprite in food_sprites: sprite.visible = false
 	food_sprites[food_level].visible = true
-	pass
