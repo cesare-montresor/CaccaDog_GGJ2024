@@ -63,7 +63,7 @@ sources/4 = SubResource("TileSetAtlasSource_rt853")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgxfx"]
 atlas = ExtResource("6_deofk")
-region = Rect2(0, 192, 64, 64)
+region = Rect2(160, 192, 96, 96)
 
 [node name="Menu" type="Node2D"]
 y_sort_enabled = true
@@ -95,7 +95,7 @@ theme = ExtResource("8_po258")
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
