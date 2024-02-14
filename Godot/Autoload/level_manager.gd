@@ -1,10 +1,10 @@
 extends Node
 
 const levels = [
-	"res://Scenes/L01_tutorial.tscn",
-	"res://Scenes/L02.tscn",
-	"res://Scenes/L03.tscn",
-	"res://Scenes/L04.tscn",
+	"res://Levels/LongTail.tscn",
+	"res://Levels/RightPath.tscn",
+	"res://Levels/Tutorial.tscn",
+	"res://Levels/VeryLongTail.tscn"
 ]
 
 const levels_cnt = len(levels)
@@ -15,7 +15,7 @@ var current_level = 0
 
 func LoadLevel(level_num):
 	if level_num < 0: level_num = 0
-	if level_num >= levels_cnt: level_num = levels_cnt - 1 
+	if level_num >= levels_cnt: level_num = levels_cnt - 1
 	
 	var level_res = levels[level_num]
 	get_tree().change_scene_to_file(level_res)

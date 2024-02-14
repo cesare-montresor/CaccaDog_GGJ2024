@@ -61,6 +61,14 @@ window/stretch/scale=4.0
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Levels/": "yellow",
+"res://Scenes/": "teal",
+"res://Scripts/": "orange"
+}
+
 [input]
 
 ui_accept={

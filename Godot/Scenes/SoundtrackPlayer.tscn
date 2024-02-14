@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://k7snp0m2a1d3"]
+
+[ext_resource type="AudioStream" uid="uid://lu2rqjhbcab4" path="res://Assets/Audio/music/Three Red Hearts - Deep Blue.ogg" id="1_8b2my"]
+[ext_resource type="Script" path="res://Scripts/SoundtrackPlayer.gd" id="2_61qdp"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_8b2my")
+volume_db = -8.0
+script = ExtResource("2_61qdp")

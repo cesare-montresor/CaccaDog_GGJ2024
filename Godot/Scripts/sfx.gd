@@ -27,14 +27,16 @@ extends Node
 @onready var eats = [Eat]
 
 func eat():
+	if not GameParams.sound:
+		return
 	eats.pick_random().play()
 	
 func fart():
+	if not GameParams.sound:
+		return
 	farts.pick_random().play()
 	
 func death():
+	if not GameParams.sound:
+		return
 	Death.play()
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
