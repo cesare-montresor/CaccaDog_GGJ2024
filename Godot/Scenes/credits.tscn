@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfk1dbnspn2oh"]
+[gd_scene load_steps=5 format=3 uid="uid://dfk1dbnspn2oh"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_kvlnj"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_1geyf"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="7_brv2n"]
 
@@ -38,7 +37,6 @@ sources/4 = SubResource("TileSetAtlasSource_rt853")
 
 [node name="World2" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_kvlnj")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -95,3 +93,6 @@ https://opengameart.org/
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 128)

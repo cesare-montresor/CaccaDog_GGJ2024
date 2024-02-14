@@ -20,31 +20,3 @@ func setUp():
 	#levelLabel.text = "LVL: " + str(PlayerState.level)
 	#damageLabel.text = "DMG: " + str(PlayerState.damage)
 
-
-#func _on_antonio_body_entered(body):
-	#if body.is_in_group("Player"):
-		#print("Hey Antonio!")
-		#if Dialogic.current_timeline == null:
-			#var layout = Dialogic.start('Antonio')
-			#layout.register_character(Player, $Player)
-			##layout.register_character(Antonio,$Antonio )
-#
-#
-#func _on_antonio_body_exited(body):
-	#if body.is_in_group("Player"):
-		#print("Bye Antonio!")
-#
-#
-#func _on_gate_body_entered(body):
-	#if !body.is_in_group("Player"):
-		#return
-	#else:
-		#print("Gate!")
-		#if Dialogic.current_timeline == null:
-			#var layout = Dialogic.start('LookMore')
-			#layout.register_character(Player, $Player)
-#
-#func _on_dialogic_signal(argument:String):
-	#if argument == "RemoveGate":
-		#print("Removing Gate")
-		#$Gate.queue_free()

@@ -1,9 +1,12 @@
 extends Node
 
 const levels = [
-	"res://Levels/LongTail.tscn",
+	"res://Levels/KnowYourEnemy.tscn",
+	"res://Levels/LearnToCount.tscn",
+	"res://Levels/BreakTheLoop.tscn",
 	"res://Levels/RightPath.tscn",
-	"res://Levels/Tutorial.tscn",
+	"res://Levels/LongTail.tscn",
+	"res://Levels/PossibleIndigestion.tscn",
 	"res://Levels/VeryLongTail.tscn"
 ]
 
