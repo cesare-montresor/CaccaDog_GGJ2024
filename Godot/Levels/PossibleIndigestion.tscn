@@ -112,7 +112,7 @@ food_level = 3
 [node name="Food4" parent="." instance=ExtResource("4_nvjdt")]
 position = Vector2(120, 184)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("5_lt2ey")]
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("5_lt2ey")]
 
 [node name="LevelTitle" parent="." instance=ExtResource("6_s0m7h")]
 title = "POSSIBLE INDIGESTION"

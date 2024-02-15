@@ -97,7 +97,7 @@ layer_3/tile_data = PackedInt32Array(1114131, 65540, 1)
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("3_gmgnt")]
 position = Vector2(24, 23)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("5_qp6um")]
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("5_qp6um")]
 
 [node name="LevelTitle" parent="." instance=ExtResource("6_co00q")]
 title = "KNOW YOUR ENEMY (FLY PLAYGROUND)"

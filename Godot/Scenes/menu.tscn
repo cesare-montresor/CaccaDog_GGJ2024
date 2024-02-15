@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3isf2b2tcx7g"]
+[gd_scene load_steps=9 format=3 uid="uid://d3isf2b2tcx7g"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_xvigs"]
+[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="4_glorq"]
+[ext_resource type="AudioStream" uid="uid://d7a5yv06japn" path="res://Assets/Audio/music/Three Red Hearts - Puzzle Pieces.ogg" id="5_5smxs"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
-[ext_resource type="AudioStream" uid="uid://08g2y3l7ia0u" path="res://Assets/Audio/music/Three Red Hearts - Three Red Hearts.ogg" id="10_o70n7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
 texture = ExtResource("6_deofk")
@@ -138,10 +139,8 @@ theme_override_font_sizes/font_size = 10
 text = "QUIT
 "
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_o70n7")
-volume_db = -12.0
-autoplay = true
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("4_glorq")]
+soundtrack = ExtResource("5_5smxs")
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

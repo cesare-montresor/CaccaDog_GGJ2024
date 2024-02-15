@@ -111,4 +111,4 @@ food_level = 3
 [node name="Food4" parent="." instance=ExtResource("4_uhxnn")]
 position = Vector2(120, 184)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("5_4agxq")]
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("5_4agxq")]

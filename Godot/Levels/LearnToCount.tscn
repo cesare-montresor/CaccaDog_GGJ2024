@@ -134,4 +134,4 @@ position = Vector2(88, 152)
 [node name="Helper_F3" parent="Helpers" instance=ExtResource("10_54snl")]
 position = Vector2(120, 152)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("10_t7mjh")]
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("10_t7mjh")]
