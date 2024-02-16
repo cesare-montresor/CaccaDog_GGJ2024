@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerState="*res://src/PlayerState.gd"
-Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 Sfx="*res://Scenes/sfx.tscn"
 GameParams="*res://Autoload/game_params.gd"
 LevelManager="*res://Autoload/level_manager.gd"
@@ -52,14 +51,10 @@ animations/join_default_wait=true
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=1200
+window/size/viewport_width=1024
+window/size/viewport_height=1024
 window/stretch/mode="viewport"
 window/stretch/scale=4.0
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [file_customization]
 
