@@ -16,7 +16,7 @@ const initial_poop_count : int = 0
 
 
 # fly
-const poops_per_fly : int = 3
+const poops_per_fly : int = 4
 
 const fly_speed : int = 50
 const fly_action_follow : float = 4.0
