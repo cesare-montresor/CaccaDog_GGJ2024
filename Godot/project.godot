@@ -54,7 +54,7 @@ animations/join_default_wait=true
 window/size/viewport_width=1024
 window/size/viewport_height=1024
 window/stretch/mode="viewport"
-window/stretch/scale=4.0
+window/stretch/scale=2.0
 
 [file_customization]
 
