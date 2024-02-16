@@ -11,7 +11,7 @@ func _process(delta):
 	pass
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Levels/KnowYourEnemy.tscn")
+	LevelManager.ReloadLevel()
 
 func _on_credits_pressed():
 	get_tree().change_scene_to_file("res://Scenes/credits.tscn")

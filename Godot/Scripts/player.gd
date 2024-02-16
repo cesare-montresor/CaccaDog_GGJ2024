@@ -67,9 +67,12 @@ func check_win():
 	var cur_cell = map.local_to_map(position)
 	var foods = get_tree().get_nodes_in_group("food") 
 	
-	if len(foods) > 0: return false
-	if poop_counter > 0: return false
-	if not cells_finish.has(cur_cell): return false	
+	if len(foods) > 0: 
+		return false
+	if poop_counter > 0: 
+		return false
+	if not cells_finish.has(cur_cell): 
+		return false	
 	
 	print("you win")
 	next()
@@ -180,8 +183,9 @@ func collide_food(body, food):
 	
 func eat(food):
 	Sfx.eat()
-	food.queue_free()
 	poop_counter += food.get_potency()
+	food.queue_free()
+	
 	
 func death():
 	Sfx.death()
