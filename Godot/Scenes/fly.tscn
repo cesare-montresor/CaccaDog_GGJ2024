@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="1_t55ny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umssg"]
-radius = 6.0
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivc5b"]
 atlas = ExtResource("1_t55ny")
@@ -62,6 +62,7 @@ z_index = 100
 script = ExtResource("1_1tvmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_umssg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
