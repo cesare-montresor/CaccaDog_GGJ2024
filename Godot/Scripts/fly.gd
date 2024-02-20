@@ -2,7 +2,7 @@ class_name Fly extends Area2D
 
 # game params
 var fly_speed = GameParams.fly_speed
-var action_stay = GameParams.fly_action_stay
+
 var action_poop = GameParams.fly_action_poop
 var action_move = GameParams.fly_action_move
 var action_follow = GameParams.fly_action_move
@@ -31,13 +31,12 @@ func _process(delta):
 
 
 func _ready():
-	var action_sum = action_stay + action_poop + action_move + action_follow
-	action_stay = action_stay / action_sum
+	var action_sum = action_poop + action_move + action_follow
+	
 	action_poop = action_poop / action_sum
 	action_move = action_move / action_sum
 	action_follow = action_follow / action_sum
 	
-	action_poop += action_stay
 	action_move += action_poop
 	action_follow += action_move
 	
@@ -100,21 +99,16 @@ func select_action():
 	if not canMove(): return
 	tween.kill()
 	var action_prob = rng.randf()
-	
-	
-	if (action_prob < action_stay):
-		
-		var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
-		print(fly_num,' fly: stay',cooldown)
-		goto_stay(cooldown)
-	elif (action_prob < action_poop):
-		
+	print('action_prob',action_prob)
+	if (action_prob < action_poop):
 		var poops = get_tree().get_nodes_in_group("poop") 
 		var target_poop = poops.pick_random()
-		print(fly_num,' fly: poop', target_poop.position)
+		var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
+		print(fly_num,' fly: poop', target_poop.position, cooldown)
 		goto_position(target_poop.position)
-	elif (action_prob < action_move):
+		goto_stay(cooldown)
 		
+	elif (action_prob < action_move):
 		var off_x = rng.randi_range(move_dist[0],move_dist[1])
 		var off_y = rng.randi_range(move_dist[0],move_dist[1])
 		var target_cell = map.local_to_map(position) + Vector2i(off_x,off_y)

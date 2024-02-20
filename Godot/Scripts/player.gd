@@ -5,7 +5,7 @@ const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 const fly_asset = preload("res://Scenes/fly.tscn")
 
-
+var num_lifes = GameParams.num_lifes
 var step_speed = GameParams.step_speed
 var step_delay = GameParams.step_delay
 var poops_per_fly = GameParams.poops_per_fly
@@ -17,6 +17,7 @@ var target_position = Vector2.ZERO
 var poop_counter = GameParams.initial_poop_count
 var poop_ingame = 0
 var fly_ingame = 0
+var last_cell
 
 var cells_wall
 var cells_start
@@ -65,8 +66,10 @@ func _process(delta):
 		
 func check_win():
 	var cur_cell = map.local_to_map(position)
+	if (last_cell == cur_cell): return false
+	last_cell = cur_cell
 	var foods = get_tree().get_nodes_in_group("food") 
-	
+	print(cur_cell, cells_finish)
 	if len(foods) > 0: 
 		return false
 	if poop_counter > 0: 
@@ -170,7 +173,10 @@ func PlayerAnimation(moving = false):
 func collide_fly(body, fly):
 	if body != self: return
 	print("omg a pooped fly!", body)
-	death()
+	num_lifes -= 1
+	
+	if num_lifes == 0:
+		death()
 	
 func collide_poop(body):
 	if body != self: return
