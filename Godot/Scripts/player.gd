@@ -19,14 +19,22 @@ var poop_ingame = 0
 var fly_ingame = 0
 var last_cell
 
+
+var tween
+var rng = RandomNumberGenerator.new()
+@onready var map = $"../TileMap"
+@onready var UI = $"../UI"
+@onready var viewport = $Camera2D
+
 var cells_wall
 var cells_start
 var cells_finish
 
-var tween
-var rng = RandomNumberGenerator.new()
+var world_min = Vector2i(0,0) 
+var world_max = Vector2i(0,0) 
 
-@onready var map: TileMap = $"../TileMap";
+var world_min_cell = Vector2i(0,0) 
+var world_max_cell = Vector2i(0,0) 
 
 func _init(): 
 	pass
@@ -35,14 +43,33 @@ func _ready():
 	cells_wall = map.get_used_cells(GameParams.layer_wall)		
 	cells_start = map.get_used_cells(GameParams.layer_start)
 	cells_finish = map.get_used_cells(GameParams.layer_finish)
+		
+	for wall in cells_wall:
+		if wall.x < world_min_cell.x: world_min_cell.x = wall.x
+		if wall.y < world_min_cell.y: world_min_cell.y = wall.y
+		if wall.x > world_max_cell.x: world_max_cell.x = wall.x
+		if wall.y > world_max_cell.y: world_max_cell.y = wall.y
 	
+	world_min_cell -= Vector2i(1,1)
+	world_max_cell += Vector2i(1,1)
+	
+	world_min = map.map_to_local(world_min_cell)
+	world_max = map.map_to_local(world_max_cell)
+	
+	viewport.limit_left = world_min.x
+	viewport.limit_top = world_min.y
+	viewport.limit_right = world_max.x
+	viewport.limit_bottom = world_max.y
 	
 	is_moving=false
 	if tween: tween.kill()
+	
 	var start_pos = map.map_to_local(cells_start.pick_random())
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
+	
+	
 	var foods = get_tree().get_nodes_in_group("food") 
 	
 	for food in foods:
@@ -69,7 +96,7 @@ func check_win():
 	if (last_cell == cur_cell): return false
 	last_cell = cur_cell
 	var foods = get_tree().get_nodes_in_group("food") 
-	print(cur_cell, cells_finish)
+	# print(cur_cell, cells_finish)
 	if len(foods) > 0: 
 		return false
 	if poop_counter > 0: 
@@ -129,8 +156,8 @@ func add_fly(poop):
 	if fly_ingame >= fly_should_cnt : return
 	var new_fly = fly_asset.instantiate()
 	new_fly.fly_num = fly_ingame
-	new_fly.map = map
 	new_fly.player = self
+	new_fly.map = map
 	get_tree().root.add_child(new_fly)
 	fly_ingame += 1
 	new_fly.goto_target_poop(poop)
@@ -174,7 +201,8 @@ func collide_fly(body, fly):
 	if body != self: return
 	print("omg a pooped fly!", body)
 	num_lifes -= 1
-	
+	UI.update_lifes(num_lifes)
+	Sfx.death()
 	if num_lifes == 0:
 		death()
 	

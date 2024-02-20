@@ -22,6 +22,8 @@ extends Node
 @export var Death : AudioStreamPlayer
 #@export var PickUp : AudioStreamPlayer
 #@export var Win : AudioStreamPlayer
+@export var FlyBuzzingStereo : AudioStreamPlayer
+@export var FlyBuzzingMono : AudioStreamPlayer
 
 @onready var farts = [Fart1,Fart2,Fart3,Fart4,Fart5,Fart6,Fart7,Fart8,Fart9,Fart10,Fart11,Fart12,Fart13,Fart14]
 @onready var eats = [Eat]
@@ -40,3 +42,6 @@ func death():
 	if not GameParams.sound:
 		return
 	Death.play()
+
+func buzz():
+	FlyBuzzingStereo.play()

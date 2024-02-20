@@ -40,20 +40,13 @@ func _ready():
 	action_move += action_poop
 	action_follow += action_move
 	
+	spawn_min = player.world_min_cell 
+	spawn_max = player.world_max_cell 
 	
-	var cells_wall = map.get_used_cells(GameParams.layer_wall)		
-	for wall in cells_wall:
-		if wall.x < spawn_min.x: spawn_min.x = wall.x
-		if wall.y < spawn_min.y: spawn_min.y = wall.y
-		if wall.x > spawn_max.x: spawn_max.x = wall.x
-		if wall.y > spawn_max.y: spawn_max.y = wall.y
-	spawn_min -= Vector2i(1,1)
-	spawn_max += Vector2i(1,1)
-	
-	spwan()
+	spawn_fly()
 	
 
-func spwan():
+func spawn_fly():
 	var spawn_x = rng.randf_range(spawn_min.x, spawn_max.x)
 	var spawn_y = rng.randf_range(spawn_min.y, spawn_max.y)
 	var spawn_cell = Vector2i(spawn_x, spawn_y)
@@ -86,6 +79,7 @@ func goto_position(dst_position):
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", dst_position, fly_time)
 	sleep(fly_time)
+	Sfx.buzz()
 	AnimateFly(dst_position)
 	
 
