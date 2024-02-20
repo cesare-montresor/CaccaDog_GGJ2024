@@ -1,7 +1,7 @@
 extends Node
 
 # MUSIC SFX ON/OFF
-const sound = false
+const sound = true
 
 # Map
 const layer_background = 0

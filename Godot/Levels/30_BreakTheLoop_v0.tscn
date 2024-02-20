@@ -1,17 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://650trcfrkem8"]
+[gd_scene load_steps=19 format=3 uid="uid://bgw2oqh38nwls"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_nnybl"]
-[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_fhi40"]
-[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_8ap4r"]
-[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_oba6m"]
-[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="5_t6ecj"]
-[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="6_ebcd6"]
-[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="7_wkicu"]
-[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="8_n4jo8"]
-[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="9_3ful7"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_vl1pp"]
+[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_407c5"]
+[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_8lntp"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="4_mm22k"]
+[ext_resource type="PackedScene" uid="uid://dfto5wvk6iiy1" path="res://Helpers/Helper_F0.tscn" id="5_y5ebk"]
+[ext_resource type="PackedScene" uid="uid://cof3tvdo7wnji" path="res://Helpers/Helper_F1.tscn" id="6_nk71n"]
+[ext_resource type="PackedScene" uid="uid://chmnv1vfhcc4f" path="res://Helpers/Helper_F2.tscn" id="7_un7d7"]
+[ext_resource type="PackedScene" uid="uid://buucwesmhet61" path="res://Helpers/Helper_F3.tscn" id="8_5xfrm"]
+[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="9_3aspv"]
+[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="10_ug70i"]
+[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="11_13dgp"]
+[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="12_58ttq"]
+[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="13_oo1n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
-texture = ExtResource("2_fhi40")
+texture = ExtResource("2_407c5")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -75,21 +79,21 @@ texture = ExtResource("2_fhi40")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6gp3g"]
-atlas = ExtResource("7_wkicu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3jv4"]
+atlas = ExtResource("11_13dgp")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlp44"]
-atlas = ExtResource("8_n4jo8")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvprk"]
+atlas = ExtResource("12_58ttq")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1oxnp"]
-atlas = ExtResource("2_fhi40")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh5pl"]
+atlas = ExtResource("2_407c5")
 region = Rect2(0, 160, 16, 16)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_nnybl")
+script = ExtResource("1_vl1pp")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -101,26 +105,54 @@ layer_0/tile_data = PackedInt32Array(-131075, 262148, 0, -65539, 393220, 1, -3, 
 layer_1/name = "Elements"
 layer_1/y_sort_enabled = true
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 0, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 3, 65540, 0, 4, 65540, 0, 5, 65540, 0, 2, 65540, 0, -65535, 262148, 0, 327681, 65540, 0, 327682, 65540, 0, 327683, 65540, 0, 327684, 65540, 0, 327685, 65540, 0, 196611, 65540, 0, 65541, 65540, 0, 131077, 65540, 0, 196613, 65540, 0, 262150, 262148, 1)
+layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 65540, 0, 6, 65540, 0, 0, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 393216, 65540, 0, 458752, 65540, 0, 524288, 65540, 0, 589824, 65540, 0, 3, 65540, 0, 4, 65540, 0, 5, 65540, 0, 7, 65540, 0, 8, 65540, 0, 2, 65540, 0, -65535, 262148, 0, 589826, 65540, 0, 589827, 65540, 0, 589828, 65540, 0, 589829, 65540, 0, 589830, 65540, 0, 589831, 65540, 0, 589832, 65540, 0, 589833, 65540, 0, 720897, 65540, 0, 720898, 65540, 0, 720899, 65540, 0, 720900, 65540, 0, 720901, 65540, 0, 720902, 65540, 0, 720903, 65540, 0, 720904, 65540, 0, 720905, 65540, 0, 720906, 65540, 0, 720907, 65540, 0, 589835, 65540, 0, 524299, 65540, 0, 458763, 65540, 0, 393227, 65540, 0, 327691, 65540, 0, 262155, 65540, 0, 196619, 65540, 0, 131083, 65540, 0, 11, 65540, 0, 10, 65540, 0, 9, 65540, 0, 589825, 65540, 0, 458757, 65540, 0, 458758, 65540, 0, 458759, 65540, 0, 458760, 65540, 0, 458761, 65540, 0, 327687, 65540, 0, 327688, 65540, 0, 327689, 65540, 0, 65545, 65540, 0, 196617, 65540, 0, 65547, 65540, 0, 655371, 65540, 0, 720895, 262148, 1)
 layer_2/name = "IN"
-layer_2/z_index = 2
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(1, 4, 1)
 layer_3/name = "OUT"
-layer_3/z_index = 2
-layer_3/tile_data = PackedInt32Array(262149, 65540, 1)
+layer_3/z_index = 1
+layer_3/tile_data = PackedInt32Array(655360, 65540, 1)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_8ap4r")]
-position = Vector2(24, 23)
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_8lntp")]
+position = Vector2(24, 24)
 
-[node name="Food2" parent="." instance=ExtResource("4_oba6m")]
-position = Vector2(56, 72)
+[node name="LevelTitle" parent="." instance=ExtResource("4_mm22k")]
+level_number = 3
+title = "BREAK THE LOOP"
+
+[node name="Helpers" type="Node2D" parent="."]
+visible = false
+
+[node name="Helper_F0" parent="Helpers" instance=ExtResource("5_y5ebk")]
+position = Vector2(40, 40)
+
+[node name="Helper_F1" parent="Helpers" instance=ExtResource("6_nk71n")]
+position = Vector2(40, 72)
+
+[node name="Helper_F2" parent="Helpers" instance=ExtResource("7_un7d7")]
+position = Vector2(40, 104)
+
+[node name="Helper_F3" parent="Helpers" instance=ExtResource("8_5xfrm")]
+position = Vector2(40, 136)
+
+[node name="Food" type="Node2D" parent="."]
+
+[node name="Food" parent="Food" instance=ExtResource("9_3aspv")]
+position = Vector2(152, 40)
+
+[node name="Food2" parent="Food" instance=ExtResource("9_3aspv")]
+position = Vector2(152, 72)
 food_level = 1
 
-[node name="SoundtrackPlayer" parent="." instance=ExtResource("5_t6ecj")]
+[node name="Food3" parent="Food" instance=ExtResource("9_3aspv")]
+position = Vector2(152, 104)
+food_level = 2
 
-[node name="LevelTitle" parent="." instance=ExtResource("6_ebcd6")]
-level_number = 3
-title = "CHOOSE THE RIGHT PATH"
+[node name="Food4" parent="Food" instance=ExtResource("9_3aspv")]
+position = Vector2(152, 136)
+food_level = 3
+
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("10_ug70i")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -146,17 +178,17 @@ grow_vertical = 0
 
 [node name="Dog" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6gp3g")
+texture = SubResource("AtlasTexture_s3jv4")
 stretch_mode = 2
 
 [node name="Dog2" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6gp3g")
+texture = SubResource("AtlasTexture_s3jv4")
 stretch_mode = 2
 
 [node name="Dog3" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6gp3g")
+texture = SubResource("AtlasTexture_s3jv4")
 stretch_mode = 2
 
 [node name="Annoiance" type="Control" parent="UI"]
@@ -190,24 +222,24 @@ grow_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_tlp44")
+texture = SubResource("AtlasTexture_mvprk")
 stretch_mode = 2
 
 [node name="FlyCount" type="Label" parent="UI/Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_3ful7")
+theme = ExtResource("13_oo1n4")
 text = "x05"
 
 [node name="Cacca" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_1oxnp")
+texture = SubResource("AtlasTexture_bh5pl")
 stretch_mode = 2
 
 [node name="CaccaToGo" type="Label" parent="UI/Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_3ful7")
+theme = ExtResource("13_oo1n4")
 text = "x05"
