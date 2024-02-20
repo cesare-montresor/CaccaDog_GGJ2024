@@ -1,15 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://diogrjlqguln5"]
+[gd_scene load_steps=11 format=3 uid="uid://diogrjlqguln5"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_k0dxs"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_4i7ha"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_j5dij"]
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_xeqdp"]
-[ext_resource type="PackedScene" path="res://Scenes/level_title.tscn" id="5_g8uts"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_g8uts"]
 [ext_resource type="PackedScene" uid="uid://dfto5wvk6iiy1" path="res://Helpers/Helper_F0.tscn" id="6_5ghcg"]
-[ext_resource type="PackedScene" path="res://Scenes/SoundtrackPlayer.tscn" id="10_gugqr"]
-[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="11_flktu"]
-[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="12_1stdj"]
-[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="13_w3a2k"]
+[ext_resource type="PackedScene" uid="uid://bec60a3c1tg33" path="res://Scenes/ui.tscn" id="8_7ipjl"]
+[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="10_gugqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
 texture = ExtResource("2_4i7ha")
@@ -181,18 +179,6 @@ texture = ExtResource("2_4i7ha")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wve2"]
-atlas = ExtResource("11_flktu")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nd5jr"]
-atlas = ExtResource("12_1stdj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vppsl"]
-atlas = ExtResource("2_4i7ha")
-region = Rect2(0, 160, 16, 16)
-
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_k0dxs")
@@ -262,92 +248,4 @@ position = Vector2(24, 216)
 
 [node name="SoundtrackPlayer" parent="." instance=ExtResource("10_gugqr")]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="DogLifeCount" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/DogLifeCount"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -24.0
-offset_right = 104.0
-offset_bottom = 16.0
-grow_vertical = 0
-
-[node name="Dog" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5wve2")
-stretch_mode = 2
-
-[node name="Dog2" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5wve2")
-stretch_mode = 2
-
-[node name="Dog3" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5wve2")
-stretch_mode = 2
-
-[node name="Annoiance" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -129.0
-offset_top = -12.0
-offset_right = -129.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Annoiance"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = -24.0
-offset_right = 122.0
-offset_bottom = 16.0
-grow_vertical = 0
-
-[node name="Fly" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_nd5jr")
-stretch_mode = 2
-
-[node name="FlyCount" type="Label" parent="UI/Annoiance/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("13_w3a2k")
-text = "x05"
-
-[node name="Cacca" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_vppsl")
-stretch_mode = 2
-
-[node name="CaccaToGo" type="Label" parent="UI/Annoiance/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("13_w3a2k")
-text = "x05"
+[node name="UI" parent="." instance=ExtResource("8_7ipjl")]
