@@ -1,13 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://1xdc3n4bqi15"]
+[gd_scene load_steps=19 format=3 uid="uid://7qu8nkhkpo8j"]
 
-[ext_resource type="Script" path="res://Scripts/SoundtrackPlayer.gd" id="1_hu01f"]
-[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_n00jy"]
-[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_ri2ca"]
-[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_uhxnn"]
-[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="5_4agxq"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_ri3im"]
+[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_x0ekm"]
+[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_o7oif"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="4_26gd5"]
+[ext_resource type="PackedScene" uid="uid://dfto5wvk6iiy1" path="res://Helpers/Helper_F0.tscn" id="5_o2h7u"]
+[ext_resource type="PackedScene" uid="uid://cof3tvdo7wnji" path="res://Helpers/Helper_F1.tscn" id="6_bdayg"]
+[ext_resource type="PackedScene" uid="uid://chmnv1vfhcc4f" path="res://Helpers/Helper_F2.tscn" id="7_cfom6"]
+[ext_resource type="PackedScene" uid="uid://buucwesmhet61" path="res://Helpers/Helper_F3.tscn" id="8_0ippn"]
+[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="9_17ynb"]
+[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="10_7fjcv"]
+[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="11_opcpr"]
+[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="12_dnhly"]
+[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="13_jvtli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
-texture = ExtResource("2_n00jy")
+texture = ExtResource("2_x0ekm")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -71,9 +79,21 @@ texture = ExtResource("2_n00jy")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3jv4"]
+atlas = ExtResource("11_opcpr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvprk"]
+atlas = ExtResource("12_dnhly")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh5pl"]
+atlas = ExtResource("2_x0ekm")
+region = Rect2(0, 160, 16, 16)
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_hu01f")
+script = ExtResource("1_ri3im")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -85,30 +105,137 @@ layer_0/tile_data = PackedInt32Array(-131075, 262148, 0, -65539, 393220, 1, -3, 
 layer_1/name = "Elements"
 layer_1/y_sort_enabled = true
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 65540, 0, 6, 65540, 0, 0, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 393216, 65540, 0, 458752, 65540, 0, 524288, 65540, 0, 589824, 65540, 0, 655360, 65540, 0, 786432, 65540, 0, 851968, 65540, 0, 917504, 65540, 0, 983040, 65540, 0, 983041, 65540, 0, 983042, 65540, 0, 3, 65540, 0, 983043, 65540, 0, 4, 65540, 0, 983044, 65540, 0, 5, 65540, 0, 983045, 65540, 0, 983046, 65540, 0, 7, 65540, 0, 983047, 65540, 0, 8, 65540, 0, 983048, 65540, 0, 2, 65540, 0, 131074, 65540, 0, 196610, 65540, 0, 262146, 65540, 0, 327682, 65540, 0, 393218, 65540, 0, 458754, 65540, 0, 524290, 65540, 0, 589826, 65540, 0, 131076, 65540, 0, 196612, 65540, 0, 262148, 65540, 0, 327684, 65540, 0, 393220, 65540, 0, 458756, 65540, 0, 524292, 65540, 0, 589828, 65540, 0, 655364, 65540, 0, 131078, 65540, 0, 196614, 65540, 0, 262150, 65540, 0, 327686, 65540, 0, 393222, 65540, 0, 458758, 65540, 0, 524294, 65540, 0, 589830, 65540, 0, 131080, 65540, 0, 196616, 65540, 0, 262152, 65540, 0, 327688, 65540, 0, 393224, 65540, 0, 458760, 65540, 0, 524296, 65540, 0, 589832, 65540, 0, 655368, 65540, 0, 655362, 65540, 0, 720898, 65540, 0, 786434, 65540, 0, 851970, 65540, 0, 720900, 65540, 0, 786436, 65540, 0, 851972, 65540, 0, 655366, 65540, 0, 720902, 65540, 0, 786438, 65540, 0, 851974, 65540, 0, 720904, 65540, 0, 786440, 65540, 0, 851976, 65540, 0, -65535, 262148, 0, 65544, 65540, 0, 65538, 65540, 0, 917513, 327684, 0)
+layer_1/tile_data = PackedInt32Array(6, 65540, 0, 0, 65540, 0, 3, 65540, 0, 4, 65540, 0, 5, 65540, 0, 7, 65540, 0, 8, 65540, 0, 2, 65540, 0, -65535, 262148, 0, 11, 65540, 0, 10, 65540, 0, 9, 65540, 0, 131072, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 393216, 65540, 0, 524288, 65540, 0, 131083, 65540, 0, 196619, 65540, 0, 262155, 65540, 0, 327691, 65540, 0, 393227, 65540, 0, 458763, 65540, 0, 524299, 65540, 0, 655359, 262148, 1, 65536, 65540, 0, 524289, 65540, 0, 524290, 65540, 0, 524291, 65540, 0, 524292, 65540, 0, 393221, 65540, 0, 524293, 65540, 0, 393222, 65540, 0, 524294, 65540, 0, 262151, 65540, 0, 393223, 65540, 0, 524295, 65540, 0, 262152, 65540, 0, 393224, 65540, 0, 524296, 65540, 0, 131081, 65540, 0, 262153, 65540, 0, 393225, 65540, 0, 524297, 65540, 0, 65547, 65540, 0)
 layer_2/name = "IN"
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(1, 4, 1)
 layer_3/name = "OUT"
 layer_3/z_index = 1
-layer_3/tile_data = PackedInt32Array(65544, 65540, 1, 917512, 65540, 1)
+layer_3/tile_data = PackedInt32Array(589824, 65540, 1)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_ri2ca")]
-position = Vector2(24, 23)
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_o7oif")]
+position = Vector2(24, 24)
 
-[node name="Food" parent="." instance=ExtResource("4_uhxnn")]
-position = Vector2(24, 184)
-food_level = 3
+[node name="LevelTitle" parent="." instance=ExtResource("4_26gd5")]
+level_number = 3
+title = "BREAK THE LOOP"
 
-[node name="Food2" parent="." instance=ExtResource("4_uhxnn")]
-position = Vector2(56, 120)
-food_level = 3
+[node name="Helpers" type="Node2D" parent="."]
+visible = false
 
-[node name="Food3" parent="." instance=ExtResource("4_uhxnn")]
-position = Vector2(88, 120)
-food_level = 3
+[node name="Helper_F0" parent="Helpers" instance=ExtResource("5_o2h7u")]
+position = Vector2(40, 40)
 
-[node name="Food4" parent="." instance=ExtResource("4_uhxnn")]
-position = Vector2(120, 184)
+[node name="Helper_F1" parent="Helpers" instance=ExtResource("6_bdayg")]
+position = Vector2(40, 72)
 
-[node name="SoundtrackPlayer" parent="." instance=ExtResource("5_4agxq")]
+[node name="Helper_F2" parent="Helpers" instance=ExtResource("7_cfom6")]
+position = Vector2(40, 104)
+
+[node name="Helper_F3" parent="Helpers" instance=ExtResource("8_0ippn")]
+position = Vector2(40, 136)
+
+[node name="Food" type="Node2D" parent="."]
+
+[node name="Food" parent="Food" instance=ExtResource("9_17ynb")]
+position = Vector2(152, 24)
+
+[node name="Food2" parent="Food" instance=ExtResource("9_17ynb")]
+position = Vector2(152, 56)
+food_level = 1
+
+[node name="Food3" parent="Food" instance=ExtResource("9_17ynb")]
+position = Vector2(152, 88)
+food_level = 2
+
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("10_7fjcv")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DogLifeCount" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/DogLifeCount"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = 16.0
+grow_vertical = 0
+
+[node name="Dog" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s3jv4")
+stretch_mode = 2
+
+[node name="Dog2" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s3jv4")
+stretch_mode = 2
+
+[node name="Dog3" type="TextureRect" parent="UI/DogLifeCount/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s3jv4")
+stretch_mode = 2
+
+[node name="Annoiance" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -129.0
+offset_top = -12.0
+offset_right = -129.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Annoiance"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -24.0
+offset_right = 122.0
+offset_bottom = 16.0
+grow_vertical = 0
+
+[node name="Fly" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_mvprk")
+stretch_mode = 2
+
+[node name="FlyCount" type="Label" parent="UI/Annoiance/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("13_jvtli")
+text = "x05"
+
+[node name="Cacca" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_bh5pl")
+stretch_mode = 2
+
+[node name="CaccaToGo" type="Label" parent="UI/Annoiance/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("13_jvtli")
+text = "x05"

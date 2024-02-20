@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://d3isf2b2tcx7g"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_xvigs"]
+[ext_resource type="AudioStream" uid="uid://bxt1waqd656rj" path="res://Assets/Audio/music/Three Red Hearts - Rumble at the Gates.ogg" id="4_cqy0h"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="4_glorq"]
-[ext_resource type="AudioStream" uid="uid://d7a5yv06japn" path="res://Assets/Audio/music/Three Red Hearts - Puzzle Pieces.ogg" id="5_5smxs"]
 [ext_resource type="StyleBox" uid="uid://dv5jr4msk1mvx" path="res://Themes/MenuButt.tres" id="6_20t03"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
 [ext_resource type="StyleBox" uid="uid://lilvp5ewbyca" path="res://Themes/MenuButtHover.tres" id="7_501fs"]
@@ -93,7 +93,7 @@ layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 
 position = Vector2(128, 128)
 
 [node name="SoundtrackPlayer" parent="." instance=ExtResource("4_glorq")]
-soundtrack = ExtResource("5_5smxs")
+soundtrack = ExtResource("4_cqy0h")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 z_index = 2

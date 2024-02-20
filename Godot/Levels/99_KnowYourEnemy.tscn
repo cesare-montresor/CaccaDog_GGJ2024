@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://ll8qk5i7dxoa"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_8mimc"]
-[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_stxr0"]
-[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_qjlca"]
-[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="4_rry86"]
-[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_r8pag"]
-[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="6_rm8sd"]
-[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="7_yply6"]
-[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="8_3j6x8"]
-[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="9_crgv4"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_n38j0"]
+[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_4c145"]
+[ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_j1knh"]
+[ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="4_fk0jg"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_tb24i"]
+[ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="6_6o7yr"]
+[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="7_5c262"]
+[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="8_drttd"]
+[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="9_lijiy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
-texture = ExtResource("2_stxr0")
+texture = ExtResource("2_4c145")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -76,20 +76,20 @@ physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5b28"]
-atlas = ExtResource("7_yply6")
+atlas = ExtResource("7_5c262")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jt4jc"]
-atlas = ExtResource("8_3j6x8")
+atlas = ExtResource("8_drttd")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewvc0"]
-atlas = ExtResource("2_stxr0")
+atlas = ExtResource("2_4c145")
 region = Rect2(0, 160, 16, 16)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_8mimc")
+script = ExtResource("1_n38j0")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -109,75 +109,135 @@ layer_3/name = "OUT"
 layer_3/z_index = 2
 layer_3/tile_data = PackedInt32Array(1114131, 65540, 1)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_qjlca")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_j1knh")]
 position = Vector2(24, 23)
 
-[node name="SoundtrackPlayer" parent="." instance=ExtResource("4_rry86")]
+[node name="SoundtrackPlayer" parent="." instance=ExtResource("4_fk0jg")]
 
-[node name="LevelTitle" parent="." instance=ExtResource("5_r8pag")]
-title = "KNOW YOUR ENEMY (FLY PLAYGROUND)"
+[node name="LevelTitle" parent="." instance=ExtResource("5_tb24i")]
+title = "BONUS LEVEL: FLY FARM"
 
 [node name="Food" type="Node2D" parent="."]
 
-[node name="Food2" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(88, 88)
+[node name="Food2" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(136, 120)
 
-[node name="Food3" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(136, 88)
+[node name="Food3" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(184, 120)
 
-[node name="Food17" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(136, 136)
+[node name="Food17" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(184, 168)
 
-[node name="Food4" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(88, 136)
+[node name="Food4" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(136, 168)
 
-[node name="Food5" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(120, 232)
+[node name="Food5" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(88, 248)
 
-[node name="Food6" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(104, 232)
+[node name="Food6" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(56, 248)
 
-[node name="Food7" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(88, 232)
+[node name="Food7" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(40, 248)
 
-[node name="Food8" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(200, 232)
+[node name="Food8" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(184, 248)
 
-[node name="Food9" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(184, 232)
+[node name="Food9" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(152, 248)
 
-[node name="Food10" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(168, 232)
+[node name="Food10" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(136, 248)
 
-[node name="Food11" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(120, 264)
-
-[node name="Food12" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(104, 264)
-
-[node name="Food13" parent="Food" instance=ExtResource("6_rm8sd")]
+[node name="Food11" parent="Food" instance=ExtResource("6_6o7yr")]
 position = Vector2(88, 264)
 
-[node name="Food14" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(200, 264)
+[node name="Food12" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(56, 264)
 
-[node name="Food18" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(136, 232)
+[node name="Food13" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(40, 264)
 
-[node name="Food19" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(216, 232)
-
-[node name="Food20" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(136, 264)
-
-[node name="Food21" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(216, 264)
-
-[node name="Food15" parent="Food" instance=ExtResource("6_rm8sd")]
+[node name="Food14" parent="Food" instance=ExtResource("6_6o7yr")]
 position = Vector2(184, 264)
 
-[node name="Food16" parent="Food" instance=ExtResource("6_rm8sd")]
-position = Vector2(168, 264)
+[node name="Food18" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(104, 248)
+
+[node name="Food22" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 56)
+
+[node name="Food23" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(264, 56)
+
+[node name="Food24" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(264, 24)
+
+[node name="Food25" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 24)
+
+[node name="Food26" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 216)
+
+[node name="Food27" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 184)
+
+[node name="Food28" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 152)
+
+[node name="Food29" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(296, 120)
+
+[node name="Food30" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(24, 184)
+
+[node name="Food31" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(24, 152)
+
+[node name="Food32" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(24, 120)
+
+[node name="Food33" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(24, 88)
+
+[node name="Food38" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(200, 24)
+
+[node name="Food39" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(168, 24)
+
+[node name="Food40" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(136, 24)
+
+[node name="Food41" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(104, 24)
+
+[node name="Food19" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(200, 248)
+
+[node name="Food20" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(104, 264)
+
+[node name="Food21" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(200, 264)
+
+[node name="Food34" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(232, 248)
+
+[node name="Food35" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(232, 264)
+
+[node name="Food36" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(248, 248)
+
+[node name="Food37" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(248, 264)
+
+[node name="Food15" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(152, 264)
+
+[node name="Food16" parent="Food" instance=ExtResource("6_6o7yr")]
+position = Vector2(136, 264)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -253,7 +313,7 @@ stretch_mode = 2
 [node name="FlyCount" type="Label" parent="UI/Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_crgv4")
+theme = ExtResource("9_lijiy")
 text = "x05"
 
 [node name="Cacca" type="TextureRect" parent="UI/Annoiance/HBoxContainer"]
@@ -266,5 +326,5 @@ stretch_mode = 2
 [node name="CaccaToGo" type="Label" parent="UI/Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_crgv4")
+theme = ExtResource("9_lijiy")
 text = "x05"
