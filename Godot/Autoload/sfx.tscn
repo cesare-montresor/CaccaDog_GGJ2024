@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://5f2kp6xxek4k"]
+[gd_scene load_steps=20 format=3 uid="uid://cup60oi7osmp5"]
 
 [ext_resource type="Script" path="res://Scripts/sfx.gd" id="1_hn020"]
 [ext_resource type="AudioStream" uid="uid://jo6ysklj5ht2" path="res://Assets/Audio/SFX/fart-gentle-squelch-ni-sound-1-00-01.mp3" id="1_qacr5"]
@@ -20,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://dkqmurq6rc1v8" path="res://Assets/Audio/SFX/FlyBuzzing.wav" id="18_bek0t"]
 [ext_resource type="AudioStream" uid="uid://c35dn5we34khu" path="res://Assets/Audio/SFX/FlyBuzzing_MONO.wav" id="19_anftk"]
 
-[node name="sfx" type="Node" node_paths=PackedStringArray("Eat", "Fart1", "Fart2", "Fart3", "Fart4", "Fart5", "Fart6", "Fart7", "Fart8", "Fart9", "Fart10", "Fart11", "Fart12", "Fart13", "Fart14", "Death")]
+[node name="sfx" type="Node" node_paths=PackedStringArray("Eat", "Fart1", "Fart2", "Fart3", "Fart4", "Fart5", "Fart6", "Fart7", "Fart8", "Fart9", "Fart10", "Fart11", "Fart12", "Fart13", "Fart14", "Death", "FlyBuzzingStereo", "FlyBuzzingMono")]
 script = ExtResource("1_hn020")
 Eat = NodePath("Eat")
 Fart1 = NodePath("Fart1")
@@ -38,6 +38,8 @@ Fart12 = NodePath("Fart12")
 Fart13 = NodePath("Fart13")
 Fart14 = NodePath("Fart14")
 Death = NodePath("Death")
+FlyBuzzingStereo = NodePath("FlyBuzzingStereo")
+FlyBuzzingMono = NodePath("FlyBuzzingMono")
 
 [node name="Fart1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_qacr5")

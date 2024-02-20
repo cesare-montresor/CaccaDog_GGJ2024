@@ -10,6 +10,7 @@ const layer_start = 2
 const layer_finish = 3
 
 # Player
+const num_lifes = 3
 const step_speed = 0.200
 const step_delay = 0.022
 const initial_poop_count : int = 0
@@ -19,11 +20,12 @@ const initial_poop_count : int = 0
 const poops_per_fly : int = 4
 
 const fly_speed : int = 50
-const fly_action_follow : float = 1.0
-const fly_action_stay : float = 1.0
+
 const fly_action_poop : float = 1.0
 const fly_action_move : float = 1.0
-const fly_action_cooldown = [0.5,0.5]
+const fly_action_follow : float = 1.0
+
+const fly_action_cooldown = [1,3]
 
 const fly_action_move_dist = [3,3]
 
