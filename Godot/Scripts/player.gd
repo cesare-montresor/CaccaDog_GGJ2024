@@ -5,7 +5,6 @@ const poop_asset = preload("res://Scenes/cacca.tscn")
 const food_asset = preload("res://Scenes/food.tscn")
 const fly_asset = preload("res://Scenes/fly.tscn")
 
-var num_lifes = GameParams.num_lifes
 var step_speed = GameParams.step_speed
 var step_delay = GameParams.step_delay
 var poops_per_fly = GameParams.poops_per_fly
@@ -22,9 +21,9 @@ var last_cell
 
 var tween
 var rng = RandomNumberGenerator.new()
-@onready var map = $"../TileMap"
-@onready var UI = $"../UI"
-@onready var viewport = $Camera2D
+@onready var map
+@onready var UI
+@onready var viewport
 
 var cells_wall
 var cells_start
@@ -40,6 +39,10 @@ func _init():
 	pass
 	
 func _ready():
+	map = $"../TileMap"
+	UI = $"../UI"
+	viewport = $Camera2D
+	
 	cells_wall = map.get_used_cells(GameParams.layer_wall)		
 	cells_start = map.get_used_cells(GameParams.layer_start)
 	cells_finish = map.get_used_cells(GameParams.layer_finish)
@@ -69,6 +72,7 @@ func _ready():
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
 	
+	UI.update_lifes(GameManager.num_lifes)
 	
 	var foods = get_tree().get_nodes_in_group("food") 
 	
@@ -200,11 +204,11 @@ func PlayerAnimation(moving = false):
 func collide_fly(body, fly):
 	if body != self: return
 	print("omg a pooped fly!", body)
-	num_lifes -= 1
-	UI.update_lifes(num_lifes)
+	GameManager.num_lifes -= 1
+	UI.update_lifes(GameManager.num_lifes)
 	death()
-	if num_lifes == 0:
-		LevelManager.LoadMenu()
+	if GameManager.num_lifes == 0:
+		GameManager.LoadMenu()
 		
 	
 func collide_poop(body):
@@ -230,10 +234,10 @@ func next():
 	tween.kill()
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
-	LevelManager.NextLevel()
+	GameManager.NextLevel()
 	
 func reset():
 	tween.kill()
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
-	LevelManager.ReloadLevel()
+	GameManager.ReloadLevel()

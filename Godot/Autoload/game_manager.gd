@@ -7,7 +7,7 @@ const levels_path = "res://Levels/"
 var levels = []
 var levels_cnt = len(levels)
 
-
+var num_lifes
 var tree:Node
 var current_level = 0
 
@@ -20,6 +20,8 @@ func _init():
 	levels=files
 	levels_cnt = len(levels)
 	print(levels)
+	
+	num_lifes = GameParams.num_lifes
 
 func LoadLevel(level_num):
 	if level_num < 0: level_num = 0
@@ -42,4 +44,6 @@ func PrevLevel():
 	
 func LoadMenu():
 	get_tree().change_scene_to_file(menu_path)
+	
+
 

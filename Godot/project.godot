@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 PlayerState="*res://src/PlayerState.gd"
 Sfx="*res://Autoload/sfx.tscn"
 GameParams="*res://Autoload/game_params.gd"
-LevelManager="*res://Autoload/level_manager.gd"
+GameManager="*res://Autoload/game_manager.gd"
 
 [dialogic]
 
