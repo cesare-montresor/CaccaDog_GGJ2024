@@ -5,7 +5,8 @@ var fly_speed = GameParams.fly_speed
 
 var action_poop = GameParams.fly_action_poop
 var action_move = GameParams.fly_action_move
-var action_follow = GameParams.fly_action_move
+var action_follow = GameParams.fly_action_follow
+
 var move_dist = GameParams.fly_action_move_dist
 var action_cooldown = GameParams.fly_action_cooldown
 
@@ -72,13 +73,13 @@ func goto_target_poop(poop):
 	print(fly_num,' fly: poop', poop.position)
 	goto_position(poop.position)
 	
-func goto_position(dst_position):
+func goto_position(dst_position, cooldown=0):
 	var distance = position.distance_to(dst_position)
 	var fly_time = distance / fly_speed
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", dst_position, fly_time)
-	sleep(fly_time)
+	sleep(fly_time+cooldown)
 	Sfx.buzz()
 	AnimateFly(dst_position)
 	
@@ -93,14 +94,14 @@ func select_action():
 	if not canMove(): return
 	tween.kill()
 	var action_prob = rng.randf()
-	print('action_prob',action_prob)
+	print('action_prob: ',action_prob)
 	if (action_prob < action_poop):
 		var poops = get_tree().get_nodes_in_group("poop") 
 		var target_poop = poops.pick_random()
 		var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
 		print(fly_num,' fly: poop', target_poop.position, cooldown)
-		goto_position(target_poop.position)
-		goto_stay(cooldown)
+		goto_position(target_poop.position, cooldown)
+		
 		
 	elif (action_prob < action_move):
 		var off_x = rng.randi_range(move_dist[0],move_dist[1])

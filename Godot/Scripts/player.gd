@@ -202,9 +202,10 @@ func collide_fly(body, fly):
 	print("omg a pooped fly!", body)
 	num_lifes -= 1
 	UI.update_lifes(num_lifes)
-	Sfx.death()
+	death()
 	if num_lifes == 0:
-		death()
+		LevelManager.LoadMenu()
+		
 	
 func collide_poop(body):
 	if body != self: return

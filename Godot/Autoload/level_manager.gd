@@ -1,5 +1,7 @@
 extends Node
 
+const menu_path = "res://Scenes/menu.tscn"
+
 const levels_path = "res://Levels/"
 
 var levels = []
@@ -37,4 +39,7 @@ func NextLevel():
 	
 func PrevLevel():
 	return LoadLevel(current_level-1)
+	
+func LoadMenu():
+	get_tree().change_scene_to_file(menu_path)
 
