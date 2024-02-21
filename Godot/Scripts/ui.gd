@@ -9,7 +9,7 @@ var lifes = []
 
 func update_lifes(lifes_num):
 	for i in range(len(lifes)):
-		print("update_lifes ",lifes_num, ' ', i,' ', i <= lifes_num)
+		#print("update_lifes ",lifes_num, ' ', i,' ', i <= lifes_num)
 		lifes[i].visible = (lifes_num >= i+1)
 
 # Called when the node enters the scene tree for the first time.

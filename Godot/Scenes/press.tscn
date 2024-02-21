@@ -85,7 +85,7 @@ The Christian Indie Monitor
 Illinois Nazis
 
 
-\"SHIT HAPPENS...\"
+
 The Greenhouse Specialist
 
 
@@ -96,6 +96,8 @@ Filthy Dogs Owners Weekly
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Node" type="Node" parent="CenterContainer/Label"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 128)

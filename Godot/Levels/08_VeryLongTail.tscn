@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://1xdc3n4bqi15"]
+[gd_scene load_steps=10 format=3 uid="uid://1xdc3n4bqi15"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ilm1l"]
+[ext_resource type="PackedScene" uid="uid://bec60a3c1tg33" path="res://Scenes/ui.tscn" id="2_1k6yq"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_rk5vk"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_u67yf"]
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_6op8x"]
@@ -75,6 +76,8 @@ sources/4 = SubResource("TileSetAtlasSource_rt853")
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ilm1l")
+
+[node name="UI" parent="." instance=ExtResource("2_1k6yq")]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
