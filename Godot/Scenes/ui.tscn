@@ -18,11 +18,8 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("4_i12a2")
 region = Rect2(0, 160, 16, 16)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("life1", "life2", "life3")]
+[node name="UI" type="CanvasLayer"]
 script = ExtResource("1_niqx1")
-life1 = NodePath("DogLifeCount/HBoxContainer/life1")
-life2 = NodePath("DogLifeCount/HBoxContainer/life2")
-life3 = NodePath("DogLifeCount/HBoxContainer/life3")
 
 [node name="DogLifeCount" type="Control" parent="."]
 layout_mode = 3

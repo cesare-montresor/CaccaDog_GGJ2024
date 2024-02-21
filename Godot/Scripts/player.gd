@@ -72,7 +72,7 @@ func _ready():
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", start_pos, 0)
 	
-	UI.update_lifes(GameManager.num_lifes)
+	
 	
 	var foods = get_tree().get_nodes_in_group("food") 
 	
@@ -81,6 +81,7 @@ func _ready():
 
 # Called every frame
 func _process(delta):
+	UI.update_lifes(GameManager.num_lifes)
 	PlayerMovement(delta)
 	PlayerAnimation(is_moving)
 	

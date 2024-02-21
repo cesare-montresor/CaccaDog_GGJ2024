@@ -12,6 +12,7 @@ func _process(delta):
 
 func _on_start_pressed():
 	GameManager.ReloadLevel()
+	GameManager.num_lifes = GameParams.num_lifes
 
 func _on_credits_pressed():
 	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
