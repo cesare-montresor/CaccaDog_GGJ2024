@@ -101,6 +101,7 @@ position = Vector2(24, 23)
 
 [node name="LevelTitle" parent="." instance=ExtResource("5_bojwf")]
 scale = Vector2(1.00125, 1.10976)
+transform = Transform2D(1.00125, 0, 0, 1.10976, 0, 0)
 title = "FOOD POTENCY TEST"
 
 [node name="Food" type="Node2D" parent="."]
