@@ -231,6 +231,7 @@ func eat(food):
 	
 	
 func death():
+	PlayerAnim.play("death")
 	Sfx.death()
 	GameManager.num_lifes -= 1
 	

@@ -70,8 +70,9 @@ func canMove():
 	return TimeNow() > next_action
 
 func goto_target_poop(poop):
-	print(fly_num,' fly: poop', poop.position)
-	goto_position(poop.position)
+	var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
+	print(fly_num,' fly: poop', target_poop.position, cooldown)
+	goto_position(poop.position, cooldown)
 	
 func goto_position(dst_position, cooldown=0):
 	var distance = position.distance_to(dst_position)
@@ -98,11 +99,7 @@ func select_action():
 	if (action_prob < action_poop):
 		var poops = get_tree().get_nodes_in_group("poop") 
 		var target_poop = poops.pick_random()
-		var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
-		print(fly_num,' fly: poop', target_poop.position, cooldown)
-		goto_position(target_poop.position, cooldown)
-		
-		
+		goto_target_poop(target_poop)
 	elif (action_prob < action_move):
 		var off_x = rng.randi_range(move_dist[0],move_dist[1])
 		var off_y = rng.randi_range(move_dist[0],move_dist[1])
