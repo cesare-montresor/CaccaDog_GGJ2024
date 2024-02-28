@@ -1,16 +1,23 @@
 extends CanvasLayer
 
 
-var life1
-var life2
-var life3
+var life1: TextureRect
+var life2: TextureRect
+var life3: TextureRect
 var lifes = []
-
+var poops_lbl: Label
+var flys_lbl: Label
 
 func update_lifes(lifes_num):
 	for i in range(len(lifes)):
 		#print("update_lifes ",lifes_num, ' ', i,' ', i <= lifes_num)
-		lifes[i].visible = (lifes_num >= i+1)
+		lifes[i].modulate.a  = 1 if (lifes_num >= i+1) else 0.3
+		
+func update_poops(poops_num):
+	poops_lbl.text = ("x" if poops_num>9 else 'x0') + str(poops_num)
+	
+func update_flys(flys_num):
+	flys_lbl.text = ("x" if flys_num>9 else 'x0') + str(flys_num)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +25,9 @@ func _ready():
 	life2= $DogLifeCount/HBoxContainer/life2
 	life3= $DogLifeCount/HBoxContainer/life3
 	lifes = [life1,life2,life3]
-
+	poops_lbl = $Annoiance/HBoxContainer/CaccaToGo
+	flys_lbl = $Annoiance/HBoxContainer/FlyCount
+	
 	pass # Replace with function body.
 
 

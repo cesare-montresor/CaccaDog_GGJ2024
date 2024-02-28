@@ -28,6 +28,7 @@ var rng = RandomNumberGenerator.new()
 var cells_wall
 var cells_start
 var cells_finish
+var total_poops=0
 
 var world_min = Vector2i(0,0) 
 var world_max = Vector2i(0,0) 
@@ -75,13 +76,17 @@ func _ready():
 	
 	
 	var foods = get_tree().get_nodes_in_group("food") 
-	
+	total_poops=0
 	for food in foods:
 		food.connect("body_entered", func(body): collide_food(body,food))
+		total_poops += food.get_potency()
 
 # Called every frame
 func _process(delta):
 	UI.update_lifes(GameManager.num_lifes)
+	UI.update_poops(poop_counter)
+	UI.update_flys(fly_ingame)
+	
 	PlayerMovement(delta)
 	PlayerAnimation(is_moving)
 	
@@ -170,6 +175,8 @@ func add_fly(poop):
 	
 func add_poop(poop_position):
 	if poop_counter <= 0: return 
+	total_poops -= 1
+	UI.update_poops(poop_counter)
 	poop_counter -= 1
 	poop_ingame += 1
 	var new_poop = poop_asset.instantiate()
@@ -205,11 +212,7 @@ func PlayerAnimation(moving = false):
 func collide_fly(body, fly):
 	if body != self: return
 	print("omg a pooped fly!", body)
-	GameManager.num_lifes -= 1
-	UI.update_lifes(GameManager.num_lifes)
 	death()
-	if GameManager.num_lifes == 0:
-		GameManager.LoadMenu()
 		
 	
 func collide_poop(body):
@@ -229,7 +232,12 @@ func eat(food):
 	
 func death():
 	Sfx.death()
+	GameManager.num_lifes -= 1
+	
 	reset()
+	if GameManager.num_lifes == 0:
+		GameManager.LoadMenu()
+		
 	
 func next():
 	tween.kill()

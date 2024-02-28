@@ -11,7 +11,7 @@ func _process(delta):
 	pass
 
 func _on_start_pressed():
-	GameManager.ReloadLevel()
+	GameManager.StartLevel()
 	GameManager.num_lifes = GameParams.num_lifes
 
 func _on_credits_pressed():

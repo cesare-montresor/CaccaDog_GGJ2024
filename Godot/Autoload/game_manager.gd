@@ -32,7 +32,10 @@ func LoadLevel(level_num):
 	
 	current_level = level_num
 	return current_level
-	
+
+func StartLevel():
+	return LoadLevel(0)
+
 func ReloadLevel():
 	return LoadLevel(current_level)
 	
