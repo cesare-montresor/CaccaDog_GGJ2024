@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="1_p38hq"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="2_qnfo8"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="3_ii1ne"]
-[ext_resource type="PackedScene" path="res://Scenes/level_title.tscn" id="4_7lg7a"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="4_7lg7a"]
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="5_ccc8j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]

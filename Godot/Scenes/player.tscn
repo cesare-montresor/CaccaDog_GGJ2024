@@ -1,8 +1,25 @@
-[gd_scene load_steps=26 format=3 uid="uid://dtd5a37nemh86"]
+[gd_scene load_steps=31 format=3 uid="uid://dtd5a37nemh86"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2y7kl"]
 [ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="2_31qfi"]
+[ext_resource type="Texture2D" uid="uid://blbwfr2yv3o13" path="res://Assets/Player Character/Death.png" id="2_qhk64"]
 [ext_resource type="Texture2D" uid="uid://j0wenqoe0sxd" path="res://Assets/Player Character/Walk.png" id="3_pj6yy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtsvp"]
+atlas = ExtResource("2_qhk64")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knaee"]
+atlas = ExtResource("2_qhk64")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmjog"]
+atlas = ExtResource("2_qhk64")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63dx8"]
+atlas = ExtResource("2_qhk64")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ntuu"]
 atlas = ExtResource("2_31qfi")
@@ -86,6 +103,29 @@ region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yy7r7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtsvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knaee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmjog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knaee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmjog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63dx8")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ntuu")
@@ -198,7 +238,7 @@ script = ExtResource("1_2y7kl")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_yy7r7")
-animation = &"walk_r"
+animation = &"death"
 speed_scale = 1.5
 offset = Vector2(0, -8)
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="1_t55ny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umssg"]
-radius = 5.0
+radius = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivc5b"]
 atlas = ExtResource("1_t55ny")
