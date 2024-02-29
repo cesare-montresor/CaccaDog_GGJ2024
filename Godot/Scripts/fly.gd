@@ -71,7 +71,7 @@ func canMove():
 
 func goto_target_poop(poop):
 	var cooldown = rng.randf_range(action_cooldown[0],action_cooldown[1])
-	print(fly_num,' fly: poop', target_poop.position, cooldown)
+	print(fly_num,' fly: poop', poop.position, cooldown)
 	goto_position(poop.position, cooldown)
 	
 func goto_position(dst_position, cooldown=0):

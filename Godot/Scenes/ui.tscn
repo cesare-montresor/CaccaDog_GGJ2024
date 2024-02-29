@@ -94,6 +94,8 @@ stretch_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_3kvwd")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "x05"
 
 [node name="Cacca" type="TextureRect" parent="Annoiance/HBoxContainer"]
@@ -107,4 +109,6 @@ stretch_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_3kvwd")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "x05"
