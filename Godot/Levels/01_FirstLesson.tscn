@@ -226,7 +226,7 @@ food_level = 3
 
 [node name="LevelTitle" parent="." instance=ExtResource("6_4gqj2")]
 level_number = 1
-title = "FIRST MATH LESSON"
+title = "MATH LESSON #1"
 
 [node name="Helpers" type="Node2D" parent="."]
 visible = false
