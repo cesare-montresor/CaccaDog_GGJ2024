@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bewoayx3p63o5"]
+[gd_scene load_steps=10 format=3 uid="uid://bewoayx3p63o5"]
 
 [ext_resource type="Script" path="res://Scripts/fly.gd" id="1_1tvmt"]
 [ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="1_t55ny"]
+[ext_resource type="AudioStream" uid="uid://b40g1lsu45svf" path="res://Assets/Audio/SFX/FlyBuzz_MONO.ogg" id="3_1fnrh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umssg"]
 radius = 4.0
@@ -68,3 +69,7 @@ shape = SubResource("CircleShape2D_umssg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ltqcg")
 animation = &"idle_d"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1fnrh")
+volume_db = -4.0

@@ -82,9 +82,10 @@ func goto_position(dst_position, cooldown=0):
 	tween.set_loops(1).set_parallel(false)
 	tween.tween_property(self, "position", dst_position, fly_time)
 	sleep(fly_time+cooldown)
-	Sfx.buzz()
+	$AudioStreamPlayer.play()
 	AnimateFly(dst_position)
-	
+	tween.tween_callback(func():$AudioStreamPlayer.stop())
+
 
 	
 func goto_stay(timeout):

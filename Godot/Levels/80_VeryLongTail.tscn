@@ -109,7 +109,7 @@ position = Vector2(56, 120)
 food_level = 3
 
 [node name="Food3" parent="." instance=ExtResource("4_6op8x")]
-position = Vector2(88, 120)
+position = Vector2(88, 136)
 food_level = 3
 
 [node name="Food4" parent="." instance=ExtResource("4_6op8x")]

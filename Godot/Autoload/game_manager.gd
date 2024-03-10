@@ -1,6 +1,8 @@
 extends Node
 
 const menu_path = "res://Scenes/menu.tscn"
+const game_over_path = "res://Scenes/game_over.tscn"
+const credits_path = "res://Scenes/credits.tscn"
 
 const levels_path = "res://Levels/"
 
@@ -45,8 +47,14 @@ func NextLevel():
 func PrevLevel():
 	return LoadLevel(current_level-1)
 	
+func LoadGameOver():
+	get_tree().change_scene_to_file(game_over_path)
+	
 func LoadMenu():
 	get_tree().change_scene_to_file(menu_path)
+
+func LoadCredits():
+	get_tree().change_scene_to_file(credits_path)
 	
 
 

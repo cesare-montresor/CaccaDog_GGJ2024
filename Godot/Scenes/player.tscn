@@ -233,7 +233,7 @@ script = ExtResource("1_2y7kl")
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_yy7r7")
 animation = &"death"
-speed_scale = 0.7
+speed_scale = 0.9
 offset = Vector2(0, -8)
 
 [node name="Camera2D" type="Camera2D" parent="."]

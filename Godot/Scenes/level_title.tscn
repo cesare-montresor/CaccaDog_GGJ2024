@@ -1,8 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://hxwvxhl46fmi"]
+[gd_scene load_steps=13 format=3 uid="uid://dnlq7sneyr5fw"]
 
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="1_gq3dx"]
 [ext_resource type="Script" path="res://Scripts/level_title.gd" id="2_ac1f0"]
 [ext_resource type="FontFile" uid="uid://dpaa8c2bxx7dc" path="res://Assets/Fonts/SF Pixelate Bold.ttf" id="2_ov6dn"]
+
+[sub_resource type="Animation" id="Animation_1nws6"]
+resource_name = "BlkToTransp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dqmup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CenterContainer/VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7cvn6"]
+resource_name = "SetBlk"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3x7vt"]
 resource_name = "FadeIn"
@@ -34,26 +81,64 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dqmup"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_4yalp"]
+resource_name = "ToBlk"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/CenterContainer/VBoxContainer:modulate")
+tracks/0/path = NodePath("Control/ColorRect:modulate")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wm46k"]
+resource_name = "ToTranparent"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.815686, 0.815686, 0.815686, 1), Color(0.662745, 0.662745, 0.662745, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kd0gy"]
+resource_name = "ToWhite"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r2rfo"]
 _data = {
-"FadeIn": SubResource("Animation_3x7vt"),
-"FadeOut": SubResource("Animation_ee63a"),
-"RESET": SubResource("Animation_dqmup")
+"BlkToTransp": SubResource("Animation_1nws6"),
+"RESET": SubResource("Animation_dqmup"),
+"SetBlk": SubResource("Animation_7cvn6"),
+"TitleFadeIn": SubResource("Animation_3x7vt"),
+"TitleFadeOut": SubResource("Animation_ee63a"),
+"ToBlk": SubResource("Animation_4yalp"),
+"ToTransp": SubResource("Animation_wm46k"),
+"ToWhite": SubResource("Animation_kd0gy")
 }
 
 [node name="LevelTitle" type="CanvasLayer"]
@@ -83,9 +168,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -59.5
-offset_top = -13.0
+offset_top = -20.0
 offset_right = 59.5
-offset_bottom = 13.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -108,3 +193,13 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "GO GO GO CACCADOG!"
 horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

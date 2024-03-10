@@ -105,7 +105,6 @@ layer_3/tile_data = PackedInt32Array(393227, 65540, 1)
 position = Vector2(24, 24)
 
 [node name="LevelTitle" parent="." instance=ExtResource("5_umn28")]
-level_number = 6
 title = "SMALL DANCE"
 
 [node name="Helpers" type="Node2D" parent="."]

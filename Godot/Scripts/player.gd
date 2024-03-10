@@ -25,6 +25,7 @@ var rng = RandomNumberGenerator.new()
 @onready var map
 @onready var UI
 @onready var viewport
+@onready var level_title
 
 var cells_wall
 var cells_start
@@ -44,6 +45,7 @@ func _ready():
 	map = $"../TileMap"
 	UI = $"../UI"
 	viewport = $Camera2D
+	level_title = $"../LevelTitle"
 	
 	cells_wall = map.get_used_cells(GameParams.layer_wall)		
 	cells_start = map.get_used_cells(GameParams.layer_start)
@@ -223,15 +225,17 @@ func eat(food):
 	
 	
 func death():
+	if not alive: return
 	alive = false
 	PlayerAnim.play("death")
 	Sfx.death()
-	await get_tree().create_timer(1.6).timeout
+	await get_tree().create_timer(0.8).timeout
+	await level_title.to_white()
 	GameManager.num_lifes -= 1
 	
-	reset()
+	await reset()
 	if GameManager.num_lifes == 0:
-		GameManager.LoadMenu()
+		GameManager.LoadGameOver()
 		
 	
 func next():
@@ -242,7 +246,6 @@ func next():
 	
 func reset():
 	tween.kill()
-	alive = true
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
 	GameManager.ReloadLevel()

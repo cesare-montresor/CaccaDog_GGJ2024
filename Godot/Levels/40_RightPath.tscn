@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="3_klo2w"]
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_iv68d"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="5_o68es"]
-[ext_resource type="PackedScene" uid="uid://hxwvxhl46fmi" path="res://Scenes/level_title.tscn" id="6_dg0w4"]
+[ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="6_dg0w4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
 texture = ExtResource("2_v8lua")
@@ -100,12 +100,15 @@ layer_3/tile_data = PackedInt32Array(262149, 65540, 1)
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("3_klo2w")]
 position = Vector2(24, 23)
 
+[node name="Food" parent="." instance=ExtResource("4_iv68d")]
+position = Vector2(40, 72)
+food_level = 2
+
 [node name="Food2" parent="." instance=ExtResource("4_iv68d")]
-position = Vector2(56, 72)
-food_level = 1
+position = Vector2(40, 56)
+food_level = 2
 
 [node name="SoundtrackPlayer" parent="." instance=ExtResource("5_o68es")]
 
 [node name="LevelTitle" parent="." instance=ExtResource("6_dg0w4")]
-level_number = 4
 title = "CHOOSE THE RIGHT PATH"
