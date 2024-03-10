@@ -56,6 +56,11 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_q5b28")
 stretch_mode = 2
 
+[node name="life4" type="TextureRect" parent="DogLifeCount/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_q5b28")
+stretch_mode = 2
+
 [node name="Annoiance" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 3

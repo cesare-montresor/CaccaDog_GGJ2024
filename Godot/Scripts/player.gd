@@ -17,6 +17,7 @@ var poop_counter = GameParams.initial_poop_count
 var poop_ingame = 0
 var fly_ingame = 0
 var last_cell
+var alive = true
 
 
 var tween
@@ -65,15 +66,14 @@ func _ready():
 	viewport.limit_right = world_max.x
 	viewport.limit_bottom = world_max.y
 	
+	alive = true
 	is_moving=false
 	if tween: tween.kill()
 	
 	var start_pos = map.map_to_local(cells_start.pick_random())
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", start_pos, 0)
-	
-	
+	tween.tween_property(self, "position", start_pos, 0)	
 	
 	var foods = get_tree().get_nodes_in_group("food") 
 	total_poops=0
@@ -87,17 +87,9 @@ func _process(delta):
 	UI.update_poops(poop_counter)
 	UI.update_flys(fly_ingame)
 	
-	PlayerMovement(delta)
-	PlayerAnimation(is_moving)
-	
-	if (Input.is_action_just_pressed("ui_left")):
-		PlayerState.lastPosition = self.position
-		get_tree().change_scene_to_file("res://Scenes/battle.tscn")
-	
-	if (Input.is_action_just_pressed("ui_right")):
-		PlayerState.health += 5
-		#aggiorno la UI, va a prendere il nodo "world" dove la funzione è presente
-		get_parent().setUp()
+	if alive:
+		PlayerMovement(delta)
+		PlayerAnimation(is_moving)
 		
 	check_win()
 		
@@ -231,8 +223,10 @@ func eat(food):
 	
 	
 func death():
+	alive = false
 	PlayerAnim.play("death")
 	Sfx.death()
+	await get_tree().create_timer(1.6).timeout
 	GameManager.num_lifes -= 1
 	
 	reset()
@@ -248,6 +242,11 @@ func next():
 	
 func reset():
 	tween.kill()
+	alive = true
 	var flies = get_tree().get_nodes_in_group("fly") 
 	for fly in flies: fly.queue_free()
 	GameManager.ReloadLevel()
+
+
+func _player_animation_finished():
+	pass # Replace with function body.

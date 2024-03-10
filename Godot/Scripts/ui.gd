@@ -4,6 +4,7 @@ extends CanvasLayer
 var life1: TextureRect
 var life2: TextureRect
 var life3: TextureRect
+var life4: TextureRect
 var lifes = []
 var poops_lbl: Label
 var flys_lbl: Label
@@ -24,7 +25,8 @@ func _ready():
 	life1 = $DogLifeCount/HBoxContainer/life1
 	life2= $DogLifeCount/HBoxContainer/life2
 	life3= $DogLifeCount/HBoxContainer/life3
-	lifes = [life1,life2,life3]
+	life4= $DogLifeCount/HBoxContainer/life4
+	lifes = [life1,life2,life3,life4]
 	poops_lbl = $Annoiance/HBoxContainer/CaccaToGo
 	flys_lbl = $Annoiance/HBoxContainer/FlyCount
 	

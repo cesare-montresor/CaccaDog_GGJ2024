@@ -6,7 +6,7 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Control/CenterContainer/VBoxContainer/Level.text = "LEVEL " + str(level_number)
+	$Control/CenterContainer/VBoxContainer/Level.text = "LEVEL " + str(GameManager.current_level + 1)
 	$Control/CenterContainer/VBoxContainer/Title.text = title
 	
 	# FADE IN

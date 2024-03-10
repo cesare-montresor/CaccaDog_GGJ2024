@@ -1,7 +1,7 @@
 extends Node
 
 # MUSIC SFX ON/OFF
-const sound = false
+const sound = true
 const tile_size = 16
 
 # Map
@@ -11,7 +11,7 @@ const layer_start = 2
 const layer_finish = 3
 
 # Player
-const num_lifes = 3
+const num_lifes = 4
 const step_speed = 0.200
 const step_delay = 0.015
 const initial_poop_count : int = 0
