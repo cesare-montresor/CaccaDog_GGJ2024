@@ -8,6 +8,7 @@ var action_move = GameParams.fly_action_move
 var action_follow = GameParams.fly_action_follow
 
 var move_dist = GameParams.fly_action_move_dist
+var follow_dist = GameParams.fly_action_follow_dist
 var action_cooldown = GameParams.fly_action_cooldown
 
 
@@ -108,8 +109,23 @@ func select_action():
 		print(fly_num,' fly: move', target_position )
 		goto_position(target_position)
 	else:
-		print(fly_num,' fly: follow', player.position)
-		goto_position(player.position)
+		var target_pos = player.position
+		var off = rng.randi_range(follow_dist[0],follow_dist[1]) * GameParams.tile_size
+		var pos_delta = (position - player.position)
+		var cur_dist = sqrt(pos_delta.x*pos_delta.x+pos_delta.y*pos_delta.y)
+		
+		var target_cell = map.local_to_map(target_pos) 
+		target_pos = map.map_to_local(target_cell)
+		
+		if (cur_dist > off):
+			var ratio = cur_dist / off
+			var pos_delta_clip = pos_delta / ratio
+			target_pos = position - pos_delta_clip
+			
+		
+		
+		print(fly_num,' fly: follow', target_pos)
+		goto_position(target_pos)
 	
 	
 func AnimateFly(target_position):
