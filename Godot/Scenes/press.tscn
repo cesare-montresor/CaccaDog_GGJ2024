@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnja2knyyw0vp"]
+[gd_scene load_steps=9 format=3 uid="uid://bnja2knyyw0vp"]
 
+[ext_resource type="Script" path="res://Scripts/opening.gd" id="1_3fosd"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="1_o56m8"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="2_eg7bh"]
 
@@ -35,8 +36,46 @@ texture = ExtResource("1_o56m8")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
-[node name="World2" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7b44"]
+atlas = ExtResource("1_o56m8")
+region = Rect2(0, 352, 96, 24)
+
+[sub_resource type="Animation" id="Animation_kuc5w"]
+resource_name = "Opening"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reviews/VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3, 5.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitanicPresents:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7.5, 9, 10.5, 11.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v42p1"]
+_data = {
+"Opening": SubResource("Animation_kuc5w")
+}
+
+[node name="Opening" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_3fosd")
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -50,7 +89,7 @@ layer_1/y_sort_enabled = true
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(65536, 4, 0, 131072, 4, 0, 720896, 4, 0, 720900, 4, 0, 327685, 4, 0, 393221, 4, 0, 6, 4, 0, 10, 4, 0, 589834, 4, 0, 655370, 4, 0, 0, 4, 0, 196608, 4, 0, 262144, 4, 0, 327680, 4, 0, 393216, 4, 0, 458752, 4, 0, 524288, 4, 0, 589824, 4, 0, 655360, 4, 0, 786432, 4, 0, 851968, 4, 0, 917504, 4, 0, 983040, 4, 0, 1, 4, 0, 983041, 4, 0, 2, 4, 0, 983042, 4, 0, 3, 4, 0, 983043, 4, 0, 4, 4, 0, 983044, 4, 0, 5, 4, 0, 983045, 4, 0, 327686, 4, 0, 983046, 4, 0, 7, 4, 0, 983047, 4, 0, 8, 4, 0, 983048, 4, 0, 9, 4, 0, 655369, 4, 0, 983049, 4, 0, 983050, 4, 0, 11, 4, 0, 262155, 4, 0, 983051, 4, 0, 12, 4, 0, 983052, 4, 0, 13, 4, 0, 983053, 4, 0, 14, 4, 0, 983054, 4, 0, 15, 4, 0, 65551, 4, 0, 131087, 4, 0, 196623, 4, 0, 262159, 4, 0, 327695, 4, 0, 393231, 4, 0, 458767, 4, 0, 524303, 4, 0, 589839, 4, 0, 655375, 4, 0, 720911, 4, 0, 786447, 4, 0, 851983, 4, 0, 917519, 4, 0, 983055, 4, 0)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Reviews" type="CenterContainer" parent="."]
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +104,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_eg7bh")
 
-[node name="Label" type="RichTextLabel" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Reviews"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Reviews/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("2_eg7bh")
@@ -80,16 +123,25 @@ The Chicago Inquirer
 0/5
 The Christian Indie Monitor
 
+[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-\"THE DOG IS LAME!\"
-Illinois Nazis
+[node name="TextureRect" type="TextureRect" parent="Reviews/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v7b44")
+stretch_mode = 3
+
+[node name="Label2" type="RichTextLabel" parent="Reviews/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_eg7bh")
+bbcode_enabled = true
+text = "[center]Sapporo Shinbun
 
 
-
-The Greenhouse Specialist
-
-
-\"A VERY REALISTIC SIMULATION!\"
+\"A VERY REALISTIC SIMULATOR!\"
 10/10
 Filthy Dogs Owners Weekly
 [/center]"
@@ -97,7 +149,59 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Node" type="Node" parent="CenterContainer/Label"]
+[node name="TitanicPresents" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = 27.0
+offset_right = 284.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_eg7bh")
+
+[node name="Label2" type="RichTextLabel" parent="TitanicPresents"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_eg7bh")
+bbcode_enabled = true
+text = "[center]
+TITANIC ENTERPRISES
+
+PRESENT
+[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 128)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v42p1")
+}
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 696.0
+offset_bottom = 695.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 9.98
+
+[node name="ColorRect" type="ColorRect" parent="Center"]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)

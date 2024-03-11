@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://wyggvce10dsd"]
+[gd_scene load_steps=8 format=3 uid="uid://wyggvce10dsd"]
 
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="1_20ko0"]
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_55yn6"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="2_2wq7n"]
-[ext_resource type="Texture2D" uid="uid://bq2hq77qknbo7" path="res://Assets/UI/Heart.png" id="3_idb86"]
-[ext_resource type="Texture2D" uid="uid://blbwfr2yv3o13" path="res://Assets/Player Character/Death.png" id="4_qb2m0"]
 [ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_jgssr"]
+[ext_resource type="AudioStream" uid="uid://b318c8uvr5bbn" path="res://Assets/Audio/music/Pixel Guy - Game Over Jingles Pack - 27 My Nose Was Itchy.wav" id="7_5etvf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
 texture = ExtResource("1_20ko0")
@@ -354,11 +353,6 @@ texture = ExtResource("1_20ko0")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_rt853")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7hlt"]
-atlas = ExtResource("4_qb2m0")
-region = Rect2(48, 0, 16, 16)
-margin = Rect2(0, -1, 0, 0)
-
 [node name="GameOver" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_55yn6")
@@ -375,7 +369,6 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(65536, 65540, 0, 131072, 65540, 0, 720896, 65540, 0, 6, 65540, 0, 10, 65540, 0, 0, 65540, 0, 196608, 65540, 0, 262144, 65540, 0, 327680, 65540, 0, 393216, 65540, 0, 458752, 65540, 0, 524288, 65540, 0, 589824, 65540, 0, 655360, 65540, 0, 786432, 65540, 0, 851968, 65540, 0, 917504, 65540, 0, 983040, 65540, 0, 1, 65540, 0, 983041, 65540, 0, 2, 65540, 0, 983042, 65540, 0, 3, 65540, 0, 983043, 65540, 0, 4, 65540, 0, 983044, 65540, 0, 5, 65540, 0, 983045, 65540, 0, 983046, 65540, 0, 7, 65540, 0, 983047, 65540, 0, 8, 65540, 0, 983048, 65540, 0, 9, 65540, 0, 983049, 65540, 0, 983050, 65540, 0, 11, 65540, 0, 983051, 65540, 0, 12, 65540, 0, 983052, 65540, 0, 13, 65540, 0, 983053, 65540, 0, 14, 65540, 0, 983054, 65540, 0, 15, 65540, 0, 65551, 65540, 0, 131087, 65540, 0, 196623, 65540, 0, 262159, 65540, 0, 327695, 65540, 0, 393231, 65540, 0, 458767, 65540, 0, 524303, 65540, 0, 589839, 65540, 0, 655375, 65540, 0, 720911, 65540, 0, 786447, 65540, 0, 851983, 65540, 0, 917519, 65540, 0, 983055, 65540, 0, 131076, 65540, 0, 131075, 65540, 0, 131074, 65540, 0, 196610, 65540, 0, 262146, 65540, 0, 720898, 65540, 0, 786434, 65540, 0, 851970, 65540, 0, 851971, 65540, 0, 851972, 65540, 0, 851979, 65540, 0, 851980, 65540, 0, 851981, 65540, 0, 786445, 65540, 0, 720909, 65540, 0, 131083, 65540, 0, 131084, 65540, 0, 131085, 65540, 0, 196621, 65540, 0, 262157, 65540, 0)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-visible = false
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -399,41 +392,18 @@ layout_mode = 2
 theme = ExtResource("2_2wq7n")
 bbcode_enabled = true
 text = "[center]
-[b]SHIT HAPPENS...[/b]
-
 [b]GAME OVER[/b]
 [/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("3_idb86")
-
-[node name="TextureRect2" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = SubResource("AtlasTexture_d7hlt")
-expand_mode = 1
-
-[node name="TextureRect3" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("3_idb86")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 128)
 
 [node name="LevelTitle" parent="." instance=ExtResource("5_jgssr")]
-title = "GAME OVER"
+title = ""
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5etvf")
+autoplay = true

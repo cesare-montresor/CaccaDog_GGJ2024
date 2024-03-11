@@ -105,6 +105,10 @@ size_flags_horizontal = 4
 theme = ExtResource("8_po258")
 alignment = 1
 
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
 [node name="Logo" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -151,11 +155,8 @@ theme_override_styles/pressed = ExtResource("6_20t03")
 text = "CREDITS
 "
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 2
-
 [node name="Quit" type="Button" parent="VBoxContainer"]
+visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2

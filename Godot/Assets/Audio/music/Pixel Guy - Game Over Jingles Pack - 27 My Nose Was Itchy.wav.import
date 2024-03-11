@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b318c8uvr5bbn"
+path="res://.godot/imported/Pixel Guy - Game Over Jingles Pack - 27 My Nose Was Itchy.wav-d742386c252eb4820a35e0677bf6bf5e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/music/Pixel Guy - Game Over Jingles Pack - 27 My Nose Was Itchy.wav"
+dest_files=["res://.godot/imported/Pixel Guy - Game Over Jingles Pack - 27 My Nose Was Itchy.wav-d742386c252eb4820a35e0677bf6bf5e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
