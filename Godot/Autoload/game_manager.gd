@@ -30,6 +30,9 @@ func LoadLevel(level_num):
 	if level_num >= levels_cnt: level_num = levels_cnt - 1
 	
 	var level_res = levels[level_num]
+	print(levels_path+level_res)
+	level_res = level_res.replace('.tscn.remap','.tscn')
+	print(levels_path+level_res)
 	get_tree().change_scene_to_file(levels_path+level_res)
 	
 	current_level = level_num
