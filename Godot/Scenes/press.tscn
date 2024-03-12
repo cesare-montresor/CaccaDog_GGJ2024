@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnja2knyyw0vp"]
+[gd_scene load_steps=10 format=3 uid="uid://bnja2knyyw0vp"]
 
 [ext_resource type="Script" path="res://Scripts/opening.gd" id="1_3fosd"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="1_o56m8"]
@@ -39,6 +39,10 @@ sources/4 = SubResource("TileSetAtlasSource_rt853")
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7b44"]
 atlas = ExtResource("1_o56m8")
 region = Rect2(0, 352, 96, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43t2a"]
+atlas = ExtResource("1_o56m8")
+region = Rect2(112, 304, 64, 64)
 
 [sub_resource type="Animation" id="Animation_kuc5w"]
 resource_name = "Opening"
@@ -150,7 +154,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="TitanicPresents" type="CenterContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +168,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_eg7bh")
 
-[node name="Label2" type="RichTextLabel" parent="TitanicPresents"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitanicPresents"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="TitanicPresents/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="TitanicPresents/VBoxContainer/CenterContainer"]
+texture = SubResource("AtlasTexture_43t2a")
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="TitanicPresents/VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Label2" type="RichTextLabel" parent="TitanicPresents/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("2_eg7bh")
