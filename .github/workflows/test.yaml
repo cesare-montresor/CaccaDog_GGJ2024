@@ -38,8 +38,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
-      - run: echo "Tag exists!"; exit 1;
-        if: steps.check-tag.outputs.exists == 'true'
+      - name: evaluate tag existence
+        uses: actions/github-script@v3
+        if: (steps.check-tag.outputs.exists != 'true')
+        with:
+          script: |
+            core.setFailed('The specified tag does not exist: v${{ env.PROJECT_VERSION }}')
       
       - name: Setup
         run: |
