@@ -32,13 +32,14 @@ jobs:
       
       - name: GitHub Tag Exists
         uses: mukunku/tag-exists-action@v1.0.0
-        id: checkTag
+        id: check-tag
         with: 
           tag: "v${{ env.PROJECT_VERSION }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
-      - run: echo ${{ steps.checkTag.outputs.exists }}
+      - run: echo "Tag exists!"; exit 1;
+        if: steps.check-tag.outputs.exists == 'true'
       
       - name: Setup
         run: |
