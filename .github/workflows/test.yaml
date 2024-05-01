@@ -25,7 +25,7 @@ jobs:
         with:
           lfs: true
       - name: Grab Version
-        run: echo "PROJECT_VERSION=$(head -1 ${{PROJECT_PATH}}/VERSION.txt)" >> $GITHUB_ENV
+        run: echo "PROJECT_VERSION=$(head -1 $PROJECT_PATH/VERSION.txt)" >> $GITHUB_ENV
     
       - name: Show Version
         run: echo "${{ env.PROJECT_VERSION }}"
@@ -38,8 +38,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
-      - run: echo "Tag NOT exists!"; exit 1;
-        if: steps.check-tag.outputs.exists == 'false'
+      - run: echo "Tag exists!"; exit 1;
+        if: steps.check-tag.outputs.exists == 'true'
       
       - name: Setup
         run: |
