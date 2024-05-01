@@ -1,4 +1,4 @@
-name: "AutoRelease"
+name: "AutoRelease Test"
 
 on:
   # Allows you to run this workflow manually from the Actions tab
