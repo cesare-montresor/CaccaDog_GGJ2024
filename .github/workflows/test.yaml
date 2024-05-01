@@ -25,7 +25,7 @@ jobs:
         with:
           lfs: true
       - name: Grab Version
-        run: echo "PROJECT_VERSION=$(head -1 VERSION.txt)" >> $GITHUB_ENV
+        run: echo "PROJECT_VERSION=$(head -1 ${{PROJECT_PATH}}/VERSION.txt)" >> $GITHUB_ENV
     
       - name: Show Version
         run: echo "${{ env.PROJECT_VERSION }}"
