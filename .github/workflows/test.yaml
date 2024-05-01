@@ -38,8 +38,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
-      - run: echo "Tag exists!"; exit 1;
-        if: steps.check-tag.outputs.exists == 'true'
+      - run: echo "Tag NOT exists!"; exit 1;
+        if: steps.check-tag.outputs.exists == 'false'
       
       - name: Setup
         run: |
