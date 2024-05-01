@@ -24,6 +24,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
+      - name: Grab Version
+        run: echo "PROJECT_VERSION=$(head -1 VERSION.txt)" >> $GITHUB_ENV
+    
+      - name: Show Version
+        run: echo "${{ env.PROJECT_VERSION }}"
+      
+      - name: GitHub Tag Exists
+        uses: mukunku/tag-exists-action@v1.0.0
+        id: checkTag
+        with: 
+          tag: "v${{ env.PROJECT_VERSION }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        
+      - run: echo ${{ steps.checkTag.outputs.exists }}
+      
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
