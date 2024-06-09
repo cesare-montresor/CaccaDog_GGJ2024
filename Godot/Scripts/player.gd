@@ -38,6 +38,12 @@ var world_max = Vector2i(0,0)
 var world_min_cell = Vector2i(0,0) 
 var world_max_cell = Vector2i(0,0) 
 
+
+var tick_up = 0
+var tick_down = 0
+var tick_left = 0
+var tick_right = 0
+
 func _init(): 
 	pass
 	
@@ -115,20 +121,60 @@ func check_win():
 	
 
 func PlayerMovement(delta):
-	if is_moving: return
 	
+	
+	
+	"""
+	# OLD
 	var step = Vector2i.ZERO #Input.get_vector("left", "right", "up", "down")
 	if (Input.is_action_pressed("right")):
 		step.x = 1
 	elif (Input.is_action_pressed("left")):
 		step.x = -1
-	else:
-		if (Input.is_action_pressed("down")):
-			step.y = 1
-		elif (Input.is_action_pressed("up")):
-			step.y = -1
+	elif (Input.is_action_pressed("down")):
+		step.y = 1
+	elif (Input.is_action_pressed("up")):
+		step.y = -1
+	"""
+	
+	# new
+	if (Input.is_action_just_pressed("right")):
+		tick_right = Time.get_ticks_usec()
+	if (Input.is_action_just_pressed("left")):
+		tick_left = Time.get_ticks_usec()
+	if (Input.is_action_just_pressed("down")):
+		tick_down = Time.get_ticks_usec()
+	if (Input.is_action_just_pressed("up")):
+		tick_up = Time.get_ticks_usec()
+	
+	
+	if (!Input.is_action_pressed("right")):
+		tick_right = 0
+	if (!Input.is_action_pressed("left")):
+		tick_left = 0
+	if (!Input.is_action_pressed("down")):
+		tick_down = 0
+	if (!Input.is_action_pressed("up")):
+		tick_up = 0
+		
+	
+	
+	#print('L:', tick_left, ' R:', tick_right, ' U:', tick_up, ' D:', tick_down )
+	if is_moving: return
+	
+	var step = Vector2i.ZERO #Input.get_vector("left", "right", "up", "down")
+	if ( tick_right > tick_up && tick_right > tick_left && tick_right > tick_down ): # right
+		step.x = 1
+	elif ( tick_left > tick_up && tick_left > tick_right && tick_left > tick_down ): # left
+		step.x = -1
+	elif ( tick_down > tick_up && tick_down > tick_right && tick_down > tick_left ): # down
+		step.y = 1
+	elif ( tick_up > tick_down  && tick_up > tick_right && tick_up > tick_left ): # up
+		step.y = -1
+	
 	
 	if step == Vector2i.ZERO: return
+	
 	
 	var cur_pos = position
 	var cur_coords = map.local_to_map(cur_pos)
