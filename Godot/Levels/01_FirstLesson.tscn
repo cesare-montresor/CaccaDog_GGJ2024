@@ -187,6 +187,7 @@ y_sort_enabled = true
 script = ExtResource("1_b87m6")
 
 [node name="UI" parent="." instance=ExtResource("11_uta6f")]
+layer = 99
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

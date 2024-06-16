@@ -159,7 +159,7 @@ func PlayerMovement(delta):
 		
 	
 	
-	#print('L:', tick_left, ' R:', tick_right, ' U:', tick_up, ' D:', tick_down )
+	print('L:', tick_left, ' R:', tick_right, ' U:', tick_up, ' D:', tick_down )
 	if is_moving: return
 	
 	var step = Vector2i.ZERO #Input.get_vector("left", "right", "up", "down")
