@@ -1,25 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://bec60a3c1tg33"]
+[gd_scene load_steps=10 format=3 uid="uid://pkjfbphik6hq"]
 
-[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="1_ef4my"]
-[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_niqx1"]
-[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="2_l787f"]
-[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="3_3kvwd"]
-[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="4_i12a2"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_73ori"]
+[ext_resource type="Texture2D" uid="uid://dljcaomy7652k" path="res://Assets/Player Character/Idle.png" id="2_bw2no"]
+[ext_resource type="Texture2D" uid="uid://b2al0ikc4nkdl" path="res://Assets/Enemies/Fly_idle.png" id="3_cvljv"]
+[ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="4_h2j87"]
+[ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="5_tfhxk"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="6_juspb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5b28"]
-atlas = ExtResource("1_ef4my")
+atlas = ExtResource("2_bw2no")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jt4jc"]
-atlas = ExtResource("2_l787f")
+atlas = ExtResource("3_cvljv")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewvc0"]
-atlas = ExtResource("4_i12a2")
+atlas = ExtResource("5_tfhxk")
 region = Rect2(0, 160, 16, 16)
 
 [node name="UI" type="CanvasLayer"]
-script = ExtResource("1_niqx1")
+script = ExtResource("1_73ori")
 
 [node name="DogLifeCount" type="Control" parent="."]
 layout_mode = 3
@@ -97,7 +98,7 @@ stretch_mode = 2
 [node name="FlyCount" type="Label" parent="Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_3kvwd")
+theme = ExtResource("4_h2j87")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "x05"
@@ -112,7 +113,31 @@ stretch_mode = 2
 [node name="CaccaToGo" type="Label" parent="Annoiance/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_3kvwd")
+theme = ExtResource("4_h2j87")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "x05"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 13.0
+offset_right = -8.0
+offset_bottom = 13.0
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 1
+
+[node name="Virtual joystick left" parent="Control" instance=ExtResource("6_juspb")]
+layout_mode = 1
+offset_left = 53.3333
+offset_top = -266.667
+offset_right = 253.333
+offset_bottom = -66.6666
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"

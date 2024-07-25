@@ -1,8 +1,13 @@
 extends Node
 
 # MUSIC SFX ON/OFF
-const sound = true
+const sound = false
 const tile_size = 16
+
+# Controls
+var touch_controls_enabled = true
+var keyboard_controls_enabled = true
+
 
 # Map
 const layer_background = 0
@@ -30,4 +35,3 @@ const fly_action_cooldown = [1,1]
 
 const fly_action_move_dist = [3,3]
 const fly_action_follow_dist = [2,5]
-

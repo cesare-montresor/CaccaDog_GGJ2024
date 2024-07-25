@@ -59,5 +59,8 @@ func LoadMenu():
 func LoadCredits():
 	get_tree().change_scene_to_file(credits_path)
 	
-
+var touch_position = Vector2.ZERO
+var touch_finger_position = Vector2.ZERO
+var step = Vector2i.ZERO
+var is_moving = false
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://1pnoktlakej7"]
+
+[ext_resource type="Script" path="res://Autoload/controls_touch.gd" id="1_v4g1t"]
+[ext_resource type="Texture2D" uid="uid://b3ikc46p6arqt" path="res://gfx/touch-circle.png" id="2_hfewo"]
+[ext_resource type="Texture2D" uid="uid://dwwgaeacs65ha" path="res://gfx/touch-finger.png" id="2_icbd5"]
+
+[node name="TouchControls" type="Node2D"]
+top_level = true
+z_index = 11
+script = ExtResource("1_v4g1t")
+
+[node name="Finger" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("2_icbd5")
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("2_hfewo")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+text = "asdfasdf"

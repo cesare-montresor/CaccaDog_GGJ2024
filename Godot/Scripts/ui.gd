@@ -30,9 +30,14 @@ func _ready():
 	poops_lbl = $Annoiance/HBoxContainer/CaccaToGo
 	flys_lbl = $Annoiance/HBoxContainer/FlyCount
 	
+	#remove_child(controls_touchs)
+	#add_child(controls_touchs)
+	#controls_touchs.top_level=false
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	controls_touchs.top_level=false
+	controls_touchs.top_level=true
 	pass
