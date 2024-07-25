@@ -38,6 +38,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	controls_touchs.top_level=false
-	controls_touchs.top_level=true
+	#controls_touchs.top_level=false
+	#controls_touchs.top_level=true
 	pass

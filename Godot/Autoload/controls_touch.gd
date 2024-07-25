@@ -9,8 +9,9 @@ var last_position = Vector2.ZERO
 var dir = ""
 var last_dir = ""
 var drag_held = false
-var touch_bounds_min = Vector2(-32, -32)
-var touch_bounds_max = Vector2(32 , 32)
+var touch_bound = 24
+var touch_bounds_min = Vector2(-touch_bound, -touch_bound)
+var touch_bounds_max = Vector2(touch_bound , touch_bound)
 
 # "GameManager" is a singleton for top level GameManager data.
 
@@ -60,7 +61,8 @@ func handle_touch_events(event):
 		finger.position = event.position - start_position
 		finger.position = finger.position.clamp(touch_bounds_min,touch_bounds_max)
 		GameManager.touch_finger_position = finger.position
-		var diff = event.position - start_position
+		var diff = finger.position
+		#var diff = event.position - start_position
 		drag_held = true
 		dir = ""
 		get_dir(diff)
@@ -71,7 +73,8 @@ func handle_touch_events(event):
 			finger.position = event.position - start_position
 			finger.position = finger.position.clamp(touch_bounds_min,touch_bounds_max)
 			GameManager.touch_finger_position = finger.position
-			var diff = event.position - start_position
+			var diff = finger.position
+			#var diff = event.position - start_position
 			dir = ""
 			get_dir(diff)
 				
