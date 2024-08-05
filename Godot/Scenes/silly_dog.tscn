@@ -734,6 +734,7 @@ position = Vector2(280, 144)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uydqm")
 animation = &"walk_d"
+frame = 3
 speed_scale = 0.9
 offset = Vector2(0, -8)
 
