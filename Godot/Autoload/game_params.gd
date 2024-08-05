@@ -3,10 +3,12 @@ extends Node
 # MUSIC SFX ON/OFF
 const sound = false
 const tile_size = 16
+const tileset_source_id = 4
 
 # Controls
-var touch_controls_enabled = true
 var keyboard_controls_enabled = true
+var touch_controls_enabled = true
+
 
 
 # Map

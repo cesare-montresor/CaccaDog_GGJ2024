@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://diwvkk72teuk8"]
+
+[ext_resource type="Texture2D" uid="uid://dwwgaeacs65ha" path="res://gfx/touch-finger.png" id="1_i7sqt"]
+[ext_resource type="Texture2D" uid="uid://b3ikc46p6arqt" path="res://gfx/touch-circle.png" id="2_1ls3p"]
+
+[node name="ControlsTouchUI" type="Node2D"]
+top_level = true
+z_index = 11
+
+[node name="Finger" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("1_i7sqt")
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+texture = ExtResource("2_1ls3p")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+text = "asdfasdf"
