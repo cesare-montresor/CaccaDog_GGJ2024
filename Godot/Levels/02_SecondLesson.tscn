@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://diogrjlqguln5"]
+[gd_scene load_steps=12 format=3 uid="uid://diogrjlqguln5"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_k0dxs"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="2_4i7ha"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_g8uts"]
 [ext_resource type="PackedScene" uid="uid://dfto5wvk6iiy1" path="res://Helpers/Helper_F0.tscn" id="6_5ghcg"]
 [ext_resource type="PackedScene" uid="uid://bec60a3c1tg33" path="res://Scenes/ui.tscn" id="8_7ipjl"]
+[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://gfx/bg.tscn" id="9_l0vuk"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="10_gugqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
@@ -248,3 +249,5 @@ position = Vector2(24, 216)
 [node name="SoundtrackPlayer" parent="." instance=ExtResource("10_gugqr")]
 
 [node name="UI" parent="." instance=ExtResource("8_7ipjl")]
+
+[node name="BG" parent="." instance=ExtResource("9_l0vuk")]

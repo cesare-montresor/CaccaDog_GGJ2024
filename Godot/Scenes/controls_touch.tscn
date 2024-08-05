@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://1pnoktlakej7"]
+[gd_scene load_steps=4 format=3 uid="uid://ctqa0hqj68o7l"]
 
 [ext_resource type="Script" path="res://Autoload/controls_touch.gd" id="1_v4g1t"]
 [ext_resource type="Texture2D" uid="uid://b3ikc46p6arqt" path="res://gfx/touch-circle.png" id="2_hfewo"]

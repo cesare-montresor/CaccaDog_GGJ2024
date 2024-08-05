@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://u7nwtl35l2nc"]
+[gd_scene load_steps=11 format=3 uid="uid://u7nwtl35l2nc"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_8osm8"]
 [ext_resource type="PackedScene" uid="uid://bec60a3c1tg33" path="res://Scenes/ui.tscn" id="2_qna4r"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="3_0xgts"]
 [ext_resource type="PackedScene" uid="uid://dtd5a37nemh86" path="res://Scenes/player.tscn" id="4_t0nxw"]
 [ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="5_c6xpq"]
+[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://gfx/bg.tscn" id="8_32u3x"]
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="10_0eci2"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="11_al3ne"]
 
@@ -142,3 +143,5 @@ position = Vector2(88, 88)
 food_level = 3
 
 [node name="SoundtrackPlayer" parent="." instance=ExtResource("11_al3ne")]
+
+[node name="BG" parent="." instance=ExtResource("8_32u3x")]

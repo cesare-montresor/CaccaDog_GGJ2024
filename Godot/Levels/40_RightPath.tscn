@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://650trcfrkem8"]
+[gd_scene load_steps=11 format=3 uid="uid://650trcfrkem8"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_pfnae"]
 [ext_resource type="PackedScene" uid="uid://bec60a3c1tg33" path="res://Scenes/ui.tscn" id="2_42mqg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c44fjaht0wysi" path="res://Scenes/food.tscn" id="4_iv68d"]
 [ext_resource type="PackedScene" uid="uid://k7snp0m2a1d3" path="res://Scenes/SoundtrackPlayer.tscn" id="5_o68es"]
 [ext_resource type="PackedScene" uid="uid://dnlq7sneyr5fw" path="res://Scenes/level_title.tscn" id="6_dg0w4"]
+[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://gfx/bg.tscn" id="8_iokr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
 texture = ExtResource("2_v8lua")
@@ -112,3 +113,5 @@ food_level = 2
 
 [node name="LevelTitle" parent="." instance=ExtResource("6_dg0w4")]
 title = "CHOOSE THE RIGHT PATH"
+
+[node name="BG" parent="." instance=ExtResource("8_iokr0")]

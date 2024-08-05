@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3isf2b2tcx7g"]
+[gd_scene load_steps=13 format=3 uid="uid://d3isf2b2tcx7g"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_xvigs"]
 [ext_resource type="AudioStream" uid="uid://bxt1waqd656rj" path="res://Assets/Audio/music/Three Red Hearts - Rumble at the Gates.ogg" id="4_cqy0h"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dv5jr4msk1mvx" path="res://Themes/MenuButt.tres" id="6_20t03"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
 [ext_resource type="StyleBox" uid="uid://lilvp5ewbyca" path="res://Themes/MenuButtHover.tres" id="7_501fs"]
+[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://gfx/bg.tscn" id="8_b5s8y"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
@@ -106,7 +107,7 @@ theme = ExtResource("8_po258")
 alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="VBoxContainer"]
@@ -118,7 +119,7 @@ texture = SubResource("AtlasTexture_pgxfx")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="Start" type="Button" parent="VBoxContainer"]
@@ -155,8 +156,11 @@ theme_override_styles/pressed = ExtResource("6_20t03")
 text = "CREDITS
 "
 
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
-visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
@@ -171,7 +175,7 @@ text = "QUIT
 "
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="WASD" type="TextureRect" parent="VBoxContainer"]
@@ -180,6 +184,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_st3wk")
 stretch_mode = 2
+
+[node name="BG" parent="." instance=ExtResource("8_b5s8y")]
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
