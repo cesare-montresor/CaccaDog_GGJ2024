@@ -95,24 +95,36 @@ func _process(delta):
 		
 	check_win()
 		
-func check_win():
-	var cur_cell = map.local_to_map(position)
-	if (last_cell == cur_cell): return false
-	last_cell = cur_cell
+func can_win():
 	var foods = get_tree().get_nodes_in_group("food") 
-	# print(cur_cell, cells_finish)
 	if len(foods) > 0: 
 		return false
 	if poop_counter > 0: 
 		return false
-	if not cells_finish.has(cur_cell): 
-		return false	
+	
+	return true
+		
+func check_win():
+	var cur_cell = map.local_to_map(position)
+	if (last_cell == cur_cell): return false
+	last_cell = cur_cell
+	
+	var win = can_win()
+	if not win: return false
+	
+	if not cells_finish.has(cur_cell): return false	
 	
 	print("you win")
 	next()
 	return true
 		
-	
+		
+func can_walk(coords):
+	var is_wall = cells_wall.has(coords)
+	var is_entrance = cells_start.has(coords)
+	var is_exit = cells_finish.has(coords)
+	var blocked = is_wall or is_entrance or ( is_exit and not can_win() )
+	return not blocked
 
 func PlayerMovement(delta):
 	if GameManager.is_moving: return
@@ -123,11 +135,11 @@ func PlayerMovement(delta):
 	var next_coords = cur_coords + GameManager.step
 	# GAMEMANAGER
 	
-	var is_wall = cells_wall.has(next_coords)
+	var walkable = can_walk(next_coords) #cells_wall.has(next_coords)
 	
 	#print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
 	
-	if not GameManager.is_moving and not is_wall:
+	if not GameManager.is_moving and walkable:
 		GameManager.is_moving = true
 		source_position = map.map_to_local(cur_coords)
 		target_position = map.map_to_local(next_coords)

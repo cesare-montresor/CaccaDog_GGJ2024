@@ -1,8 +1,6 @@
 extends Node2D
 
-@onready var finger = $Finger
-@onready var label = $Label
-
+var finger_position = Vector2.ZERO
 var start_position = Vector2.ZERO
 var last_position = Vector2.ZERO
 
@@ -16,18 +14,21 @@ var touch_bounds_max = Vector2(touch_bound , touch_bound)
 
 
 # "GameManager" is a singleton for top level GameManager data.
+const ui_joystick_const = preload("res://Scenes/controls_touch_ui.tscn")
+var ui_joystick
 
 func _ready():
 	#if !	OS.has_touchscreen_ui_hint():
 	#	queue_free()
+	ui_joystick = ui_joystick_const.instantiate()
 	
 	if GameManager.touch_position == Vector2.ZERO:
 		visible = false
 	else:
 		position = GameManager.touch_position
 		start_position = GameManager.touch_position 
-		finger.position = GameManager.touch_finger_position
-		get_dir(finger.position)
+		finger_position = GameManager.touch_finger_position
+		get_dir(finger_position)
 
 func _unhandled_input(event):
 	if !GameParams.touch_controls_enabled:
@@ -37,6 +38,7 @@ func _unhandled_input(event):
 	
 func handle_touch_events(event):
 	if event is InputEventScreenTouch || event is InputEventMouseButton:
+	
 		
 		if event.pressed == true:
 			if start_position == Vector2.ZERO:
@@ -48,21 +50,20 @@ func handle_touch_events(event):
 			last_position = event.position
 		else:
 			var diff = event.position - start_position
-			label.text = "RELEASE: diff: " + str(event.position - start_position)
 			
 			start_position = Vector2.ZERO
 			GameManager.touch_position = Vector2.ZERO
 			visible = false
 			dir = ""
 			drag_held = false
-			finger.position = Vector2.ZERO
+			finger_position = Vector2.ZERO
 			GameManager.touch_finger_position = Vector2.ZERO
 
 			
 	if event is InputEventScreenDrag :
-		finger.position = event.position - start_position
-		finger.position = finger.position.clamp(touch_bounds_min,touch_bounds_max)
-		GameManager.touch_finger_position = finger.position
+		finger_position = event.position - start_position
+		finger_position = finger_position.clamp(touch_bounds_min,touch_bounds_max)
+		GameManager.touch_finger_position = finger_position
 		var diff = event.position - start_position
 		drag_held = true
 		dir = ""
@@ -71,9 +72,9 @@ func handle_touch_events(event):
 	if event is InputEventMouseMotion:	
 
 		if drag_held  == true:
-			finger.position = event.position - start_position
-			finger.position = finger.position.clamp(touch_bounds_min,touch_bounds_max)
-			GameManager.touch_finger_position = finger.position
+			finger_position = event.position - start_position
+			finger_position = finger_position.clamp(touch_bounds_min,touch_bounds_max)
+			GameManager.touch_finger_position = finger_position
 			var diff = event.position - start_position
 			dir = ""
 			get_dir(diff)
@@ -98,18 +99,18 @@ func _process(delta):
 func get_dir(diff):
 	if diff.length_squared() > GameParams.tile_size**2:
 		if abs(diff.x) > abs(diff.y):
-			label.text = "abs x : " + str(abs(diff.x))
+			#label.text = "abs x : " + str(abs(diff.x))
 			if diff.x < 0:
 				dir = "move_left"
-				label.text = "move_left" 
+				#label.text = "move_left" 
 			elif diff.x > 0:
 				dir = "move_right"
-				label.text = "move_right" 
+				#label.text = "move_right" 
 		else:
-			label.text = "abs y : " + str(abs(diff.y))
+			#label.text = "abs y : " + str(abs(diff.y))
 			if diff.y < 0:
 				dir = "move_up"
-				label.text = "move_up" 
+				#label.text = "move_up" 
 			elif diff.y > 0:
 				dir = "move_down"
-				label.text = "move_down" 
+				#label.text = "move_down" 
