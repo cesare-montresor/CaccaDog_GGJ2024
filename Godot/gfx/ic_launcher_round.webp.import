@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vt7j11qbcuaa"
-path="res://.godot/imported/ic_launcher_round.webp-0c435aed85c9eea8bc4834f7f1e496b9.ctex"
+path="res://.godot/imported/ic_launcher_round.webp-ec4a6d332f87b3600faf86a6eb17a5e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/ic_launcher_round.webp"
-dest_files=["res://.godot/imported/ic_launcher_round.webp-0c435aed85c9eea8bc4834f7f1e496b9.ctex"]
+source_file="res://gfx/ic_launcher_round.webp"
+dest_files=["res://.godot/imported/ic_launcher_round.webp-ec4a6d332f87b3600faf86a6eb17a5e2.ctex"]
 
 [params]
 

@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dv5jr4msk1mvx" path="res://Themes/MenuButt.tres" id="6_20t03"]
 [ext_resource type="Texture2D" uid="uid://n2adjly5atqx" path="res://Assets/Tilesets/Tileset1k.png" id="6_deofk"]
 [ext_resource type="StyleBox" uid="uid://lilvp5ewbyca" path="res://Themes/MenuButtHover.tres" id="7_501fs"]
-[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://gfx/bg.tscn" id="8_b5s8y"]
+[ext_resource type="PackedScene" uid="uid://qnma1l4425n0" path="res://Assets/UI/bg.tscn" id="8_b5s8y"]
 [ext_resource type="Theme" uid="uid://careq483a61r5" path="res://Themes/CaccaDog.tres" id="8_po258"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt853"]
