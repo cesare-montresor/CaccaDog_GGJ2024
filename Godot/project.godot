@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="CaccaDog_v1.0"
+config/name="CaccaDog_v1.1alfa"
 run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
