@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const controls_touch_ui = preload("res://Scenes/touch_ui.tscn")
+
 
 var life1: TextureRect
 var life2: TextureRect
@@ -32,7 +34,7 @@ func _ready():
 	
 	#remove_child(controls_touchs)
 	#add_child(controls_touchs)
-	#controls_touchs.top_level=false
+	#controls_touchs.top_level=falsea
 	pass # Replace with function body.
 
 

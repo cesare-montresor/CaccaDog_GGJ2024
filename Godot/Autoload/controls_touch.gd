@@ -14,13 +14,12 @@ var touch_bounds_max = Vector2(touch_bound , touch_bound)
 
 
 # "GameManager" is a singleton for top level GameManager data.
-const ui_joystick_const = preload("res://Scenes/controls_touch_ui.tscn")
-var ui_joystick
+
 
 func _ready():
 	#if !	OS.has_touchscreen_ui_hint():
 	#	queue_free()
-	ui_joystick = ui_joystick_const.instantiate()
+	
 	
 	if GameManager.touch_position == Vector2.ZERO:
 		visible = false
@@ -31,8 +30,7 @@ func _ready():
 		get_dir(finger_position)
 
 func _unhandled_input(event):
-	if !GameParams.touch_controls_enabled:
-		return
+	if !GameParams.touch_controls_enabled: return
 	handle_touch_events(event)	
 	
 	
@@ -58,6 +56,7 @@ func handle_touch_events(event):
 			drag_held = false
 			finger_position = Vector2.ZERO
 			GameManager.touch_finger_position = Vector2.ZERO
+			GameManager.step = Vector2i.ZERO
 
 			
 	if event is InputEventScreenDrag :

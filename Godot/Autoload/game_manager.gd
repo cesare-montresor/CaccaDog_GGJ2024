@@ -24,6 +24,11 @@ func _init():
 	print(levels)
 	
 	num_lifes = GameParams.num_lifes
+	
+	#use_touch = OS.has_touchscreen_ui_hint()
+	#GameParams.keyboard_controls_enabled = false
+	#GameParams.touch_controls_enabled = true
+	
 
 func LoadLevel(level_num):
 	if level_num < 0: level_num = 0
@@ -63,4 +68,4 @@ var touch_position = Vector2.ZERO
 var touch_finger_position = Vector2.ZERO
 var step = Vector2i.ZERO
 var is_moving = false
-
+var player = null

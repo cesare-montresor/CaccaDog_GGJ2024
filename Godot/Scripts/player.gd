@@ -22,15 +22,20 @@ var alive = true
 
 var tween
 var rng = RandomNumberGenerator.new()
-@onready var map
+@onready var map: TileMap
 @onready var UI
-@onready var viewport
+@onready var viewport: Camera2D
 @onready var level_title
 
 var cells_wall
 var cells_start
 var cells_finish
+var start_coords
+var stop_coords 
+
+
 var total_poops=0
+var can_finish=false
 
 var world_min = Vector2i(0,0) 
 var world_max = Vector2i(0,0) 
@@ -42,14 +47,32 @@ func _init():
 	pass
 	
 func _ready():
-	map = $"../TileMap"
+	map = $"../TileMap" as TileMap
 	UI = $"../UI"
-	viewport = $Camera2D
+	viewport = $Camera2D as Camera2D
 	level_title = $"../LevelTitle"
 	
-	cells_wall = map.get_used_cells(GameParams.layer_wall)		
-	cells_start = map.get_used_cells(GameParams.layer_start)
-	cells_finish = map.get_used_cells(GameParams.layer_finish)
+	
+	var layer_wall = GameParams.layer_wall
+	var layer_start = GameParams.layer_start
+	var layer_finish = GameParams.layer_finish
+	var tileset_source_id = GameParams.tileset_source_id
+	
+	
+	GameManager.player = self
+	
+	cells_wall = map.get_used_cells(layer_wall)		
+	cells_start = map.get_used_cells(layer_start)
+	cells_finish = map.get_used_cells(layer_finish)
+	
+	
+	start_coords = map.get_cell_atlas_coords(layer_start,cells_start[0])
+	stop_coords = map.get_cell_atlas_coords(layer_finish,cells_finish[0])
+
+	#map.set_layer_enabled(GameParams.layer_finish,false)
+	for coords in cells_finish:
+		map.set_cell(layer_finish,coords,tileset_source_id,start_coords)
+	
 		
 	for wall in cells_wall:
 		if wall.x < world_min_cell.x: world_min_cell.x = wall.x
@@ -72,10 +95,13 @@ func _ready():
 	GameManager.is_moving=false
 	if tween: tween.kill()
 	
-	var start_pos = map.map_to_local(cells_start.pick_random())
-	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.set_loops(1).set_parallel(false)
-	tween.tween_property(self, "position", start_pos, 0)	
+	var start_pos = map.map_to_local(cells_start[0])
+	
+	
+	#tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	#tween.set_loops(1).set_parallel(false)
+	#tween.tween_property(self, "position", start_pos, 0)	
+	position = start_pos
 	
 	var foods = get_tree().get_nodes_in_group("food") 
 	total_poops=0
@@ -92,8 +118,19 @@ func _process(delta):
 	if alive:
 		PlayerMovement(delta)
 		PlayerAnimation()
-		
+	
+	update_finish()
+	
 	check_win()
+		
+func update_finish():
+	var complete = can_win()
+	if can_finish: return true
+	if can_finish == complete: return true
+	can_finish = complete 
+	#map.set_layer_enabled(GameParams.layer_finish,true)
+	for coords in cells_finish:
+		map.set_cell(GameParams.layer_finish,coords,GameParams.tileset_source_id,stop_coords)
 		
 func can_win():
 	var foods = get_tree().get_nodes_in_group("food") 
@@ -106,13 +143,11 @@ func can_win():
 		
 func check_win():
 	var cur_cell = map.local_to_map(position)
-	if (last_cell == cur_cell): return false
-	last_cell = cur_cell
-	
-	var win = can_win()
-	if not win: return false
-	
+	#if (last_cell == cur_cell): return false
+	#last_cell = cur_cell
+		
 	if not cells_finish.has(cur_cell): return false	
+	if not can_win(): return
 	
 	print("you win")
 	next()
@@ -120,10 +155,13 @@ func check_win():
 		
 		
 func can_walk(coords):
+	if coords == Vector2i(13,9): 
+		print("stocazzo")
 	var is_wall = cells_wall.has(coords)
 	var is_entrance = cells_start.has(coords)
 	var is_exit = cells_finish.has(coords)
-	var blocked = is_wall or is_entrance or ( is_exit and not can_win() )
+	print(coords)
+	var blocked = is_wall or is_entrance or ( is_exit and !can_win() )
 	return not blocked
 
 func PlayerMovement(delta):
@@ -137,9 +175,10 @@ func PlayerMovement(delta):
 	
 	var walkable = can_walk(next_coords) #cells_wall.has(next_coords)
 	
-	#print("from: ", cur_coords, ' to:', next_coords, ' can walk:', !is_wall)
-	
+	if GameManager.step == Vector2i.ZERO: return 
+			
 	if not GameManager.is_moving and walkable:
+
 		GameManager.is_moving = true
 		source_position = map.map_to_local(cur_coords)
 		target_position = map.map_to_local(next_coords)
@@ -153,6 +192,8 @@ func PlayerMovement(delta):
 		tween.tween_callback( func ():
 			if poop: connect_poop(poop)
 			GameManager.is_moving = false
+			GameManager.step = Vector2i.ZERO
+			
 		)
 	
 	
