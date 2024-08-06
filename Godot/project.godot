@@ -21,7 +21,6 @@ Sfx="*res://Autoload/sfx.tscn"
 GameParams="*res://Autoload/game_params.gd"
 GameManager="*res://Autoload/game_manager.gd"
 ControlsKeyboard="*res://Autoload/controls_keyboard.gd"
-controls_touchs="*res://Scenes/controls_touch.tscn"
 ControlsTouch="*res://Autoload/controls_touch.gd"
 
 [dialogic]
@@ -53,7 +52,7 @@ animations/join_default_wait=true
 
 [display]
 
-window/size/viewport_width=1024
+window/size/viewport_width=2048
 window/size/viewport_height=1024
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
