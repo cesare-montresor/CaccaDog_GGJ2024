@@ -45,7 +45,11 @@ func death():
 	Death.play()
 
 func buzz():
+	if not GameParams.sound:
+		return
 	FlyBuzzingStereo.play()
 
 func success():
+	if not GameParams.sound:
+		return
 	Success.play()
