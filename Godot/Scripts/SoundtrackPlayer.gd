@@ -6,4 +6,3 @@ extends AudioStreamPlayer
 func _ready():
 	stream = soundtrack
 	playing = GameParams.sound
-

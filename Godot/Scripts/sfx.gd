@@ -39,7 +39,7 @@ func eat():
 	eats.pick_random().play()
 	
 func fart():
-	if not GameParams.sound and rng.randi_range(0,99)!=42: return
+	if not GameParams.sound and rng.randi_range(0,199)!=42: return
 	farts.pick_random().play()
 	
 func death():
