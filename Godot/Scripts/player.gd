@@ -49,7 +49,7 @@ func _init():
 func _ready():
 	map = $"../TileMap" as TileMap
 	UI = $"../UI"
-	viewport = $Camera2D as Camera2D
+	#viewport = $Camera2D as Camera2D
 	level_title = $"../LevelTitle"
 	
 	
@@ -86,10 +86,13 @@ func _ready():
 	world_min = map.map_to_local(world_min_cell)
 	world_max = map.map_to_local(world_max_cell)
 	
-	viewport.limit_left = world_min.x
-	viewport.limit_top = world_min.y 
-	viewport.limit_right = world_max.x
-	viewport.limit_bottom = world_max.y
+	#if true:
+		#viewport.limit_left = world_min.x
+		#viewport.limit_top = world_min.y 
+		#viewport.limit_right = world_max.x
+		#viewport.limit_bottom = world_max.y
+	#
+	
 	
 	alive = true
 	GameManager.is_moving=false
@@ -111,6 +114,7 @@ func _ready():
 
 # Called every frame
 func _process(delta):
+	#$Camera2D.custom_viewport = Vector2(128,128)
 	UI.update_lifes(GameManager.num_lifes)
 	UI.update_poops(poop_counter)
 	UI.update_flys(fly_ingame)
@@ -132,6 +136,8 @@ func update_finish():
 	for coords in cells_finish:
 		map.set_cell(GameParams.layer_finish,coords,GameParams.tileset_source_id,stop_coords)
 		
+	get_tree().create_timer(0.2).timeout.connect(Sfx.success)
+
 func can_win():
 	var foods = get_tree().get_nodes_in_group("food") 
 	if len(foods) > 0: 

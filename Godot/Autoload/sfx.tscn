@@ -46,45 +46,59 @@ Success = NodePath("Success")
 
 [node name="Fart1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_qacr5")
+volume_db = -8.0
 
 [node name="Fart2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_4eiev")
+volume_db = -8.0
 
 [node name="Fart3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xkwvx")
+volume_db = -8.0
 
 [node name="Fart4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6pcbk")
+volume_db = -8.0
 
 [node name="Fart5" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n41jk")
+volume_db = -8.0
 
 [node name="Fart6" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_q556b")
+volume_db = -8.0
 
 [node name="Fart7" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_k4vs8")
+volume_db = -8.0
 
 [node name="Fart8" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_5bue1")
+volume_db = -8.0
 
 [node name="Fart9" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ejcai")
+volume_db = -8.0
 
 [node name="Fart10" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_381r8")
+volume_db = -8.0
 
 [node name="Fart11" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_sc7ng")
+volume_db = -8.0
 
 [node name="Fart12" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_b235c")
+volume_db = -8.0
 
 [node name="Fart13" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_ig1wp")
+volume_db = -8.0
 
 [node name="Fart14" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_lbcxe")
+volume_db = -8.0
 
 [node name="Eat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ajnjt")
@@ -98,3 +112,4 @@ volume_db = -2.402
 
 [node name="Success" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_1nnai")
+volume_db = 8.0

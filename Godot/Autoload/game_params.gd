@@ -1,7 +1,7 @@
 extends Node
 
 # MUSIC SFX ON/OFF
-const sound = false
+const sound = true
 const tile_size = 16
 const tileset_source_id = 4
 
@@ -9,7 +9,10 @@ const tileset_source_id = 4
 var keyboard_controls_enabled = true
 var touch_controls_enabled = true
 
+# Window
 
+var window_width = 1024 
+var window_height = 1024
 
 # Map
 const layer_background = 0

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bm4esq6mbfcp0"]
+
+[node name="Camera2D" type="Camera2D"]
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+drag_left_margin = 0.7
+drag_top_margin = 0.7
+drag_right_margin = 0.7
+drag_bottom_margin = 0.7

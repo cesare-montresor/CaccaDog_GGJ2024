@@ -236,17 +236,6 @@ animation = &"death"
 speed_scale = 0.9
 offset = Vector2(0, -8)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.8
-drag_top_margin = 0.8
-drag_right_margin = 0.8
-drag_bottom_margin = 0.8
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7o635")
 
