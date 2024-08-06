@@ -36,10 +36,17 @@ func _ready():
 		if wall.x > world_max_cell.x: world_max_cell.x = wall.x
 		if wall.y > world_max_cell.y: world_max_cell.y = wall.y
 	
-	var camera_world_margin = 6
-	world_min_cell += Vector2i.ONE * camera_world_margin
-	world_max_cell -= Vector2i.ONE * camera_world_margin
-	
+	var margin = Vector2i.ONE * GameParams.camera_world_margin
+	world_min_cell += margin
+	world_max_cell -= margin
+	if world_min_cell.x > world_max_cell.x:
+		world_min_cell.x = (world_min_cell.x + world_max_cell.x) / 2
+		world_max_cell.x = world_min_cell.x
+		
+	if world_min_cell.y > world_max_cell.y:
+		world_min_cell.y = (world_min_cell.y + world_max_cell.y) / 2
+		world_max_cell.y = world_min_cell.y
+		
 	world_min = map.map_to_local(world_min_cell)
 	world_max = map.map_to_local(world_max_cell)
 	
@@ -56,8 +63,9 @@ func camera_to_player():
 	var pos = $Player.position 
 	var px = clamp(pos.x,world_min.x,world_max.x)
 	var py = clamp(pos.y,world_min.y,world_max.y)
-	if px == pos.x and py == pos.y:
-		camera.position = pos
+	#if px == pos.x and py == pos.y:
+	#camera.position = pos
+	camera.position = Vector2(px,py)
 	
 func camera_to_center():
 	var cx = (world_min.x + world_max.x) / 2
