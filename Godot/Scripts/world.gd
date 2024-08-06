@@ -44,7 +44,7 @@ func _ready():
 	world_max = map.map_to_local(world_max_cell)
 	
 	
-	camera_to_player()
+	camera_to_center()
 	camera.reset_smoothing()
 	
 
@@ -54,8 +54,15 @@ func _process(delta):
 	
 func camera_to_player():
 	var pos = $Player.position 
-	pos.x = clamp(pos.x,world_min.x,world_max.x)
-	pos.y = clamp(pos.y,world_min.y,world_max.y)
+	var px = clamp(pos.x,world_min.x,world_max.x)
+	var py = clamp(pos.y,world_min.y,world_max.y)
+	if px == pos.x and py == pos.y:
+		camera.position = pos
+	
+func camera_to_center():
+	var cx = (world_min.x + world_max.x) / 2
+	var cy = (world_min.y + world_max.y) / 2
+	var pos = Vector2(cx,cy)
 	camera.position = pos
 	
 	
