@@ -17,6 +17,8 @@ func _on_quit_pressed():
 func _on_sound_switch_pressed():
 	GameParams.sound = not GameParams.sound
 	if GameParams.sound:
-		sound_switch.icon = preload("res://Assets/UI/SpeakerNO.png")
-	else:
+		$SoundtrackPlayer.play()
 		sound_switch.icon = preload("res://Assets/UI/Speaker.png")
+	else:
+		$SoundtrackPlayer.stop()
+		sound_switch.icon = preload("res://Assets/UI/SpeakerNO.png")
