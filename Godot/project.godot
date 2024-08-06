@@ -53,9 +53,10 @@ animations/join_default_wait=true
 
 [display]
 
-window/size/viewport_width=1024
+window/size/viewport_width=2048
 window/size/viewport_height=1024
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 window/stretch/scale=4.0
 
 [editor_plugins]

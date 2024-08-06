@@ -18,6 +18,7 @@ sources/1 = SubResource("TileSetAtlasSource_awnxj")
 
 [node name="BG" type="CanvasLayer"]
 layer = -1
+follow_viewport_enabled = true
 
 [node name="BG_Tilemap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_peg1q")
