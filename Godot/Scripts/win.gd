@@ -3,6 +3,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(3.5).timeout
+	if GameParams.sound:
+		$AudioStreamPlayer.play()
 	$AnimationPlayer.play("LogoInOut")
 	await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(1.0).timeout	

@@ -407,6 +407,5 @@ title = ""
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5etvf")
-autoplay = true
 
 [node name="BG" parent="." instance=ExtResource("6_8f8g1")]
