@@ -1,7 +1,7 @@
 extends Node
 
 # MUSIC SFX ON/OFF
-const sound = false
+var sound = false
 const tile_size = 16
 const tileset_source_id = 4
 
