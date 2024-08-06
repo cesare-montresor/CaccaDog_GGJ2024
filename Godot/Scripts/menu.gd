@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var sound_switch = $Control/SoundSwitch
 
 func _on_start_pressed():
 	GameManager.StartLevel()
@@ -12,3 +13,10 @@ func _on_quit_pressed():
 	# Va gestita meglio:
 	# https://docs.godotengine.org/en/stable/tutorials/inputs/handling_quit_requests.html
 	get_tree().quit()
+
+func _on_sound_switch_pressed():
+	GameParams.sound = not GameParams.sound
+	if GameParams.sound:
+		sound_switch.icon = preload("res://Assets/UI/SpeakerNO.png")
+	else:
+		sound_switch.icon = preload("res://Assets/UI/Speaker.png")
