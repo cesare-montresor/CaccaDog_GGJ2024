@@ -102,6 +102,7 @@ volume_db = -8.0
 
 [node name="Eat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ajnjt")
+volume_db = -6.0
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_krpjx")
