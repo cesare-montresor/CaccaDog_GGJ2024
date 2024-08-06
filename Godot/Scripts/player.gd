@@ -87,7 +87,7 @@ func _ready():
 	world_max = map.map_to_local(world_max_cell)
 	
 	viewport.limit_left = world_min.x
-	viewport.limit_top = world_min.y
+	viewport.limit_top = world_min.y 
 	viewport.limit_right = world_max.x
 	viewport.limit_bottom = world_max.y
 	
@@ -155,12 +155,10 @@ func check_win():
 		
 		
 func can_walk(coords):
-	if coords == Vector2i(13,9): 
-		print("stocazzo")
 	var is_wall = cells_wall.has(coords)
 	var is_entrance = cells_start.has(coords)
 	var is_exit = cells_finish.has(coords)
-	print(coords)
+	#print(coords)
 	var blocked = is_wall or is_entrance or ( is_exit and !can_win() )
 	return not blocked
 
@@ -230,7 +228,7 @@ func connect_poop(poop):
 
 	
 
-func PlayerAnimation(moving = false):
+func PlayerAnimation():
 	var val = target_position - source_position
 	if (val.x > 0):
 		direction = "r"
@@ -241,7 +239,7 @@ func PlayerAnimation(moving = false):
 	elif (val.y < 0):
 		direction = "u"
 		
-	if (moving):
+	if (GameManager.is_moving):
 		PlayerAnim.play("walk_" + direction)
 	else:
 		PlayerAnim.play("idle_" + direction)

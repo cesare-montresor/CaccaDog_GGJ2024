@@ -25,9 +25,10 @@ func _init():
 	
 	num_lifes = GameParams.num_lifes
 	
-	#use_touch = OS.has_touchscreen_ui_hint()
-	#GameParams.keyboard_controls_enabled = false
-	#GameParams.touch_controls_enabled = true
+	
+	#DisplayServer.window_set_min_size(Vector2i(1024,1024))
+
+func on_resize(): pass
 	
 
 func LoadLevel(level_num):

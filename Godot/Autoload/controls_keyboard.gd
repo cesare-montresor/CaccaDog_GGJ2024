@@ -13,7 +13,7 @@ func _ready():
 
 
 
-func _process(delta):
+func _process(_delta):
 	if !GameParams.keyboard_controls_enabled:
 		return
 	handle_keyboard_events()

@@ -47,7 +47,7 @@ func handle_touch_events(event):
 				drag_held = true
 			last_position = event.position
 		else:
-			var diff = event.position - start_position
+			var _diff = event.position - start_position
 			
 			start_position = Vector2.ZERO
 			GameManager.touch_position = Vector2.ZERO
@@ -79,7 +79,7 @@ func handle_touch_events(event):
 			get_dir(diff)
 				
 
-func _process(delta):
+func _process(_delta):
 	if !GameParams.touch_controls_enabled:
 		return
 	match dir:
